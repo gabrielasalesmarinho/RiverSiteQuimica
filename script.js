@@ -1,0 +1,651 @@
+const quizzes = {
+  alcanos: [
+    { q: "Qual é a fórmula geral de um alcano linear?", options: ["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","CₙHₙ"], answer: 1 },
+    { q: "Qual sufixo usamos para nomear alcanos?", options: ["-eno","-ano","-ino","-ol"], answer: 1 },
+    { q: "Qual propriedade é típica de alcanos?", options: ["Altamente polares","Formam ligações de H facilmente","Baixa solubilidade em água","Reagem prontamente com nucleófilos"], answer: 2 },
+    { q: "Qual das reações é característica dos alcanos?", options: ["Adição eletrofílica","Oxidação branda","Halogenação radicalar","Rearranjo intramolecular"], answer: 2 }
+  ],
+  alcenos: [
+    { q: "Qual a principal diferença estrutural entre alceno e alcano?", options: ["Maior número de hidrogênios","Presença de tripla ligação","Presença de dupla ligação","Anel aromático"], answer: 2 },
+    { q: "Qual reação é típica de alcenos?", options: ["Substituição nucleofílica","Adição à dupla ligação","Halogenação radicalar típica","Oxidação completa imediata"], answer: 1 },
+    { q: "A isomeria geométrica (cis/trans) ocorre quando há:", options: ["Tripla ligação isolada","Átomo de oxigênio na cadeia","Dupla ligação com substituintes diferentes","Moléculas com anéis apenas"], answer: 2 },
+    { q: "Um uso industrial importante do eteno (etileno) é:", options: ["Como solvente polar","Produção de polietileno (plástico)","Combustível de foguete","Refrigerante doméstico"], answer: 1 }
+  ],
+  alcinos: [
+    { q: "Qual sufixo nomeia os alcinos?", options: ["-ano","-eno","-ino","-ol"], answer: 2 },
+    { q: "Alcinos terminais (com H no carbono do triplo) têm característica:", options: ["Ser mais básicos que alcenos","Ter hidrogênio mais ácido","Não reagir com bases","Ser gasosos exclusivamente"], answer: 1 },
+    { q: "Uma reação típica que forma alcinos é:", options: ["Hidratação de alcenos","Eliminação dupla a partir de dihaletos","Adição de halogénios","Esterificação"], answer: 1 },
+    { q: "Exemplo de alcino comum usado em soldagem:", options: ["Eteno","Propano","Acetileno (etino)","Metano"], answer: 2 }
+  ],
+  oxigenados: [
+    { q: "Qual grupo funcional corresponde a -OH?", options: ["Cetonas","Ésteres","Álcoois","Éteres"], answer: 2 },
+    { q: "Qual sufixo indica uma cetona?", options: ["-al","-ol","-ona","-ico"], answer: 2 },
+    { q: "Qual propriedade os compostos oxigenados costumam ter em comum (comparados a hidrocarbonetos)?", options: ["Menor ponto de ebulição","Maior polaridade","Menor reatividade","Sempre insolúveis em água"], answer: 1 },
+    { q: "Qual reação converte um álcool primário em um aldeído (em condições controladas)?", options: ["Oxidação","Hidrogenação","Esterificação","Hidrólise"], answer: 0 }
+  ]
+};
+const quizOrder = ['alcanos', 'alcenos', 'alcinos', 'oxigenados'];
+const state = {
+  currentTopic: 'alcanos',
+  currentQuestionIndex: 0,
+  userAnswers: { alcanos: [], alcenos: [], alcinos: [], oxigenados: [] },
+  completed: { alcanos: false, alcenos: false, alcinos: false, oxigenados: false },
+  activeContainer: null
+};
+function getProfessorQuestions(topic) {
+  const key = 'professor_questions_' + topic;
+  const saved = localStorage.getItem(key);
+  return saved ? JSON.parse(saved) : [];
+}
+function getCombinedQuestions(topic) {
+  const def = quizzes[topic] || [];
+  const custom = getProfessorQuestions(topic);
+  return [...def, ...custom];
+}
+function getCurrentQuizForGeneral(){
+  for(let topic of quizOrder){
+    const questions = getCombinedQuestions(topic);
+    const answered = state.userAnswers[topic].length;
+    if(answered < questions.length){
+      return topic;
+    }
+  }
+  return null;
+}
+function mountQuizToContainer(topic, containerId){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  const questions = getCombinedQuestions(topic);
+  const qIndex = Math.min(state.userAnswers[topic].length, questions.length);
+  if(qIndex >= questions.length){
+    const done = document.createElement('div');
+    done.innerHTML = `<p style="margin:8px 0;color:var(--muted)"><strong>Você já respondeu todas as perguntas deste tema.</strong></p>`;
+    const summary = document.createElement('div');
+    summary.className = 'note';
+    const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+    summary.innerHTML = `<p style="margin:6px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>`;
+    done.appendChild(summary);
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'btn ghost';
+    resetBtn.textContent = 'Refazer este quiz';
+    resetBtn.onclick = () => resetQuiz(topic);
+    done.appendChild(resetBtn);
+    container.appendChild(done);
+    updateProgress();
+    return;
+  }
+  const qObj = questions[qIndex];
+  const qBlock = document.createElement('div');
+  qBlock.className = 'question-row';
+  qBlock.dataset.topic = topic;
+  qBlock.dataset.qIndex = qIndex;
+  qBlock.innerHTML = `<div class="question-text">Q${qIndex+1}. ${qObj.q}</div>`;
+  const opts = document.createElement('div');
+  opts.className = 'options';
+  qObj.options.forEach((opt, i) => {
+    const optDiv = document.createElement('label');
+    optDiv.className = 'option';
+    optDiv.dataset.index = i;
+    optDiv.innerHTML = `
+      <input type="radio" name="opt-${topic}-${containerId}" value="${i}" />
+      <div style="flex:1">${opt}</div>
+    `;
+    optDiv.addEventListener('click', () => {
+      if (optDiv.classList.contains('disabled')) return;
+      const radio = optDiv.querySelector('input[type=radio]');
+      radio.checked = true;
+      const siblings = optDiv.parentElement.querySelectorAll('.option');
+      siblings.forEach(s => s.style.boxShadow = '');
+      optDiv.style.boxShadow = '0 8px 20px rgba(8,32,56,0.06)';
+    });
+    opts.appendChild(optDiv);
+  });
+  qBlock.appendChild(opts);
+  const btns = document.createElement('div');
+  btns.className = 'btns';
+  const send = document.createElement('button');
+  send.className = 'btn primary';
+  send.textContent = 'Enviar resposta';
+  send.onclick = () => submitAnswer(topic, qIndex, containerId);
+  const skip = document.createElement('button');
+  skip.className = 'btn ghost';
+  skip.textContent = 'Pular';
+  skip.onclick = () => {
+    state.userAnswers[topic].push({ selected: null, correct: false, skipped:true });
+    const isQuizComplete = state.userAnswers[topic].length >= getCombinedQuestions(topic).length;
+    if (containerId === 'quiz-geral-container' && isQuizComplete) {
+      setTimeout(() => { mountGeneralQuiz() }, 2000);
+    } else if (containerId === 'quiz-geral-container') {
+      mountQuizToContainer(topic, containerId);
+    } else {
+      mountQuizToContainer(topic, containerId);
+    }
+  };
+  btns.appendChild(send);
+  btns.appendChild(skip);
+  qBlock.appendChild(btns);
+  const resultStrip = document.createElement('div');
+  resultStrip.className = 'result-strip';
+  qBlock.appendChild(resultStrip);
+  const title = document.createElement('h4');
+  title.textContent = 'Quiz — ' + capitalize(topic);
+  title.style.margin = '0 0 10px 0';
+  container.insertBefore(title, container.firstChild);
+  container.appendChild(qBlock);
+  updateProgress();
+}
+function mountGeneralQuiz(){
+  const container = document.getElementById('quiz-geral-container');
+  if (!container) return;
+  const currentTopic = getCurrentQuizForGeneral();
+  if (!currentTopic){
+    container.innerHTML = `
+      <h4 style="margin:0 0 10px 0">Parabéns! Você completou todos os quizzes!</h4>
+      <div class="note">
+        <p style="margin:6px 0"><strong>Resumo:</strong></p>
+        ${quizOrder.map(topic => {
+          const questions = getCombinedQuestions(topic);
+          const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+          return `<p style="margin:4px 0">${capitalize(topic)}: <strong>${corrects}</strong> de ${questions.length}</p>`;
+        }).join('')}
+      </div>
+      <button class="btn ghost" onclick="resetAllQuizzes()" style="margin-top:12px">Reiniciar todos os quizzes</button>
+    `;
+    updateProgress();
+    return;
+  }
+  mountQuizToContainer(currentTopic, 'quiz-geral-container');
+}
+function submitAnswer(topic, qIndex, containerId){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const qBlock = container.querySelector('.question-row');
+  if (!qBlock) return;
+  const chosen = qBlock.querySelector('input[type=radio]:checked');
+  const optionsEls = Array.from(qBlock.querySelectorAll('.option'));
+  const allQuestions = getCombinedQuestions(topic);
+  const correctIndex = allQuestions[qIndex].answer;
+  if(!chosen){
+    qBlock.style.animation = 'shake 0.3s';
+    setTimeout(()=>qBlock.style.animation='none',300);
+    return;
+  }
+  const selectedIndex = Number(chosen.value);
+  const isCorrect = (selectedIndex === correctIndex);
+  state.userAnswers[topic].push({ selected: selectedIndex, correct: isCorrect, skipped:false });
+  optionsEls.forEach((optEl, i) => {
+    optEl.classList.add('disabled');
+    optEl.style.cursor = 'default';
+    const radio = optEl.querySelector('input[type=radio]');
+    if(radio) radio.disabled = true;
+    if(i === correctIndex){ optEl.classList.add('correct') }
+    if(i === selectedIndex && !isCorrect){ optEl.classList.add('wrong') }
+  });
+  const strip = qBlock.querySelector('.result-strip');
+  if(strip){ strip.classList.add(isCorrect ? 'success' : 'mixed') }
+  updateProgress();
+  const isQuizComplete = state.userAnswers[topic].length >= getCombinedQuestions(topic).length;
+  setTimeout(()=> {
+    if (containerId === 'quiz-geral-container' && isQuizComplete) {
+      setTimeout(() => { mountGeneralQuiz() }, 2000);
+    } else if (containerId === 'quiz-geral-container') {
+      mountQuizToContainer(topic, containerId);
+    } else {
+      mountQuizToContainer(topic, containerId);
+    }
+  }, 2500);
+}
+function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1) }
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.target;
+    showSection(target);
+  });
+});
+function showSection(id){
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  const el = document.getElementById(id);
+  if(el) el.classList.add('active');
+  state.currentTopic = id === 'quizgeral' ? state.currentTopic : id;
+  const sidebar = document.querySelector('aside.sidebar');
+  const mainContainer = document.querySelector('main.container');
+  if (id === 'quizgeral') {
+    if (sidebar) sidebar.classList.add('show');
+    if (mainContainer) mainContainer.classList.remove('no-sidebar');
+    mountGeneralQuiz();
+    const startBtn = document.getElementById('start-quiz');
+    if (startBtn) startBtn.textContent = 'Abrir quiz do tema';
+  } else {
+    if (sidebar) sidebar.classList.remove('show');
+    if (mainContainer) mainContainer.classList.add('no-sidebar');
+    const startBtn = document.getElementById('start-quiz');
+    if (startBtn) startBtn.textContent = 'Abrir quiz do tema';
+  }
+}
+document.getElementById('start-quiz').addEventListener('click', () => {
+  const activeSection = document.querySelector('.section.active');
+  if (activeSection && activeSection.id === 'quizgeral') {
+    mountGeneralQuiz();
+    const qEl = document.getElementById('quiz-geral-container');
+    if(qEl) qEl.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+});
+function resetAllQuizzes(){
+  if(!confirm('Deseja reiniciar todos os quizzes? Isso apagará seu progresso atual no quiz.')) return;
+  state.userAnswers = { alcanos: [], alcenos: [], alcinos: [], oxigenados: [] };
+  state.completed = { alcanos: false, alcenos: false, alcinos: false, oxigenados: false };
+  const activeSection = document.querySelector('.section.active');
+  if (activeSection && activeSection.id === 'quizgeral') {
+    mountGeneralQuiz();
+  } else {
+    mountGeneralQuiz();
+  }
+  updateProgress();
+}
+window.resetAllQuizzes = resetAllQuizzes;
+document.getElementById('reset-all').addEventListener('click', resetAllQuizzes);
+function resetQuiz(topic){
+  state.userAnswers[topic] = [];
+  const activeSection = document.querySelector('.section.active');
+  if (activeSection && activeSection.id === 'quizgeral') {
+    mountGeneralQuiz();
+  } else {
+    mountGeneralQuiz();
+  }
+  updateProgress();
+}
+function updateProgress(){
+  let total = quizOrder.reduce((sum, topic) => sum + getCombinedQuestions(topic).length, 0);
+  const answered = Object.keys(state.userAnswers).reduce((s, k) => s + state.userAnswers[k].length, 0);
+  const pct = Math.round((answered/total) * 100);
+  const bar = document.getElementById('progress');
+  if (bar) {
+    bar.style.background = `linear-gradient(90deg, ${pct>66 ? 'var(--success)' : pct>33 ? 'var(--accent1)' : 'var(--danger)'} ${pct}%, rgba(0,0,0,0.04) ${pct}%)`;
+    bar.textContent = answered + '/' + total;
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('aside.sidebar');
+  const mainContainer = document.querySelector('main.container');
+  if (sidebar) sidebar.classList.remove('show');
+  if (mainContainer) mainContainer.classList.add('no-sidebar');
+  updateProgress();
+});
+let professorState = {
+  loggedIn: true,
+  currentTopic: 'alcanos'
+};
+function showProfessorPanel() {
+  document.getElementById('professor-panel').style.display = 'block';
+  selectProfessorTopic(professorState.currentTopic);
+  loadProfessorQuestions();
+}
+function selectProfessorTopic(topic) {
+  professorState.currentTopic = topic;
+  ['alcanos', 'alcenos', 'alcinos', 'oxigenados'].forEach(t => {
+    const btn = document.getElementById('prof-topic-' + t);
+    if (btn) {
+      if (t === topic) {
+        btn.classList.remove('ghost');
+        btn.classList.add('primary');
+        btn.style.background = 'linear-gradient(135deg, var(--accent1), var(--accent2))';
+        btn.style.color = 'white';
+      } else {
+        btn.classList.remove('primary');
+        btn.classList.add('ghost');
+        btn.style.background = '';
+        btn.style.color = '';
+      }
+    }
+  });
+  loadProfessorQuestions();
+}
+window.selectProfessorTopic = selectProfessorTopic;
+function saveProfessorQuestions(topic, questions) {
+  const key = 'professor_questions_' + topic;
+  localStorage.setItem(key, JSON.stringify(questions));
+}
+function addProfessorQuestion() {
+  const topic = professorState.currentTopic;
+  const questionText = document.getElementById('prof-question-text').value.trim();
+  const options = [
+    document.getElementById('prof-option-0').value.trim(),
+    document.getElementById('prof-option-1').value.trim(),
+    document.getElementById('prof-option-2').value.trim(),
+    document.getElementById('prof-option-3').value.trim()
+  ];
+  const correctAnswer = document.querySelector('input[name="prof-correct-answer"]:checked');
+  if (!questionText) { alert('Por favor, digite a pergunta!'); return; }
+  if (options.some(opt => !opt)) { alert('Por favor, preencha todas as 4 opções!'); return; }
+  if (!correctAnswer) { alert('Por favor, selecione qual é a resposta correta!'); return; }
+  const newQuestion = {
+    q: questionText,
+    options: options,
+    answer: parseInt(correctAnswer.value),
+    id: Date.now()
+  };
+  const questions = getProfessorQuestions(topic);
+  questions.push(newQuestion);
+  saveProfessorQuestions(topic, questions);
+  clearProfessorForm();
+  loadProfessorQuestions();
+  alert('Pergunta adicionada com sucesso!');
+}
+window.addProfessorQuestion = addProfessorQuestion;
+function clearProfessorForm() {
+  document.getElementById('prof-question-text').value = '';
+  document.getElementById('prof-option-0').value = '';
+  document.getElementById('prof-option-1').value = '';
+  document.getElementById('prof-option-2').value = '';
+  document.getElementById('prof-option-3').value = '';
+  document.querySelectorAll('input[name="prof-correct-answer"]').forEach(r => r.checked = false);
+}
+window.clearProfessorForm = clearProfessorForm;
+function loadProfessorQuestions() {
+  const topic = professorState.currentTopic;
+  const questions = getProfessorQuestions(topic);
+  const container = document.getElementById('professor-questions-list');
+  const countEl = document.getElementById('prof-question-count');
+  countEl.textContent = questions.length;
+  if (questions.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px">Nenhuma pergunta personalizada ainda. Adicione uma acima!</p>';
+    return;
+  }
+  container.innerHTML = questions.map((q, index) => `
+    <div class="card" style="margin-top:12px; padding:16px; background:rgba(139,92,246,0.05); border-left:4px solid #8b5cf6">
+      <div style="display:flex; justify-content:space-between; align-items:start; gap:12px">
+        <div style="flex:1">
+          <p style="margin:0 0 8px 0; font-weight:600; color:#1e40af">P${index + 1}. ${q.q}</p>
+          <ul style="margin:8px 0 0 20px; color:var(--muted); font-size:0.9rem">
+            ${q.options.map((opt, i) => `
+              <li style="margin-bottom:4px; ${i === q.answer ? 'color:#10b981; font-weight:600' : ''}">
+                ${opt}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+        <button class="btn ghost" onclick="deleteProfessorQuestion(${q.id})" style="padding:6px 12px; font-size:0.85rem; color:#ef4444; border-color:#ef4444">
+          Excluir
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+function deleteProfessorQuestion(questionId) {
+  if (!confirm('Tem certeza que deseja excluir esta pergunta?')) return;
+  const topic = professorState.currentTopic;
+  const questions = getProfessorQuestions(topic);
+  const filtered = questions.filter(q => q.id !== questionId);
+  saveProfessorQuestions(topic, filtered);
+  loadProfessorQuestions();
+}
+window.deleteProfessorQuestion = deleteProfessorQuestion;
+// Sistema de Texto para Voz (TTS) - Melhorado
+let speechSynthesis = window.speechSynthesis;
+let currentUtterance = null;
+let isSpeaking = false;
+let currentSectionId = null;
+
+// Função para limpar texto e melhorar pronúncia
+function cleanTextForSpeech(text) {
+  if (!text) return '';
+  
+  // Remove tags HTML e mantém apenas texto
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = text;
+  let cleanText = tempDiv.textContent || tempDiv.innerText || '';
+  
+  // Melhora pronúncia de fórmulas químicas
+  cleanText = cleanText.replace(/C<sub>(\d+)<\/sub>/g, 'C $1');
+  cleanText = cleanText.replace(/H<sub>(\d+)<\/sub>/g, 'H $1');
+  cleanText = cleanText.replace(/O<sub>(\d+)<\/sub>/g, 'O $1');
+  cleanText = cleanText.replace(/<sub>/g, '');
+  cleanText = cleanText.replace(/<\/sub>/g, '');
+  cleanText = cleanText.replace(/CH<sub>(\d+)<\/sub>/g, 'C H $1');
+  cleanText = cleanText.replace(/ₙ/g, 'n');
+  cleanText = cleanText.replace(/₂/g, '2');
+  cleanText = cleanText.replace(/₃/g, '3');
+  cleanText = cleanText.replace(/₄/g, '4');
+  cleanText = cleanText.replace(/₅/g, '5');
+  cleanText = cleanText.replace(/₊/g, ' mais ');
+  cleanText = cleanText.replace(/₋/g, ' menos ');
+  cleanText = cleanText.replace(/→/g, ' produz ');
+  cleanText = cleanText.replace(/\+/g, ' mais ');
+  cleanText = cleanText.replace(/=/g, ' igual a ');
+  
+  // Remove múltiplos espaços
+  cleanText = cleanText.replace(/\s+/g, ' ').trim();
+  
+  return cleanText;
+}
+
+// Função para selecionar melhor voz
+function getBestVoice() {
+  const voices = speechSynthesis.getVoices();
+  // Prioriza vozes em português brasileiro
+  const ptBRVoices = voices.filter(v => v.lang.startsWith('pt-BR'));
+  if (ptBRVoices.length > 0) {
+    // Prioriza vozes femininas (geralmente mais claras)
+    const femaleVoice = ptBRVoices.find(v => v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('heloisa'));
+    if (femaleVoice) return femaleVoice;
+    return ptBRVoices[0];
+  }
+  // Fallback para português
+  const ptVoices = voices.filter(v => v.lang.startsWith('pt'));
+  if (ptVoices.length > 0) return ptVoices[0];
+  // Fallback para qualquer voz disponível
+  return voices.find(v => v.lang.includes('pt')) || voices[0];
+}
+
+// Função para abrir/fechar menu TTS
+function toggleTTSMenu(sectionId) {
+  const menu = document.getElementById(`tts-menu-${sectionId}`);
+  if (!menu) return;
+  
+  // Fecha todos os outros menus
+  document.querySelectorAll('.tts-menu').forEach(m => {
+    if (m.id !== `tts-menu-${sectionId}`) {
+      m.style.display = 'none';
+    }
+  });
+  
+  // Alterna o menu atual
+  if (menu.style.display === 'none' || !menu.style.display) {
+    menu.style.display = 'block';
+  } else {
+    menu.style.display = 'none';
+  }
+}
+
+// Fecha menus ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.tts-control')) {
+    document.querySelectorAll('.tts-menu').forEach(menu => {
+      menu.style.display = 'none';
+    });
+  }
+});
+
+function readContent(sectionId, tabId = null) {
+  const btn = document.getElementById(`tts-btn-${sectionId}`);
+  const icon = document.getElementById(`tts-icon-${sectionId}`);
+  
+  // Fecha o menu após seleção
+  const menu = document.getElementById(`tts-menu-${sectionId}`);
+  if (menu) menu.style.display = 'none';
+  
+  // Se já está falando esta seção, pausa
+  if (isSpeaking && currentSectionId === sectionId && currentUtterance) {
+    speechSynthesis.cancel();
+    isSpeaking = false;
+    currentSectionId = null;
+    if (btn) {
+      btn.classList.remove('playing');
+      if (icon) icon.textContent = '🔊';
+    }
+    return;
+  }
+  
+  // Se está falando outra seção, cancela e inicia nova
+  if (isSpeaking && currentUtterance) {
+    speechSynthesis.cancel();
+    // Remove playing de todos os botões
+    document.querySelectorAll('[id^="tts-btn-"]').forEach(b => {
+      b.classList.remove('playing');
+      const ic = b.querySelector('[id^="tts-icon-"]');
+      if (ic) ic.textContent = '🔊';
+    });
+  }
+  
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  
+  let text = '';
+  const title = section.querySelector('h2');
+  const lead = section.querySelector('.lead');
+  
+  // Se tabId for null, usa a aba ativa; caso contrário, usa a aba especificada
+  let targetTab = null;
+  if (tabId === null) {
+    targetTab = section.querySelector('.tab-content.active');
+  } else {
+    targetTab = section.querySelector(`#${tabId}`);
+  }
+  
+  if (title) {
+    const titleText = cleanTextForSpeech(title.textContent);
+    text += titleText + '. ';
+  }
+  
+  if (lead) {
+    const leadText = cleanTextForSpeech(lead.textContent);
+    text += leadText + '. ';
+  }
+  
+  if (targetTab) {
+    const cards = targetTab.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+      const cardTitle = card.querySelector('h4');
+      const cardText = card.querySelectorAll('p');
+      const cardList = card.querySelectorAll('ul.info li');
+      
+      if (cardTitle) {
+        const titleText = cleanTextForSpeech(cardTitle.textContent);
+        text += titleText + '. ';
+      }
+      
+      cardText.forEach(p => {
+        const pText = cleanTextForSpeech(p.textContent);
+        if (pText) text += pText + '. ';
+      });
+      
+      cardList.forEach(li => {
+        const liText = cleanTextForSpeech(li.textContent);
+        if (liText) text += liText + '. ';
+      });
+    });
+  }
+  
+  if (text.trim()) {
+    // Aguarda vozes carregarem se necessário
+    if (speechSynthesis.getVoices().length === 0) {
+      speechSynthesis.addEventListener('voiceschanged', () => {
+        speakText(text, btn, icon, sectionId);
+      }, { once: true });
+    } else {
+      speakText(text, btn, icon, sectionId);
+    }
+  }
+}
+
+function speakText(text, btn, icon, sectionId) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voice = getBestVoice();
+  
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang || 'pt-BR';
+  } else {
+    utterance.lang = 'pt-BR';
+  }
+  
+  // Configurações otimizadas para melhor qualidade
+  utterance.rate = 0.85; // Velocidade um pouco mais lenta para melhor compreensão
+  utterance.pitch = 1.0; // Tom natural
+  utterance.volume = 1.0; // Volume máximo
+  
+  utterance.onstart = () => {
+    isSpeaking = true;
+    currentSectionId = sectionId;
+    if (btn) {
+      btn.classList.add('playing');
+      if (icon) icon.textContent = '⏸️';
+    }
+  };
+  
+  utterance.onend = () => {
+    isSpeaking = false;
+    currentSectionId = null;
+    if (btn) {
+      btn.classList.remove('playing');
+      if (icon) icon.textContent = '🔊';
+    }
+  };
+  
+  utterance.onerror = (e) => {
+    console.error('Erro na síntese de voz:', e);
+    isSpeaking = false;
+    currentSectionId = null;
+    if (btn) {
+      btn.classList.remove('playing');
+      if (icon) icon.textContent = '🔊';
+    }
+    alert('Erro ao reproduzir áudio. Verifique se seu navegador suporta síntese de voz.');
+  };
+  
+  currentUtterance = utterance;
+  speechSynthesis.speak(utterance);
+}
+
+window.readContent = readContent;
+window.toggleTTSMenu = toggleTTSMenu;
+
+// Sistema de Abas
+function initTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
+      const container = btn.closest('.tabs-container');
+      if (!container) return;
+      
+      // Remove active de todas as abas e conteúdos
+      container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      // Adiciona active na aba clicada e seu conteúdo
+      btn.classList.add('active');
+      const content = container.querySelector(`#${tabId}`);
+      if (content) content.classList.add('active');
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  showProfessorPanel();
+  initTabs();
+  updateProgress();
+});
+
+const originalShowSection = showSection;
+showSection = function(id) {
+  originalShowSection(id);
+  if (id === 'professor') {
+    showProfessorPanel();
+  }
+  // Reinicializa abas quando mudar de seção
+  setTimeout(() => initTabs(), 100);
+};
+

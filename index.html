@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Química Orgânica Interativa — Revisado</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  <div class="top-bar"></div>
+  <header>
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="52" height="52" rx="10" fill="url(#g)"/>
+        <defs>
+          <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#dff4ff"/><stop offset="1" stop-color="#eaf8ff"/></linearGradient>
+        </defs>
+        <g transform="translate(12,12)" stroke="#064a6b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 24c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="none"/>
+          <circle cx="8" cy="8" r="3" fill="#3a7bd5"/>
+          <circle cx="26" cy="16" r="3" fill="#00c1ff"/>
+          <circle cx="14" cy="12" r="2.2" fill="#7ad1ff"/>
+        </g>
+      </svg>
+    </div>
+    <div class="title">
+      <h1>Química Orgânica Interativa</h1>
+      <p>Alcanos • Alcenos • Alcinos • Compostos oxigenados — guia didático com ilustrações e quizzes</p>
+    </div>
+  </header>
+  <nav>
+    <button class="nav-btn active" data-target="alcanos">Alcanos</button>
+    <button class="nav-btn" data-target="alcenos">Alcenos</button>
+    <button class="nav-btn" data-target="alcinos">Alcinos</button>
+    <button class="nav-btn" data-target="oxigenados">Oxigenados</button>
+    <button class="nav-btn" data-target="quizgeral">Quiz</button>
+    <button class="nav-btn" data-target="professor">Professor</button>
+  </nav>
+  <main class="container">
+    <section class="content">
+      <article id="alcanos" class="section active">
+        <div style="margin-bottom:24px">
+          <h2>Alcanos — hidrocarbonetos saturados</h2>
+          <p class="lead">Alcanos são compostos de cadeia carbônica que só apresentam ligações simples C–C. São a base para entender propriedades físicas e algumas reações fundamentais.</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="estrutura-alcanos">Estrutura</button>
+            <button class="tab-btn" data-tab="nomenclatura-alcanos">Nomenclatura</button>
+            <button class="tab-btn" data-tab="propriedades-alcanos">Propriedades</button>
+            <button class="tab-btn" data-tab="obtencao-alcanos">Obtenção</button>
+            <button class="tab-btn" data-tab="aplicacoes-alcanos">Aplicações</button>
+            <button class="tab-btn" data-tab="reacoes-alcanos">Reações</button>
+          </div>
+          <div class="tab-content active" id="estrutura-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Estrutura: Lineares e Ramificados</h4>
+                  <p><strong>Alcanos lineares:</strong> Cadeia carbônica sem ramificações. Exemplo: n-butano (CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>CH<sub>3</sub>).</p>
+                  <p><strong>Alcanos ramificados:</strong> Possuem cadeias laterais chamadas radicais. Exemplo: 2-metilpropano ou isobutano (CH<sub>3</sub>CH(CH<sub>3</sub>)CH<sub>3</sub>).</p>
+                  <p><strong>Fórmula geral:</strong> C<sub>n</sub>H<sub>2n+2</sub>. Alcanos ramificados têm maior estabilidade e menor ponto de ebulição que os lineares de mesma massa molecular.</p>
+                </div>
+                <div class="card">
+                  <h4>Isomeria em Alcanos</h4>
+                  <p>Alcanos com 4 ou mais carbonos apresentam isomeria estrutural. Quanto maior a cadeia, maior o número de isômeros possíveis. Por exemplo, o butano (C<sub>4</sub>H<sub>10</sub>) tem 2 isômeros: n-butano (linear) e isobutano (ramificado).</p>
+                  <p style="margin-top:12px"><strong>Isômeros:</strong> Compostos com a mesma fórmula molecular mas estruturas diferentes. A isomeria estrutural aumenta exponencialmente com o número de carbonos.</p>
+                </div>
+                <div class="card">
+                  <h4>Exemplos Práticos do Dia a Dia</h4>
+                  <ul class="info">
+                    <li><strong>Metano (CH₄):</strong> Principal componente do gás natural usado em fogões e aquecedores. Também é produzido por bactérias em pântanos e no sistema digestivo de animais.</li>
+                    <li><strong>Propano (C₃H₈):</strong> Usado em botijas de gás (GLP) para cozinha e aquecimento. Fácil de liquefazer sob pressão.</li>
+                    <li><strong>Butano (C₄H₁₀):</strong> Também presente no GLP e em isqueiros. Usado como propelente em aerossóis.</li>
+                    <li><strong>Octano (C₈H₁₈):</strong> Componente importante da gasolina. O índice de octanagem mede a qualidade do combustível.</li>
+                    <li><strong>Parafina (C₂₀-C₄₀):</strong> Usada em velas, impermeabilização de papel e lubrificantes. Sólida à temperatura ambiente.</li>
+                  </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estrutura de alcanos">
+                    <defs>
+                      <linearGradient id="carbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3a7bd5;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+                      </linearGradient>
+                      <linearGradient id="hydrogenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#7ad1ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00c1ff;stop-opacity:1" />
+                      </linearGradient>
+                      <animateTransform attributeName="transform" type="rotate" values="0 200 150;360 200 150" dur="20s" repeatCount="indefinite"/>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Estrutura Molecular Animada</text>
+                    <text x="10" y="35" font-size="11" fill="#64748b">Butano (C₄H₁₀) - Rotação 3D</text>
+                    
+                    <!-- Cadeia principal com animação -->
+                    <line x1="30" y1="100" x2="250" y2="100" stroke="#07304a" stroke-width="8" stroke-linecap="round">
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                    </line>
+                    
+                    <!-- Átomos de carbono com pulso -->
+                    <g fill="url(#carbonGrad)" stroke="#063447" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="14">
+                        <animate attributeName="r" values="14;16;14" dur="2s" repeatCount="indefinite" begin="0s"/>
+                      </circle>
+                      <text x="45" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="100" cy="100" r="14">
+                        <animate attributeName="r" values="14;16;14" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="95" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="150" cy="100" r="14">
+                        <animate attributeName="r" values="14;16;14" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="145" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="200" cy="100" r="14">
+                        <animate attributeName="r" values="14;16;14" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="195" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Átomos de hidrogênio com animação -->
+                    <g fill="url(#hydrogenGrad)" stroke="#064a6b" stroke-width="1">
+                      <circle cx="30" cy="70" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="26" y="74" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="30" cy="130" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="0.2s"/>
+                      </circle>
+                      <text x="26" y="134" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="50" cy="60" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="0.4s"/>
+                      </circle>
+                      <text x="46" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="50" cy="140" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+                      </circle>
+                      <text x="46" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="100" cy="60" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="0.8s"/>
+                      </circle>
+                      <text x="96" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="100" cy="140" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="96" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="150" cy="60" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="1.2s"/>
+                      </circle>
+                      <text x="146" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="150" cy="140" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="1.4s"/>
+                      </circle>
+                      <text x="146" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="200" cy="60" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="1.6s"/>
+                      </circle>
+                      <text x="196" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="200" cy="140" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="1.8s"/>
+                      </circle>
+                      <text x="196" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="220" cy="100" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="2s"/>
+                      </circle>
+                      <text x="216" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="240" cy="100" r="8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite" begin="2.2s"/>
+                      </circle>
+                      <text x="236" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                    </g>
+                    
+                    <!-- Ligações C-H com animação -->
+                    <g stroke="#94a3b8" stroke-width="2" opacity="0.6">
+                      <line x1="30" y1="100" x2="30" y2="70">
+                        <animate attributeName="stroke-width" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+                      </line>
+                      <line x1="30" y1="100" x2="30" y2="130">
+                        <animate attributeName="stroke-width" values="2;3;2" dur="2s" repeatCount="indefinite" begin="0.2s"/>
+                      </line>
+                      <line x1="50" y1="100" x2="50" y2="60"/>
+                      <line x1="50" y1="100" x2="50" y2="140"/>
+                      <line x1="100" y1="100" x2="100" y2="60"/>
+                      <line x1="100" y1="100" x2="100" y2="140"/>
+                      <line x1="150" y1="100" x2="150" y2="60"/>
+                      <line x1="150" y1="100" x2="150" y2="140"/>
+                      <line x1="200" y1="100" x2="200" y2="60"/>
+                      <line x1="200" y1="100" x2="200" y2="140"/>
+                      <line x1="200" y1="100" x2="220" y2="100"/>
+                      <line x1="220" y1="100" x2="240" y2="100"/>
+                    </g>
+                    
+                    <!-- Exemplo visual de isômeros -->
+                    <rect x="10" y="180" width="380" height="110" rx="8" fill="#f0f8ff" stroke="#2563eb" stroke-width="1" opacity="0.8"/>
+                    <text x="20" y="200" font-size="12" fill="#064a6b" font-weight="700">Exemplos de Isômeros:</text>
+                    <text x="20" y="220" font-size="10" fill="#064a6b">n-butano (linear): CH₃-CH₂-CH₂-CH₃</text>
+                    <text x="20" y="240" font-size="10" fill="#064a6b">isobutano (ramificado): CH₃-CH(CH₃)-CH₃</text>
+                    <text x="20" y="260" font-size="9" fill="#64748b" font-style="italic">Mesma fórmula (C₄H₁₀), estruturas diferentes</text>
+                    <text x="20" y="280" font-size="9" fill="#10b981">✓ Ambos são gases à temperatura ambiente</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="nomenclatura-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Nomenclatura (IUPAC)</h4>
+              <ul class="info">
+                <li><strong>Prefixo:</strong> indica número de carbonos (met-, et-, prop-, but-, pent-, hex-, hept-, oct-, non-, dec-).</li>
+                <li><strong>Sufixo:</strong> -ano (indica ligações simples).</li>
+                <li><strong>Ramificações:</strong> numerar a cadeia principal (menor numeração possível) e indicar posição do radical (ex.: 2-metilbutano, 2,3-dimetilpentano).</li>
+                <li><strong>Exemplos:</strong> Metano (CH<sub>4</sub>), Etano (C<sub>2</sub>H<sub>6</sub>), 2-metilpropano, 2,2,4-trimetilpentano (isooctano).</li>
+              </ul>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <h4>Regras de Numeração</h4>
+                  <p>A cadeia principal deve ser numerada de forma que os radicais recebam os menores números possíveis. Se houver empate, prioriza-se a menor soma dos números dos radicais.</p>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nomenclatura IUPAC">
+                    <defs>
+                      <linearGradient id="mainChainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Nomenclatura IUPAC</text>
+                    <text x="10" y="35" font-size="12" fill="#2563eb" font-weight="600">2-metilbutano</text>
+                    
+                    <!-- Cadeia principal numerada -->
+                    <line x1="30" y1="100" x2="220" y2="100" stroke="url(#mainChainGrad)" stroke-width="6" stroke-linecap="round" />
+                    
+                    <!-- Carbonos da cadeia principal animados -->
+                    <g fill="#3a7bd5" stroke="#1e40af" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="100" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="95" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="150" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="145" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="200" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="195" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Numeração animada -->
+                    <text x="45" y="85" font-size="10" fill="#2563eb" font-weight="700">
+                      <animate attributeName="fill" values="#2563eb;#10b981;#2563eb" dur="2s" repeatCount="indefinite"/>
+                      1
+                    </text>
+                    <text x="95" y="85" font-size="10" fill="#ef4444" font-weight="700">
+                      <animate attributeName="fill" values="#ef4444;#f59e0b;#ef4444" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      2
+                    </text>
+                    <text x="145" y="85" font-size="10" fill="#2563eb" font-weight="700">
+                      <animate attributeName="fill" values="#2563eb;#10b981;#2563eb" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      3
+                    </text>
+                    <text x="195" y="85" font-size="10" fill="#2563eb" font-weight="700">
+                      <animate attributeName="fill" values="#2563eb;#10b981;#2563eb" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                      4
+                    </text>
+                    
+                    <!-- Radical metil na posição 2 animado -->
+                    <circle cx="100" cy="60" r="10" fill="#06b6d4" stroke="#0891b2" stroke-width="1.5">
+                      <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="95" y="65" font-size="9" fill="white" font-weight="700">C</text>
+                    <line x1="100" y1="88" x2="100" y2="70" stroke="#06b6d4" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+                    </line>
+                    <text x="85" y="45" font-size="10" fill="#0891b2" font-weight="600">CH₃</text>
+                    
+                    <!-- Hidrogênios -->
+                    <g fill="#7ad1ff" opacity="0.8">
+                      <circle cx="30" cy="100" r="6"/>
+                      <circle cx="50" cy="80" r="6"/>
+                      <circle cx="50" cy="120" r="6"/>
+                      <circle cx="100" cy="80" r="6"/>
+                      <circle cx="100" cy="120" r="6"/>
+                      <circle cx="150" cy="80" r="6"/>
+                      <circle cx="150" cy="120" r="6"/>
+                      <circle cx="200" cy="80" r="6"/>
+                      <circle cx="200" cy="120" r="6"/>
+                      <circle cx="220" cy="100" r="6"/>
+                      <circle cx="240" cy="100" r="6"/>
+                    </g>
+                    
+                    <!-- Legenda -->
+                    <rect x="10" y="140" width="120" height="50" rx="6" fill="#f0f8ff" stroke="#2563eb" stroke-width="1" opacity="0.8"/>
+                    <text x="20" y="160" font-size="11" fill="#064a6b" font-weight="600">Cadeia Principal:</text>
+                    <text x="20" y="175" font-size="10" fill="#64748b">4 carbonos = butano</text>
+                    <text x="20" y="185" font-size="10" fill="#64748b">Radical: metil (pos. 2)</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="propriedades-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Propriedades Físicas</h4>
+              <ul class="info">
+                <li><strong>Estado físico:</strong> C<sub>1</sub>-C<sub>4</sub> são gases; C<sub>5</sub>-C<sub>17</sub> são líquidos; C<sub>18+</sub> são sólidos (à temperatura ambiente).</li>
+                <li><strong>Ponto de ebulição:</strong> Aumenta com a massa molecular. Alcanos ramificados têm PE menor que lineares.</li>
+                <li><strong>Solubilidade:</strong> Insolúveis em água (apolares), solúveis em solventes orgânicos apolares.</li>
+                <li><strong>Densidade:</strong> Menor que a água (flutuam).</li>
+              </ul>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <h4>Propriedades Químicas</h4>
+              <ul class="info">
+                <li><strong>Reatividade:</strong> Baixa reatividade devido à estabilidade das ligações C-C e C-H.</li>
+                <li><strong>Combustão:</strong> Reagem com O<sub>2</sub> produzindo CO<sub>2</sub> e H<sub>2</sub>O (combustão completa) ou CO e H<sub>2</sub>O (incompleta).</li>
+                <li><strong>Halogenação:</strong> Substituição radicalar (reação com Cl<sub>2</sub> ou Br<sub>2</sub> na presença de luz/calor).</li>
+                <li><strong>Cracking:</strong> Quebra de moléculas grandes em menores (processo industrial).</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Propriedades Físicas">
+                    <defs>
+                      <linearGradient id="gasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3a7bd5;stop-opacity:0.4" />
+                        <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.6" />
+                      </linearGradient>
+                      <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00c1ff;stop-opacity:0.4" />
+                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.6" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Propriedades Físicas</text>
+                    
+                    <!-- Gráfico de ponto de ebulição -->
+                    <text x="10" y="40" font-size="11" fill="#64748b">Ponto de Ebulição (°C)</text>
+                    <line x1="20" y1="160" x2="260" y2="160" stroke="#64748b" stroke-width="2"/>
+                    <line x1="20" y1="160" x2="20" y2="50" stroke="#64748b" stroke-width="2"/>
+                    
+                    <!-- Eixos -->
+                    <text x="15" y="155" font-size="9" fill="#64748b">0</text>
+                    <text x="15" y="100" font-size="9" fill="#64748b">100</text>
+                    <text x="15" y="60" font-size="9" fill="#64748b">200</text>
+                    
+                    <!-- Estados físicos animados -->
+                    <g>
+                      <!-- Gases -->
+                      <circle cx="60" cy="140" r="18" fill="url(#gasGrad)" stroke="#2563eb" stroke-width="2">
+                        <animate attributeName="cy" values="140;135;140" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="52" y="145" font-size="9" fill="#064a6b" font-weight="600">C₁-C₄</text>
+                      <text x="40" y="175" font-size="10" fill="#064a6b" font-weight="600">Gases</text>
+                      
+                      <!-- Líquidos -->
+                      <rect x="110" y="120" width="35" height="35" rx="6" fill="url(#liquidGrad)" stroke="#06b6d4" stroke-width="2">
+                        <animate attributeName="y" values="120;115;120" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
+                      </rect>
+                      <text x="118" y="140" font-size="9" fill="#064a6b" font-weight="600">C₅-C₁₇</text>
+                      <text x="110" y="175" font-size="10" fill="#064a6b" font-weight="600">Líquidos</text>
+                      
+                      <!-- Sólidos -->
+                      <rect x="170" y="100" width="50" height="30" rx="4" fill="#7ad1ff" opacity="0.5" stroke="#0891b2" stroke-width="2">
+                        <animate attributeName="opacity" values="0.5;0.8;0.5" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+                      </rect>
+                      <text x="185" y="118" font-size="9" fill="#064a6b" font-weight="600">C₁₈+</text>
+                      <text x="180" y="175" font-size="10" fill="#064a6b" font-weight="600">Sólidos</text>
+                    </g>
+                    
+                    <!-- Tendência animada -->
+                    <path d="M 50 150 Q 100 130, 150 110 T 220 90" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" opacity="0.7">
+                      <animate attributeName="stroke-dashoffset" values="0;8;0" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="230" y="95" font-size="9" fill="#ef4444" font-weight="600">↑ PE</text>
+                    
+                    <!-- Solubilidade -->
+                    <rect x="10" y="180" width="260" height="15" rx="4" fill="#f0f8ff" stroke="#2563eb" stroke-width="1"/>
+                    <text x="15" y="192" font-size="9" fill="#064a6b">Insolúveis em água (apolares) | Solúveis em solventes orgânicos</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="obtencao-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Métodos de Obtenção</h4>
+              <ul class="info">
+                <li><strong>Petróleo e gás natural:</strong> Fonte principal. Destilação fracionada separa frações (gasolina, querosene, óleo diesel).</li>
+                <li><strong>Hidrogenação de alcenos:</strong> Alcenos + H<sub>2</sub> (catalisador: Ni, Pt, Pd) → alcanos.</li>
+                <li><strong>Redução de haletos:</strong> RX + 2[H] → RH + HX (usando LiAlH<sub>4</sub> ou Zn/HCl).</li>
+                <li><strong>Reação de Wurtz:</strong> 2R-X + 2Na → R-R + 2NaX (síntese de alcanos simétricos).</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Métodos de Obtenção">
+                    <defs>
+                      <linearGradient id="petroleumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Métodos de Obtenção</text>
+                    
+                    <!-- Petróleo animado -->
+                    <rect x="20" y="40" width="110" height="70" rx="8" fill="url(#petroleumGrad)" stroke="#1e293b" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <circle cx="50" cy="70" r="8" fill="#fbbf24" opacity="0.8">
+                      <animate attributeName="cx" values="50;55;50" dur="4s" repeatCount="indefinite"/>
+                      <animate attributeName="cy" values="70;75;70" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="70" cy="80" r="6" fill="#fbbf24" opacity="0.6">
+                      <animate attributeName="cx" values="70;75;70" dur="4.5s" repeatCount="indefinite" begin="0.5s"/>
+                      <animate attributeName="cy" values="80;75;80" dur="4.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </circle>
+                    <circle cx="90" cy="75" r="7" fill="#fbbf24" opacity="0.7">
+                      <animate attributeName="cx" values="90;85;90" dur="5s" repeatCount="indefinite" begin="1s"/>
+                      <animate attributeName="cy" values="75;80;75" dur="5s" repeatCount="indefinite" begin="1s"/>
+                    </circle>
+                    <text x="30" y="125" font-size="11" fill="white" font-weight="600">Petróleo</text>
+                    <text x="30" y="140" font-size="9" fill="#cbd5e1">Destilação</text>
+                    <text x="30" y="155" font-size="9" fill="#cbd5e1">Fracionada</text>
+                    
+                    <!-- Gás Natural animado -->
+                    <circle cx="180" cy="75" r="25" fill="#3a7bd5" opacity="0.3" stroke="#2563eb" stroke-width="2">
+                      <animate attributeName="r" values="25;28;25" dur="3s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="180" cy="75" r="18" fill="#60a5fa" opacity="0.5">
+                      <animate attributeName="r" values="18;20;18" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;0.7;0.5" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="155" y="125" font-size="11" fill="#064a6b" font-weight="600">Gás Natural</text>
+                    <text x="155" y="140" font-size="9" fill="#64748b">Metano (CH₄)</text>
+                    
+                    <!-- Síntese Laboratorial -->
+                    <rect x="20" y="165" width="240" height="30" rx="6" fill="#f0f8ff" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="30" y="180" font-size="10" fill="#064a6b" font-weight="600">Síntese:</text>
+                    <text x="30" y="192" font-size="9" fill="#64748b">Hidrogenação de alcenos | Redução de haletos | Reação de Wurtz</text>
+                    
+                    <!-- Setas de processo animadas -->
+                    <defs>
+                      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#10b981"/>
+                      </marker>
+                    </defs>
+                    <path d="M 75 110 Q 75 130, 75 150" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrowhead)">
+                      <animate attributeName="stroke-dasharray" values="0,100;10,90;0,100" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="aplicacoes-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Onde é Utilizado</h4>
+              <ul class="info">
+                <li><strong>Combustíveis:</strong> GLP (propano/butano), gasolina, querosene, óleo diesel, gás natural (metano).</li>
+                <li><strong>Solventes:</strong> Hexano, heptano (extração de óleos, limpeza).</li>
+                <li><strong>Matérias-primas:</strong> Produção de plásticos, borracha sintética, fibras.</li>
+                <li><strong>Lubrificantes:</strong> Óleos minerais (alcanos de cadeia longa).</li>
+                <li><strong>Parafinas:</strong> Velas, impermeabilização (alcanos sólidos).</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aplicações dos Alcanos">
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Aplicações Industriais</text>
+                    
+                    <!-- Combustíveis animado -->
+                    <rect x="20" y="40" width="70" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <circle cx="55" cy="60" r="8" fill="#fbbf24">
+                      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="30" y="80" font-size="10" fill="#92400e" font-weight="600">Combustíveis</text>
+                    <text x="25" y="95" font-size="8" fill="#78350f">Gasolina, GLP</text>
+                    
+                    <!-- Solventes animado -->
+                    <rect x="110" y="40" width="70" height="50" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <rect x="130" y="55" width="30" height="20" rx="2" fill="#60a5fa" opacity="0.6">
+                      <animate attributeName="y" values="55;50;55" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="120" y="80" font-size="10" fill="#1e40af" font-weight="600">Solventes</text>
+                    <text x="115" y="95" font-size="8" fill="#1e3a8a">Hexano, Heptano</text>
+                    
+                    <!-- Plásticos animado -->
+                    <rect x="200" y="40" width="70" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <polygon points="210,55 220,50 230,55 230,75 220,80 210,75" fill="#818cf8">
+                      <animateTransform attributeName="transform" type="rotate" values="0 220 65;5 220 65;0 220 65" dur="3s" repeatCount="indefinite"/>
+                    </polygon>
+                    <text x="210" y="80" font-size="10" fill="#4338ca" font-weight="600">Plásticos</text>
+                    <text x="205" y="95" font-size="8" fill="#312e81">Matérias-primas</text>
+                    
+                    <!-- Lubrificantes animado -->
+                    <rect x="20" y="110" width="70" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="1.5s"/>
+                    </rect>
+                    <circle cx="55" cy="130" r="10" fill="#34d399" opacity="0.5">
+                      <animate attributeName="r" values="10;12;10" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="25" y="150" font-size="10" fill="#047857" font-weight="600">Lubrificantes</text>
+                    <text x="25" y="165" font-size="8" fill="#065f46">Óleos minerais</text>
+                    
+                    <!-- Parafinas animado -->
+                    <rect x="110" y="110" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="2s"/>
+                    </rect>
+                    <rect x="125" y="125" width="40" height="25" rx="2" fill="#fca5a5">
+                      <animate attributeName="y" values="125;120;125" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="120" y="150" font-size="10" fill="#991b1b" font-weight="600">Parafinas</text>
+                    <text x="115" y="165" font-size="8" fill="#7f1d1d">Velas, Ceras</text>
+                    
+                    <!-- Gás Natural animado -->
+                    <rect x="200" y="110" width="70" height="50" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="2.5s"/>
+                    </rect>
+                    <circle cx="235" cy="130" r="12" fill="#6ee7b7" opacity="0.4">
+                      <animate attributeName="r" values="12;15;12" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="210" y="150" font-size="10" fill="#047857" font-weight="600">Gás Natural</text>
+                    <text x="205" y="165" font-size="8" fill="#065f46">Metano (CH₄)</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="reacoes-alcanos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Reações dos Alcanos</h4>
+                  <p><strong>Combustão:</strong> Alcanos reagem com oxigênio produzindo dióxido de carbono e água. A combustão completa é altamente exotérmica, sendo a base dos combustíveis fósseis.</p>
+                  <p style="margin-top:12px"><strong>Halogenação:</strong> Reação de substituição radicalar onde átomos de hidrogênio são substituídos por halogênios (Cl, Br). Requer luz UV ou calor para iniciar.</p>
+                  <p style="margin-top:12px"><strong>Cracking:</strong> Quebra térmica ou catalítica de alcanos grandes em moléculas menores, essencial na indústria petroquímica.</p>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <h4>Mecanismos de Reação</h4>
+                  <ul class="info">
+                    <li><strong>Substituição radicalar:</strong> Mecanismo em três etapas: iniciação, propagação e terminação.</li>
+                    <li><strong>Estabilidade de radicais:</strong> Radicais terciários são mais estáveis que secundários, que são mais estáveis que primários.</li>
+                    <li><strong>Seletividade:</strong> A halogenação é seletiva: 3° > 2° > 1° > metil, seguindo a estabilidade dos radicais formados.</li>
+                  </ul>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <h4>Exemplos Práticos de Reações</h4>
+                  <ul class="info">
+                    <li><strong>Combustão do metano:</strong> CH₄ + 2O₂ → CO₂ + 2H₂O + energia. Usado em fogões domésticos e geradores de energia.</li>
+                    <li><strong>Halogenação do metano:</strong> CH₄ + Cl₂ → CH₃Cl + HCl (clorometano). Primeiro passo para produção de solventes e refrigerantes.</li>
+                    <li><strong>Cracking do petróleo:</strong> C₁₆H₃₄ → C₈H₁₈ + C₈H₁₆. Processo industrial que quebra moléculas grandes em gasolina e outros produtos.</li>
+                    <li><strong>Reforma catalítica:</strong> Converte alcanos lineares em ramificados para aumentar a octanagem da gasolina.</li>
+                    <li><strong>Desidrogenação:</strong> Alcanos podem perder hidrogênio formando alcenos, importante na produção de plásticos.</li>
+                  </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reações Químicas Animadas">
+                    <defs>
+                      <marker id="arrowReac" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+                      </marker>
+                      <linearGradient id="fireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Reações Animadas</text>
+                    
+                    <!-- Animação de Combustão -->
+                    <rect x="10" y="35" width="380" height="80" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+                    <text x="20" y="52" font-size="11" fill="#991b1b" font-weight="600">Combustão do Metano (Animada):</text>
+                    
+                    <!-- Metano se movendo -->
+                    <g id="metano">
+                      <circle cx="50" cy="80" r="12" fill="#3a7bd5" stroke="#1e40af" stroke-width="2">
+                        <animate attributeName="cx" values="50;150;50" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="85" font-size="9" fill="white" font-weight="700">CH₄</text>
+                    </g>
+                    
+                    <!-- Oxigênio se movendo -->
+                    <g id="oxigenio">
+                      <circle cx="200" cy="80" r="10" fill="#ef4444" stroke="#dc2626" stroke-width="2">
+                        <animate attributeName="cx" values="200;150;200" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="195" y="85" font-size="8" fill="white" font-weight="700">O₂</text>
+                      <circle cx="220" cy="80" r="10" fill="#ef4444" stroke="#dc2626" stroke-width="2">
+                        <animate attributeName="cx" values="220;150;220" dur="3s" repeatCount="indefinite" begin="0.1s"/>
+                      </circle>
+                      <text x="215" y="85" font-size="8" fill="white" font-weight="700">O₂</text>
+                    </g>
+                    
+                    <!-- Seta animada -->
+                    <path d="M 150 80 L 250 80" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowReac)">
+                      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    <!-- Produtos aparecendo -->
+                    <g id="produtos">
+                        <circle cx="280" cy="70" r="10" fill="#10b981" stroke="#059669" stroke-width="2">
+                          <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="275" y="75" font-size="8" fill="white" font-weight="700">CO₂</text>
+                        <circle cx="320" cy="70" r="8" fill="#06b6d4" stroke="#0891b2" stroke-width="2">
+                          <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                        </circle>
+                        <text x="315" y="75" font-size="7" fill="white" font-weight="700">H₂O</text>
+                        <circle cx="350" cy="70" r="8" fill="#06b6d4" stroke="#0891b2" stroke-width="2">
+                          <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                        </circle>
+                        <text x="345" y="75" font-size="7" fill="white" font-weight="700">H₂O</text>
+                    </g>
+                    
+                    <!-- Chama animada -->
+                    <path d="M 260 100 L 270 85 L 275 95 L 280 80 L 285 95 L 290 85 L 300 100 Z" fill="url(#fireGrad)" opacity="0.8">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
+                      <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="0.8s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="310" y="95" font-size="9" fill="#f59e0b" font-weight="600">+ Calor</text>
+                    
+                    <!-- Halogenação -->
+                    <rect x="10" y="125" width="380" height="60" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="20" y="142" font-size="11" fill="#1e40af" font-weight="600">Halogenação (Substituição Radicalar):</text>
+                    <text x="20" y="158" font-size="10" fill="#064a6b">CH₄ + Cl₂</text>
+                    <text x="20" y="170" font-size="8" fill="#64748b" font-style="italic">luz UV / calor</text>
+                    <path d="M 100 155 L 200 155" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowReac)"/>
+                    <text x="210" y="158" font-size="10" fill="#064a6b">CH₃Cl + HCl</text>
+                    
+                    <!-- Cracking -->
+                    <rect x="10" y="195" width="380" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="20" y="212" font-size="11" fill="#047857" font-weight="600">Cracking (Quebra Térmica):</text>
+                    <text x="20" y="228" font-size="10" fill="#064a6b">C₁₆H₃₄</text>
+                    <path d="M 80 225 L 180 225" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowReac)"/>
+                    <text x="190" y="228" font-size="10" fill="#064a6b">C₈H₁₈ + C₈H₁₆</text>
+                    <text x="20" y="240" font-size="9" fill="#64748b" font-style="italic">Processo industrial a alta temperatura</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="alcenos" class="section">
+        <div style="margin-bottom:24px">
+          <h2>Alcenos — hidrocarbonetos insaturados (dupla ligação)</h2>
+          <p class="lead">Alcenos possuem ao menos uma ligação dupla C=C e são mais reativos que alcanos por permitirem reações de adição.</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="estrutura-alcenos">Estrutura</button>
+            <button class="tab-btn" data-tab="nomenclatura-alcenos">Nomenclatura</button>
+            <button class="tab-btn" data-tab="propriedades-alcenos">Propriedades</button>
+            <button class="tab-btn" data-tab="obtencao-alcenos">Obtenção</button>
+            <button class="tab-btn" data-tab="aplicacoes-alcenos">Aplicações</button>
+            <button class="tab-btn" data-tab="reacoes-alcenos">Reações</button>
+          </div>
+          <div class="tab-content active" id="estrutura-alcenos">
+            <div class="grid">
+          <div>
+            <div class="card">
+              <h4>Estrutura: Lineares e Ramificados</h4>
+              <p><strong>Alcenos lineares:</strong> Dupla ligação em cadeia principal sem ramificações. Ex.: 1-buteno (CH<sub>2</sub>=CHCH<sub>2</sub>CH<sub>3</sub>).</p>
+              <p style="margin-top:8px"><strong>Alcenos ramificados:</strong> Dupla ligação com cadeias laterais. Ex.: 3-metil-1-buteno, 2-metil-2-buteno.</p>
+              <p><strong>Fórmula geral:</strong> C<sub>n</sub>H<sub>2n</sub> (com uma dupla ligação). A dupla ligação C=C confere maior reatividade que alcanos.</p>
+                </div>
+                <div class="card">
+                  <h4>Isomeria em Alcenos</h4>
+                  <p>Alcenos podem apresentar isomeria estrutural (diferentes posições da dupla ligação) e isomeria geométrica cis-trans quando há substituintes diferentes em cada carbono da dupla ligação.</p>
+                </div>
+                <div class="card">
+                  <h4>Exemplos Práticos do Dia a Dia</h4>
+                  <ul class="info">
+                    <li><strong>Etileno (Eteno - C₂H₄):</strong> Hormônio vegetal que acelera amadurecimento de frutas. Usado na produção de polietileno (plástico mais comum).</li>
+                    <li><strong>Propileno (Propeno - C₃H₆):</strong> Usado para produzir polipropileno (PP), fibras sintéticas, e como matéria-prima para produtos químicos.</li>
+                    <li><strong>Butadieno:</strong> Componente essencial na produção de borracha sintética (pneus, calçados).</li>
+                    <li><strong>Isopreno:</strong> Base para produção de borracha natural sintética e alguns plásticos especiais.</li>
+                    <li><strong>Estireno:</strong> Usado na produção de poliestireno (PS), espumas isolantes e embalagens.</li>
+                    <li><strong>Acrilonitrila:</strong> Produz fibras acrílicas (roupas, tapetes) e plásticos resistentes.</li>
+                  </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estrutura de alcenos">
+                    <defs>
+                      <linearGradient id="carbonAlcenoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00c1ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Estrutura Molecular</text>
+                    <text x="10" y="35" font-size="11" fill="#64748b">Eteno / Etileno (C₂H₄)</text>
+                    
+                    <!-- Cadeia com dupla ligação -->
+                    <line x1="30" y1="100" x2="80" y2="100" stroke="#07304a" stroke-width="6" stroke-linecap="round" />
+                    <line x1="120" y1="100" x2="200" y2="100" stroke="#07304a" stroke-width="6" stroke-linecap="round" />
+                    
+                    <!-- Dupla ligação animada -->
+                    <line x1="80" y1="92" x2="120" y2="92" stroke="#ef4444" stroke-width="4">
+                      <animate attributeName="stroke-width" values="4;5;4" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="80" y1="108" x2="120" y2="108" stroke="#ef4444" stroke-width="4">
+                      <animate attributeName="stroke-width" values="4;5;4" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                    </line>
+                    
+                    <!-- Indicador de reatividade -->
+                    <circle cx="100" cy="100" r="25" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" opacity="0.5">
+                      <animate attributeName="r" values="25;30;25" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Átomos de carbono animados -->
+                    <g fill="url(#carbonAlcenoGrad)" stroke="#063447" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="80" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="75" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="120" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="115" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="160" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="155" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Átomos de hidrogênio -->
+                    <g fill="#7ad1ff" stroke="#064a6b" stroke-width="1">
+                      <circle cx="50" cy="70" r="8"/>
+                      <text x="46" y="74" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="50" cy="130" r="8"/>
+                      <text x="46" y="134" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="80" cy="60" r="8"/>
+                      <text x="76" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="80" cy="140" r="8"/>
+                      <text x="76" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="120" cy="60" r="8"/>
+                      <text x="116" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="120" cy="140" r="8"/>
+                      <text x="116" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="160" cy="80" r="8"/>
+                      <text x="156" y="84" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="160" cy="120" r="8"/>
+                      <text x="156" y="124" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="190" cy="100" r="8"/>
+                      <text x="186" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="220" cy="100" r="8"/>
+                      <text x="216" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                    </g>
+                    
+                    <!-- Ligações C-H -->
+                    <g stroke="#94a3b8" stroke-width="2" opacity="0.6">
+                      <line x1="50" y1="100" x2="50" y2="70"/>
+                      <line x1="50" y1="100" x2="50" y2="130"/>
+                      <line x1="80" y1="100" x2="80" y2="60"/>
+                      <line x1="80" y1="100" x2="80" y2="140"/>
+                      <line x1="120" y1="100" x2="120" y2="60"/>
+                      <line x1="120" y1="100" x2="120" y2="140"/>
+                      <line x1="160" y1="100" x2="160" y2="80"/>
+                      <line x1="160" y1="100" x2="160" y2="120"/>
+                      <line x1="160" y1="100" x2="190" y2="100"/>
+                      <line x1="190" y1="100" x2="220" y2="100"/>
+                    </g>
+                    
+                    <text x="10" y="175" font-size="10" fill="#ef4444" font-weight="600">Dupla ligação C=C (mais reativa)</text>
+                    
+                    <!-- Demonstração de reatividade -->
+                    <rect x="10" y="190" width="380" height="100" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5" opacity="0.9"/>
+                    <text x="20" y="210" font-size="11" fill="#991b1b" font-weight="600">Como a Dupla Ligação Funciona:</text>
+                    <text x="20" y="230" font-size="9" fill="#064a6b">• A ligação π (pi) é mais fraca que a ligação σ (sigma)</text>
+                    <text x="20" y="250" font-size="9" fill="#064a6b">• Pode ser quebrada facilmente em reações de adição</text>
+                    <text x="20" y="270" font-size="9" fill="#064a6b">• Permite adição de H₂, HX, X₂, H₂O e outros reagentes</text>
+                    
+                    <!-- Animação de adição -->
+                    <g id="adicao">
+                      <circle cx="300" cy="230" r="15" fill="#10b981" opacity="0.7">
+                        <animate attributeName="cx" values="300;200;300" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="295" y="235" font-size="8" fill="white" font-weight="700">H₂</text>
+                      <path d="M 200 230 L 120 100" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3" opacity="0.6">
+                        <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                      </path>
+                    </g>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="nomenclatura-alcenos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Nomenclatura (IUPAC)</h4>
+              <ul class="info">
+                <li><strong>Sufixo:</strong> -eno (indica presença de dupla ligação).</li>
+                <li><strong>Numeração:</strong> A cadeia principal deve incluir a dupla ligação e receber a menor numeração possível.</li>
+                <li><strong>Posição da dupla:</strong> Indicada pelo menor número dos carbonos da dupla (ex.: 1-buteno, 2-buteno).</li>
+                <li><strong>Isomeria geométrica:</strong> cis- (mesmo lado) ou trans- (lados opostos) para alcenos dissubstituídos. Ex.: cis-2-buteno, trans-2-buteno.</li>
+                <li><strong>Exemplos:</strong> Eteno (CH<sub>2</sub>=CH<sub>2</sub>), Propeno (CH<sub>3</sub>CH=CH<sub>2</sub>), 2-metil-1-propeno, 3-metil-1-buteno.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nomenclatura IUPAC">
+                    <defs>
+                      <linearGradient id="alcenoChainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00c1ff;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Nomenclatura IUPAC</text>
+                    <text x="10" y="35" font-size="12" fill="#06b6d4" font-weight="600">2-buteno</text>
+                    
+                    <!-- Cadeia principal com dupla ligação -->
+                    <line x1="30" y1="100" x2="80" y2="100" stroke="url(#alcenoChainGrad)" stroke-width="6" stroke-linecap="round" />
+                    <line x1="120" y1="100" x2="200" y2="100" stroke="url(#alcenoChainGrad)" stroke-width="6" stroke-linecap="round" />
+                    
+                    <!-- Dupla ligação destacada animada -->
+                    <line x1="80" y1="92" x2="120" y2="92" stroke="#ef4444" stroke-width="4">
+                      <animate attributeName="stroke-width" values="4;5;4" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="80" y1="108" x2="120" y2="108" stroke="#ef4444" stroke-width="4">
+                      <animate attributeName="stroke-width" values="4;5;4" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                    </line>
+                    
+                    <!-- Carbonos animados -->
+                    <g fill="#00c1ff" stroke="#0891b2" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="80" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="75" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="120" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="115" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="160" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="155" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Numeração animada -->
+                    <text x="45" y="85" font-size="10" fill="#06b6d4" font-weight="700">
+                      <animate attributeName="fill" values="#06b6d4;#10b981;#06b6d4" dur="2s" repeatCount="indefinite"/>
+                      1
+                    </text>
+                    <text x="75" y="85" font-size="10" fill="#ef4444" font-weight="700">
+                      <animate attributeName="fill" values="#ef4444;#f59e0b;#ef4444" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      2
+                    </text>
+                    <text x="115" y="85" font-size="10" fill="#ef4444" font-weight="700">
+                      <animate attributeName="fill" values="#ef4444;#f59e0b;#ef4444" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      3
+                    </text>
+                    <text x="155" y="85" font-size="10" fill="#06b6d4" font-weight="700">
+                      <animate attributeName="fill" values="#06b6d4;#10b981;#06b6d4" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      4
+                    </text>
+                    
+                    <!-- Hidrogênios -->
+                    <g fill="#7ad1ff" opacity="0.8">
+                      <circle cx="50" cy="80" r="6"/>
+                      <circle cx="50" cy="120" r="6"/>
+                      <circle cx="80" cy="80" r="6"/>
+                      <circle cx="80" cy="120" r="6"/>
+                      <circle cx="120" cy="80" r="6"/>
+                      <circle cx="120" cy="120" r="6"/>
+                      <circle cx="160" cy="80" r="6"/>
+                      <circle cx="160" cy="120" r="6"/>
+                      <circle cx="190" cy="100" r="6"/>
+                      <circle cx="220" cy="100" r="6"/>
+                    </g>
+                    
+                    <!-- Legenda -->
+                    <rect x="10" y="140" width="260" height="55" rx="6" fill="#f0f8ff" stroke="#06b6d4" stroke-width="1" opacity="0.8"/>
+                    <text x="20" y="160" font-size="11" fill="#064a6b" font-weight="600">Cadeia Principal:</text>
+                    <text x="20" y="175" font-size="10" fill="#64748b">4 carbonos = buteno</text>
+                    <text x="20" y="190" font-size="10" fill="#ef4444" font-weight="600">Dupla ligação nas posições 2-3</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="propriedades-alcenos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Propriedades Físicas</h4>
+              <ul class="info">
+                <li><strong>Estado físico:</strong> C<sub>2</sub>-C<sub>4</sub> são gases; C<sub>5</sub>-C<sub>18</sub> são líquidos; C<sub>19+</sub> são sólidos.</li>
+                <li><strong>Ponto de ebulição:</strong> Similar aos alcanos, mas ligeiramente maior devido à maior polaridade da dupla ligação.</li>
+                <li><strong>Solubilidade:</strong> Insolúveis em água, solúveis em solventes orgânicos apolares.</li>
+                <li><strong>Densidade:</strong> Ligeiramente maior que alcanos correspondentes, mas ainda menor que água.</li>
+              </ul>
+                </div>
+                <div class="card">
+                  <h4>Propriedades Químicas</h4>
+              <ul class="info">
+                <li><strong>Reatividade:</strong> Muito mais reativos que alcanos devido à dupla ligação π (pi), que é mais fraca e acessível a ataques.</li>
+                <li><strong>Reações de adição:</strong> Características principais — adicionam H<sub>2</sub>, HX, X<sub>2</sub>, H<sub>2</sub>O (hidratação).</li>
+                <li><strong>Regra de Markovnikov:</strong> Em adições de HX, o H liga-se ao carbono menos substituído da dupla.</li>
+                <li><strong>Oxidação:</strong> Com KMnO<sub>4</sub> ou OsO<sub>4</sub> formam dióis; com ozônio (O<sub>3</sub>) formam aldeídos/cetonas.</li>
+                <li><strong>Polimerização:</strong> Formam polímeros (ex.: eteno → polietileno).</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Propriedades dos Alcenos">
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Propriedades Físicas e Químicas</text>
+                    
+                    <!-- Comparação de reatividade -->
+                    <rect x="10" y="40" width="260" height="70" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="20" y="60" font-size="12" fill="#1e40af" font-weight="600">Reatividade Comparativa:</text>
+                    
+                    <!-- Alcano animado -->
+                    <line x1="30" y1="80" x2="80" y2="80" stroke="#3a7bd5" stroke-width="4">
+                      <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                    <circle cx="55" cy="80" r="8" fill="#3a7bd5">
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="20" y="100" font-size="10" fill="#064a6b">Alcano (C-C simples)</text>
+                    <text x="20" y="115" font-size="9" fill="#64748b">Baixa reatividade</text>
+                    
+                    <!-- Alceno animado -->
+                    <line x1="120" y1="80" x2="150" y2="80" stroke="#06b6d4" stroke-width="4">
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="135" y1="72" x2="150" y2="72" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="135" y1="88" x2="150" y2="88" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                    </line>
+                    <circle cx="135" cy="80" r="8" fill="#00c1ff">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="150" cy="80" r="8" fill="#00c1ff">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                    </circle>
+                    <text x="110" y="100" font-size="10" fill="#064a6b">Alceno (C=C dupla)</text>
+                    <text x="110" y="115" font-size="9" fill="#ef4444" font-weight="600">Alta reatividade</text>
+                    
+                    <!-- Seta indicando aumento animada -->
+                    <path d="M 90 80 L 110 80" stroke="#10b981" stroke-width="3" marker-end="url(#arrowUp)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <defs>
+                      <marker id="arrowUp" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#10b981"/>
+                      </marker>
+                    </defs>
+                    
+                    <!-- Propriedades físicas animadas -->
+                    <rect x="10" y="120" width="260" height="75" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="20" y="140" font-size="11" fill="#047857" font-weight="600">Estados Físicos:</text>
+                    <circle cx="40" cy="160" r="12" fill="#3a7bd5" opacity="0.3">
+                      <animate attributeName="cy" values="160;155;160" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="30" y="165" font-size="9" fill="#064a6b">C₂-C₄</text>
+                    <text x="25" y="180" font-size="9" fill="#64748b">Gases</text>
+                    
+                    <rect x="80" y="148" width="30" height="24" rx="3" fill="#00c1ff" opacity="0.3">
+                      <animate attributeName="y" values="148;143;148" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <text x="85" y="165" font-size="9" fill="#064a6b">C₅-C₁₈</text>
+                    <text x="80" y="180" font-size="9" fill="#64748b">Líquidos</text>
+                    
+                    <rect x="140" y="150" width="40" height="20" rx="3" fill="#7ad1ff" opacity="0.3">
+                      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3.5s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <text x="150" y="165" font-size="9" fill="#064a6b">C₁₉+</text>
+                    <text x="145" y="180" font-size="9" fill="#64748b">Sólidos</text>
+                    
+                    <text x="200" y="165" font-size="9" fill="#64748b">PE ligeiramente</text>
+                    <text x="200" y="180" font-size="9" fill="#64748b">maior que alcanos</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="obtencao-alcenos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Métodos de Obtenção</h4>
+              <ul class="info">
+                <li><strong>Desidroalogenação:</strong> Haletos de alquila + base forte (KOH/etanol) → alceno + HX.</li>
+                <li><strong>Desidratação de álcoois:</strong> Álcool + H<sub>2</sub>SO<sub>4</sub> (conc.) → alceno + H<sub>2</sub>O.</li>
+                <li><strong>Dehalogenação:</strong> Dihaletos vicinais + Zn → alceno + ZnX<sub>2</sub>.</li>
+                <li><strong>Craqueamento:</strong> Quebra de alcanos grandes em alcenos menores (processo industrial).</li>
+                <li><strong>Redução seletiva:</strong> Alcinos + H<sub>2</sub> (catalisador: Lindlar) → alcenos cis.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Métodos de Obtenção">
+                    <defs>
+                      <marker id="arrowAlceno" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4"/>
+                      </marker>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Métodos de Obtenção</text>
+                    
+                    <!-- Desidroalogenação animada -->
+                    <rect x="10" y="35" width="260" height="45" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="20" y="52" font-size="11" fill="#1e40af" font-weight="600">Desidroalogenação:</text>
+                    <text x="20" y="68" font-size="10" fill="#064a6b">R-CH₂-CH₂-X + KOH</text>
+                    <path d="M 140 65 L 160 65" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowAlceno)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="170" y="68" font-size="10" fill="#064a6b">R-CH=CH₂ + KX + H₂O</text>
+                    
+                    <!-- Desidratação animada -->
+                    <rect x="10" y="90" width="260" height="45" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <text x="20" y="107" font-size="11" fill="#047857" font-weight="600">Desidratação de Álcool:</text>
+                    <text x="20" y="123" font-size="10" fill="#064a6b">R-CH₂-CH₂-OH + H₂SO₄</text>
+                    <path d="M 150 120 L 170 120" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowAlceno)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                    </path>
+                    <text x="180" y="123" font-size="10" fill="#064a6b">R-CH=CH₂ + H₂O</text>
+                    
+                    <!-- Craqueamento animado -->
+                    <rect x="10" y="145" width="260" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="5s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <text x="20" y="162" font-size="11" fill="#92400e" font-weight="600">Craqueamento:</text>
+                    <text x="20" y="178" font-size="10" fill="#064a6b">Alcano grande (C₁₆H₃₄)</text>
+                    <path d="M 130 175 L 150 175" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowAlceno)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="1s"/>
+                    </path>
+                    <text x="160" y="178" font-size="10" fill="#064a6b">Alcenos menores</text>
+                    <text x="20" y="192" font-size="9" fill="#64748b" font-style="italic">Processo industrial (calor/catalisador)</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="aplicacoes-alcenos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Onde é Utilizado</h4>
+              <ul class="info">
+                <li><strong>Plásticos:</strong> Eteno → polietileno (PE); Propeno → polipropileno (PP); Cloreto de vinila → PVC.</li>
+                <li><strong>Química industrial:</strong> Eteno é uma das matérias-primas mais importantes (produção de etanol, etileno glicol, estireno).</li>
+                <li><strong>Solventes:</strong> Alcenos de cadeia média (limpeza, extração).</li>
+                <li><strong>Combustíveis:</strong> Componentes da gasolina (aumentam octanagem).</li>
+                <li><strong>Intermediários sintéticos:</strong> Produção de álcoois, aldeídos, cetonas, ácidos carboxílicos.</li>
+                <li><strong>Frutas:</strong> Eteno (etileno) é um hormônio natural que acelera amadurecimento.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aplicações dos Alcenos">
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Aplicações Industriais</text>
+                    
+                    <!-- Plásticos -->
+                    <rect x="20" y="40" width="70" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                    <polygon points="30,55 40,50 50,55 50,75 40,80 30,75" fill="#818cf8"/>
+                    <text x="25" y="80" font-size="10" fill="#4338ca" font-weight="600">Plásticos</text>
+                    <text x="25" y="95" font-size="8" fill="#312e81">PE, PP, PVC</text>
+                    
+                    <!-- Química Industrial -->
+                    <rect x="110" y="40" width="70" height="50" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <circle cx="145" cy="60" r="10" fill="#60a5fa" opacity="0.6"/>
+                    <rect x="135" y="70" width="20" height="15" rx="2" fill="#3b82f6" opacity="0.5"/>
+                    <text x="115" y="80" font-size="10" fill="#1e40af" font-weight="600">Química</text>
+                    <text x="115" y="95" font-size="8" fill="#1e3a8a">Industrial</text>
+                    
+                    <!-- Combustíveis -->
+                    <rect x="200" y="40" width="70" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                    <circle cx="235" cy="60" r="8" fill="#fbbf24"/>
+                    <text x="210" y="80" font-size="10" fill="#92400e" font-weight="600">Combustíveis</text>
+                    <text x="205" y="95" font-size="8" fill="#78350f">Gasolina</text>
+                    
+                    <!-- Solventes -->
+                    <rect x="20" y="110" width="70" height="50" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <rect x="40" y="125" width="30" height="20" rx="2" fill="#60a5fa" opacity="0.6"/>
+                    <text x="25" y="150" font-size="10" fill="#1e40af" font-weight="600">Solventes</text>
+                    <text x="25" y="165" font-size="8" fill="#1e3a8a">Limpeza</text>
+                    
+                    <!-- Etileno (hormônio) -->
+                    <rect x="110" y="110" width="70" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+                    <circle cx="145" cy="130" r="12" fill="#34d399" opacity="0.5"/>
+                    <text x="115" y="150" font-size="10" fill="#047857" font-weight="600">Etileno</text>
+                    <text x="115" y="165" font-size="8" fill="#065f46">Hormônio</text>
+                    
+                    <!-- Intermediários -->
+                    <rect x="200" y="110" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+                    <path d="M 210 125 L 230 125 L 220 140 Z" fill="#fca5a5"/>
+                    <text x="205" y="150" font-size="10" fill="#991b1b" font-weight="600">Intermediários</text>
+                    <text x="205" y="165" font-size="8" fill="#7f1d1d">Sintéticos</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="reacoes-alcenos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Reações dos Alcenos</h4>
+                  <p><strong>Adição de hidrogênio:</strong> Alcenos reagem com H<sub>2</sub> na presença de catalisadores (Ni, Pt, Pd) formando alcanos. Esta é uma reação de hidrogenação.</p>
+                  <p><strong>Adição de halogênios:</strong> Alcenos adicionam Cl<sub>2</sub> ou Br<sub>2</sub> formando dihaletos vicinais. A reação ocorre através de um íon bromônio intermediário.</p>
+                  <p><strong>Adição de ácidos (HX):</strong> Segue a regra de Markovnikov - o hidrogênio liga-se ao carbono menos substituído da dupla ligação.</p>
+                  <p><strong>Hidratação:</strong> Adição de água catalisada por ácido forma álcoois. Também segue a regra de Markovnikov.</p>
+                </div>
+                <div class="card">
+                  <h4>Regra de Markovnikov</h4>
+                  <p>Em reações de adição de HX a alcenos assimétricos, o hidrogênio (H) liga-se ao carbono da dupla ligação que possui mais hidrogênios, e o halogênio (X) liga-se ao carbono menos hidrogenado.</p>
+                </div>
+                <div class="card" style="margin-top:12px">
+                  <h4>Exemplos Práticos de Reações</h4>
+                  <ul class="info">
+                    <li><strong>Hidrogenação do etileno:</strong> CH₂=CH₂ + H₂ → CH₃CH₃. Usado na produção de margarina (hidrogenação de óleos vegetais).</li>
+                    <li><strong>Adição de bromo:</strong> Teste de bromo em água (Br₂/H₂O) é usado para identificar alcenos - a cor marrom desaparece.</li>
+                    <li><strong>Hidratação do etileno:</strong> CH₂=CH₂ + H₂O → CH₃CH₂OH (etanol). Processo industrial importante.</li>
+                    <li><strong>Polimerização:</strong> Muitas moléculas de etileno se unem formando polietileno: n(CH₂=CH₂) → (-CH₂-CH₂-)ₙ</li>
+                    <li><strong>Oxidação com KMnO₄:</strong> Alcenos são oxidados a dióis (glicóis), usado em síntese orgânica.</li>
+                    <li><strong>Ozonólise:</strong> Quebra alcenos em aldeídos/cetonas, útil para identificar a posição da dupla ligação.</li>
+                  </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reações Animadas dos Alcenos">
+                    <defs>
+                      <marker id="arrowAlcenoReac" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4"/>
+                      </marker>
+                      <linearGradient id="alcenoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#00c1ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Reações de Adição Animadas</text>
+                    
+                    <!-- Animação de Hidrogenação -->
+                    <rect x="10" y="35" width="380" height="70" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="20" y="52" font-size="11" fill="#1e40af" font-weight="600">Hidrogenação (Animada):</text>
+                    
+                    <!-- Alceno -->
+                    <g id="alcenoReac">
+                      <line x1="30" y1="70" x2="50" y2="70" stroke="url(#alcenoGrad)" stroke-width="4"/>
+                      <line x1="50" y1="62" x2="70" y2="62" stroke="#ef4444" stroke-width="3">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                      </line>
+                      <line x1="50" y1="78" x2="70" y2="78" stroke="#ef4444" stroke-width="3">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" begin="0.2s"/>
+                      </line>
+                      <circle cx="40" cy="70" r="8" fill="#00c1ff"/>
+                      <circle cx="60" cy="70" r="8" fill="#00c1ff"/>
+                      <text x="35" y="75" font-size="7" fill="white" font-weight="700">C</text>
+                      <text x="55" y="75" font-size="7" fill="white" font-weight="700">C</text>
+                      <animateTransform attributeName="transform" type="translate" values="0,0;80,0;0,0" dur="3s" repeatCount="indefinite"/>
+                    </g>
+                    
+                    <!-- H₂ se movendo -->
+                    <circle cx="150" cy="70" r="8" fill="#10b981">
+                      <animate attributeName="cx" values="150;100;150" dur="3s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="145" y="75" font-size="7" fill="white" font-weight="700">H₂</text>
+                    
+                    <!-- Seta animada -->
+                    <path d="M 100 70 L 200 70" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowAlcenoReac)">
+                      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    <!-- Produto (alcano) -->
+                    <g id="produtoAlceno">
+                      <line x1="250" y1="70" x2="290" y2="70" stroke="#3a7bd5" stroke-width="4">
+                        <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite"/>
+                      </line>
+                      <circle cx="260" cy="70" r="8" fill="#3a7bd5">
+                        <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="280" cy="70" r="8" fill="#3a7bd5">
+                        <animate attributeName="opacity" values="0;1;1" dur="3s" repeatCount="indefinite" begin="0.3s"/>
+                      </circle>
+                      <text x="255" y="75" font-size="7" fill="white" font-weight="700">C</text>
+                      <text x="275" y="75" font-size="7" fill="white" font-weight="700">C</text>
+                      <text x="265" y="90" font-size="8" fill="#064a6b" font-weight="600">CH₃-CH₃</text>
+                    </g>
+                    
+                    <!-- Halogenação animada -->
+                    <rect x="10" y="115" width="380" height="60" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+                    <text x="20" y="132" font-size="11" fill="#047857" font-weight="600">Halogenação (Teste de Bromo):</text>
+                    <text x="20" y="148" font-size="10" fill="#064a6b">CH₂=CH₂ + Br₂</text>
+                    <path d="M 110 145 L 200 145" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowAlcenoReac)"/>
+                    <text x="210" y="148" font-size="10" fill="#064a6b">CH₂Br-CH₂Br</text>
+                    
+                    <!-- Animação de cor desaparecendo -->
+                    <rect x="280" y="135" width="30" height="20" rx="3" fill="#92400e" opacity="1">
+                      <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="fill" values="#92400e;#10b981;#92400e" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="285" y="148" font-size="8" fill="white" font-weight="600">Br₂</text>
+                    <text x="320" y="148" font-size="9" fill="#64748b" font-style="italic">Cor desaparece!</text>
+                    
+                    <!-- Adição de HX (Markovnikov) -->
+                    <rect x="10" y="185" width="380" height="60" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+                    <text x="20" y="202" font-size="11" fill="#92400e" font-weight="600">Regra de Markovnikov (Animada):</text>
+                    <text x="20" y="218" font-size="10" fill="#064a6b">CH₃-CH=CH₂ + HBr</text>
+                    <path d="M 130 215 L 220 215" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowAlcenoReac)"/>
+                    <text x="230" y="218" font-size="10" fill="#064a6b">CH₃-CHBr-CH₃</text>
+                    
+                    <!-- Indicador visual -->
+                    <circle cx="300" cy="215" r="12" fill="#10b981" opacity="0.7">
+                      <animate attributeName="r" values="12;15;12" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="295" y="220" font-size="8" fill="white" font-weight="700">H</text>
+                    <text x="320" y="218" font-size="9" fill="#64748b">→ C menos substituído</text>
+                    <text x="20" y="235" font-size="9" fill="#64748b" font-style="italic">H sempre vai para o carbono com mais H's</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="alcinos" class="section">
+        <div style="margin-bottom:24px">
+          <h2>Alcinos — tripla ligação e propriedades</h2>
+          <p class="lead">Alcinos possuem pelo menos uma ligação tripla C≡C. São mais reativos e os hidrogênios acetylenicos (adjacentes) têm caráter mais ácido.</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="estrutura-alcinos">Estrutura</button>
+            <button class="tab-btn" data-tab="nomenclatura-alcinos">Nomenclatura</button>
+            <button class="tab-btn" data-tab="propriedades-alcinos">Propriedades</button>
+            <button class="tab-btn" data-tab="obtencao-alcinos">Obtenção</button>
+            <button class="tab-btn" data-tab="aplicacoes-alcinos">Aplicações</button>
+            <button class="tab-btn" data-tab="reacoes-alcinos">Reações</button>
+          </div>
+          <div class="tab-content active" id="estrutura-alcinos">
+            <div class="grid">
+          <div>
+            <div class="card">
+              <h4>Estrutura: Lineares e Ramificados</h4>
+              <p><strong>Alcinos lineares:</strong> Tripla ligação em cadeia principal sem ramificações. Ex.: 1-butino (CH≡CCH<sub>2</sub>CH<sub>3</sub>).</p>
+              <p style="margin-top:8px"><strong>Alcinos ramificados:</strong> Tripla ligação com cadeias laterais. Ex.: 3-metil-1-butino, 4-metil-2-pentino.</p>
+              <p><strong>Fórmula geral:</strong> C<sub>n</sub>H<sub>2n-2</sub> (com uma tripla ligação). Alcinos terminais têm H ligado ao carbono da tripla (mais ácido).</p>
+                </div>
+                <div class="card">
+                  <h4>Tipos de Alcinos</h4>
+                  <p><strong>Alcinos terminais:</strong> A tripla ligação está na extremidade da cadeia (ex.: 1-propino, 1-butino). Possuem hidrogênio ácido.</p>
+                  <p><strong>Alcinos internos:</strong> A tripla ligação está no meio da cadeia (ex.: 2-butino, 3-hexino). Não possuem hidrogênio ácido.</p>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estrutura de alcinos">
+                    <defs>
+                      <linearGradient id="carbonAlcinoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#7ad1ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00c1ff;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Estrutura Molecular</text>
+                    <text x="10" y="35" font-size="11" fill="#64748b">Etino / Acetileno (C₂H₂)</text>
+                    
+                    <!-- Cadeia com tripla ligação -->
+                    <line x1="30" y1="100" x2="80" y2="100" stroke="#07304a" stroke-width="6" stroke-linecap="round" />
+                    <line x1="120" y1="100" x2="200" y2="100" stroke="#07304a" stroke-width="6" stroke-linecap="round" />
+                    
+                    <!-- Tripla ligação destacada animada -->
+                    <line x1="80" y1="88" x2="120" y2="88" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="80" y1="100" x2="120" y2="100" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+                    </line>
+                    <line x1="80" y1="112" x2="120" y2="112" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+                    </line>
+                    
+                    <!-- Átomos de carbono animados -->
+                    <g fill="url(#carbonAlcinoGrad)" stroke="#063447" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="80" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="75" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="120" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="115" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                      <circle cx="160" cy="100" r="14">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="155" y="105" font-size="10" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Átomos de hidrogênio -->
+                    <g fill="#7ad1ff" stroke="#064a6b" stroke-width="1">
+                      <circle cx="50" cy="70" r="8"/>
+                      <text x="46" y="74" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="50" cy="130" r="8"/>
+                      <text x="46" y="134" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="80" cy="60" r="8"/>
+                      <text x="76" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="120" cy="60" r="8"/>
+                      <text x="116" y="64" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="120" cy="140" r="8"/>
+                      <text x="116" y="144" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="160" cy="80" r="8"/>
+                      <text x="156" y="84" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="160" cy="120" r="8"/>
+                      <text x="156" y="124" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="190" cy="100" r="8"/>
+                      <text x="186" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                      <circle cx="220" cy="100" r="8"/>
+                      <text x="216" y="104" font-size="8" fill="white" font-weight="600">H</text>
+                    </g>
+                    
+                    <!-- Ligações C-H -->
+                    <g stroke="#94a3b8" stroke-width="2" opacity="0.6">
+                      <line x1="50" y1="100" x2="50" y2="70"/>
+                      <line x1="50" y1="100" x2="50" y2="130"/>
+                      <line x1="80" y1="100" x2="80" y2="60"/>
+                      <line x1="120" y1="100" x2="120" y2="60"/>
+                      <line x1="120" y1="100" x2="120" y2="140"/>
+                      <line x1="160" y1="100" x2="160" y2="80"/>
+                      <line x1="160" y1="100" x2="160" y2="120"/>
+                      <line x1="160" y1="100" x2="190" y2="100"/>
+                      <line x1="190" y1="100" x2="220" y2="100"/>
+                    </g>
+                    
+                    <text x="10" y="175" font-size="10" fill="#ef4444" font-weight="600">Tripla ligação C≡C (muito reativa)</text>
+                    <text x="10" y="190" font-size="9" fill="#64748b" font-style="italic">Hidrogênio ácido em alcinos terminais</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="nomenclatura-alcinos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Nomenclatura (IUPAC)</h4>
+              <ul class="info">
+                <li><strong>Sufixo:</strong> -ino (indica presença de tripla ligação).</li>
+                <li><strong>Numeração:</strong> A cadeia principal deve incluir a tripla ligação e receber a menor numeração possível.</li>
+                <li><strong>Posição da tripla:</strong> Indicada pelo menor número dos carbonos da tripla (ex.: 1-butino, 2-butino).</li>
+                <li><strong>Alcinos terminais:</strong> Quando a tripla está na extremidade (ex.: 1-propino, 1-butino).</li>
+                <li><strong>Alcinos internos:</strong> Quando a tripla está no meio da cadeia (ex.: 2-butino, 3-hexino).</li>
+                <li><strong>Exemplos:</strong> Etino ou acetileno (CH≡CH), Propino (CH<sub>3</sub>C≡CH), 1-butino, 2-butino, 4-metil-2-pentino.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nomenclatura IUPAC">
+                    <defs>
+                      <linearGradient id="alcinoChainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#7ad1ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00c1ff;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Nomenclatura IUPAC</text>
+                    <text x="10" y="35" font-size="12" fill="#06b6d4" font-weight="600">1-butino</text>
+                    
+                    <!-- Cadeia com tripla ligação -->
+                    <line x1="30" y1="100" x2="80" y2="100" stroke="url(#alcinoChainGrad)" stroke-width="6" stroke-linecap="round" />
+                    <line x1="120" y1="100" x2="200" y2="100" stroke="url(#alcinoChainGrad)" stroke-width="6" stroke-linecap="round" />
+                    
+                    <!-- Tripla ligação destacada animada -->
+                    <line x1="80" y1="88" x2="120" y2="88" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="80" y1="100" x2="120" y2="100" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+                    </line>
+                    <line x1="80" y1="112" x2="120" y2="112" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+                    </line>
+                    
+                    <!-- Carbonos animados -->
+                    <g fill="#7ad1ff" stroke="#0891b2" stroke-width="1.5">
+                      <circle cx="50" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="45" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="80" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+                      </circle>
+                      <text x="75" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="120" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+                      </circle>
+                      <text x="115" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                      <circle cx="160" cy="100" r="12">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                      </circle>
+                      <text x="155" y="105" font-size="9" fill="white" font-weight="700">C</text>
+                    </g>
+                    
+                    <!-- Numeração animada -->
+                    <text x="45" y="85" font-size="10" fill="#ef4444" font-weight="700">
+                      <animate attributeName="fill" values="#ef4444;#f59e0b;#ef4444" dur="2s" repeatCount="indefinite"/>
+                      1
+                    </text>
+                    <text x="75" y="85" font-size="10" fill="#ef4444" font-weight="700">
+                      <animate attributeName="fill" values="#ef4444;#f59e0b;#ef4444" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      2
+                    </text>
+                    <text x="115" y="85" font-size="10" fill="#06b6d4" font-weight="700">
+                      <animate attributeName="fill" values="#06b6d4;#10b981;#06b6d4" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      3
+                    </text>
+                    <text x="155" y="85" font-size="10" fill="#06b6d4" font-weight="700">
+                      <animate attributeName="fill" values="#06b6d4;#10b981;#06b6d4" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                      4
+                    </text>
+                    
+                    <!-- Hidrogênio ácido animado -->
+                    <circle cx="50" cy="70" r="8" fill="#fca5a5" stroke="#ef4444" stroke-width="1.5">
+                      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="46" y="74" font-size="8" fill="white" font-weight="600">H</text>
+                    <text x="30" y="60" font-size="9" fill="#ef4444" font-weight="600">H ácido</text>
+                    
+                    <!-- Hidrogênios -->
+                    <g fill="#7ad1ff" opacity="0.8">
+                      <circle cx="50" cy="130" r="6"/>
+                      <circle cx="120" cy="80" r="6"/>
+                      <circle cx="120" cy="120" r="6"/>
+                      <circle cx="160" cy="80" r="6"/>
+                      <circle cx="160" cy="120" r="6"/>
+                      <circle cx="190" cy="100" r="6"/>
+                      <circle cx="220" cy="100" r="6"/>
+                    </g>
+                    
+                    <!-- Legenda -->
+                    <rect x="10" y="140" width="260" height="55" rx="6" fill="#f0f8ff" stroke="#06b6d4" stroke-width="1" opacity="0.8"/>
+                    <text x="20" y="160" font-size="11" fill="#064a6b" font-weight="600">Cadeia Principal:</text>
+                    <text x="20" y="175" font-size="10" fill="#64748b">4 carbonos = butino</text>
+                    <text x="20" y="190" font-size="10" fill="#ef4444" font-weight="600">Tripla ligação nas posições 1-2 (terminal)</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="propriedades-alcinos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Propriedades Físicas</h4>
+              <ul class="info">
+                <li><strong>Estado físico:</strong> C<sub>2</sub>-C<sub>4</sub> são gases; C<sub>5</sub>-C<sub>15</sub> são líquidos; C<sub>16+</sub> são sólidos.</li>
+                <li><strong>Ponto de ebulição:</strong> Similar aos alcenos, mas ligeiramente maior devido à maior polaridade da tripla ligação.</li>
+                <li><strong>Solubilidade:</strong> Insolúveis em água, solúveis em solventes orgânicos apolares.</li>
+                <li><strong>Acetileno:</strong> Gás incolor, altamente inflamável, solúvel em acetona (armazenado em cilindros com material poroso).</li>
+              </ul>
+                </div>
+                <div class="card">
+                  <h4>Propriedades Químicas</h4>
+              <ul class="info">
+                <li><strong>Reatividade:</strong> Muito reativos devido à tripla ligação. Mais reativos que alcenos em algumas reações.</li>
+                <li><strong>Acidez:</strong> Alcinos terminais (R-C≡C-H) têm H mais ácido que alcanos/alcenos (pKa ~25). Podem ser desprotonados por bases fortes (NaNH<sub>2</sub>).</li>
+                <li><strong>Reações de adição:</strong> Adicionam H<sub>2</sub> (parcial → alceno, total → alcano), HX, X<sub>2</sub>, H<sub>2</sub>O (hidratação → aldeídos/cetonas).</li>
+                <li><strong>Oxidação:</strong> Com KMnO<sub>4</sub> formam ácidos carboxílicos (alcinos terminais) ou cetonas (alcinos internos).</li>
+                <li><strong>Acoplamento:</strong> Reações de acoplamento (Sonogashira, Glaser) para formar moléculas maiores.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Propriedades dos Alcinos">
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Propriedades Químicas</text>
+                    
+                    <!-- Acidez -->
+                    <rect x="10" y="40" width="260" height="70" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+                    <text x="20" y="60" font-size="12" fill="#991b1b" font-weight="600">Acidez de Alcinos Terminais:</text>
+                    
+                    <!-- Comparação pKa -->
+                    <text x="20" y="85" font-size="10" fill="#064a6b">R-C≡C-H</text>
+                    <text x="100" y="85" font-size="10" fill="#64748b">pKa ~25</text>
+                    <text x="20" y="105" font-size="10" fill="#064a6b">R-CH=CH-H</text>
+                    <text x="100" y="105" font-size="10" fill="#64748b">pKa ~44</text>
+                    <text x="20" y="125" font-size="10" fill="#064a6b">R-CH₂-CH₃</text>
+                    <text x="100" y="125" font-size="10" fill="#64748b">pKa ~50</text>
+                    
+                    <!-- Seta indicando acidez animada -->
+                    <defs>
+                      <marker id="arrowAcid" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#ef4444"/>
+                      </marker>
+                    </defs>
+                    <path d="M 160 85 L 180 85" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowAcid)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="190" y="88" font-size="9" fill="#ef4444" font-weight="600">Mais ácido</text>
+                    
+                    <!-- Reatividade animada -->
+                    <rect x="10" y="120" width="260" height="75" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="20" y="140" font-size="11" fill="#1e40af" font-weight="600">Reatividade:</text>
+                    <text x="20" y="160" font-size="10" fill="#064a6b">• Adição de H₂ (parcial → alceno)</text>
+                    <text x="20" y="175" font-size="10" fill="#064a6b">• Adição de HX, X₂</text>
+                    <text x="20" y="190" font-size="10" fill="#064a6b">• Hidratação → aldeídos/cetonas</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="obtencao-alcinos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Métodos de Obtenção</h4>
+              <ul class="info">
+                <li><strong>Desidroalogenação dupla:</strong> Dihaletos geminais ou vicinais + base forte (2 equiv.) → alcino.</li>
+                <li><strong>Reação de alquilação:</strong> Acetilureto de sódio (NaC≡CH) + haleto de alquila → alcino terminal alongado.</li>
+                <li><strong>Hidrólise de carbetos:</strong> CaC<sub>2</sub> + 2H<sub>2</sub>O → Ca(OH)<sub>2</sub> + C<sub>2</sub>H<sub>2</sub> (acetileno).</li>
+                <li><strong>Desidratação de aldeídos/cetonas:</strong> Com P<sub>2</sub>O<sub>5</sub> ou SOCl<sub>2</sub> formam alcinos.</li>
+                <li><strong>Reação de Fritsch-Buttenberg-Wiechell:</strong> Dihaletos geminais + base → alcinos.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Métodos de Obtenção">
+                    <defs>
+                      <marker id="arrowAlcino" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#7ad1ff"/>
+                      </marker>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Métodos de Obtenção</text>
+                    
+                    <!-- Desidroalogenação dupla animada -->
+                    <rect x="10" y="35" width="260" height="45" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="20" y="52" font-size="11" fill="#1e40af" font-weight="600">Desidroalogenação Dupla:</text>
+                    <text x="20" y="68" font-size="10" fill="#064a6b">R-CHX-CHX-R' + 2KOH</text>
+                    <path d="M 150 65 L 170 65" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcino)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="180" y="68" font-size="10" fill="#064a6b">R-C≡C-R'</text>
+                    
+                    <!-- Alquilação animada -->
+                    <rect x="10" y="90" width="260" height="45" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <text x="20" y="107" font-size="11" fill="#047857" font-weight="600">Alquilação:</text>
+                    <text x="20" y="123" font-size="10" fill="#064a6b">NaC≡CH + R-X</text>
+                    <path d="M 110 120 L 130 120" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcino)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                    </path>
+                    <text x="140" y="123" font-size="10" fill="#064a6b">R-C≡CH</text>
+                    
+                    <!-- Hidrólise de carbeto animada -->
+                    <rect x="10" y="145" width="260" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="5s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <text x="20" y="162" font-size="11" fill="#92400e" font-weight="600">Hidrólise de Carbeto:</text>
+                    <text x="20" y="178" font-size="10" fill="#064a6b">CaC₂ + 2H₂O</text>
+                    <path d="M 100 175 L 120 175" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcino)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="1s"/>
+                    </path>
+                    <text x="130" y="178" font-size="10" fill="#064a6b">Ca(OH)₂ + C₂H₂</text>
+                    <text x="20" y="192" font-size="9" fill="#64748b" font-style="italic">(Acetileno)</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="aplicacoes-alcinos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Onde é Utilizado</h4>
+              <ul class="info">
+                <li><strong>Soldagem e corte:</strong> Acetileno (C<sub>2</sub>H<sub>2</sub>) é usado em maçaricos oxiacetilênicos (temperatura ~3000°C).</li>
+                <li><strong>Química orgânica:</strong> Intermediários na síntese de compostos complexos (fármacos, materiais).</li>
+                <li><strong>Polímeros:</strong> Produção de polímeros especiais e materiais avançados.</li>
+                <li><strong>Iluminação:</strong> Antigamente usado em lampiões (acetileno).</li>
+                <li><strong>Química fina:</strong> Síntese de vitaminas, hormônios, compostos naturais complexos.</li>
+                <li><strong>Pesquisa:</strong> Blocos de construção em química orgânica sintética moderna.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aplicações dos Alcinos">
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Aplicações Industriais</text>
+                    
+                    <!-- Soldagem animada -->
+                    <rect x="20" y="40" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <circle cx="55" cy="60" r="10" fill="#fca5a5" opacity="0.6">
+                      <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <line x1="45" y1="70" x2="65" y2="70" stroke="#ef4444" stroke-width="3">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+                    </line>
+                    <text x="25" y="80" font-size="10" fill="#991b1b" font-weight="600">Soldagem</text>
+                    <text x="25" y="95" font-size="8" fill="#7f1d1d">Acetileno</text>
+                    
+                    <!-- Química Orgânica animada -->
+                    <rect x="110" y="40" width="70" height="50" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <circle cx="145" cy="60" r="10" fill="#60a5fa" opacity="0.6">
+                      <animate attributeName="r" values="10;12;10" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="115" y="80" font-size="10" fill="#1e40af" font-weight="600">Química</text>
+                    <text x="115" y="95" font-size="8" fill="#1e3a8a">Orgânica</text>
+                    
+                    <!-- Síntese animada -->
+                    <rect x="200" y="40" width="70" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <path d="M 210 55 L 230 55 L 220 70 Z" fill="#34d399">
+                      <animateTransform attributeName="transform" type="rotate" values="0 220 62.5;5 220 62.5;0 220 62.5" dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="205" y="80" font-size="10" fill="#047857" font-weight="600">Síntese</text>
+                    <text x="205" y="95" font-size="8" fill="#065f46">Fármacos</text>
+                    
+                    <!-- Polímeros animado -->
+                    <rect x="20" y="110" width="70" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="1.5s"/>
+                    </rect>
+                    <polygon points="30,125 40,120 50,125 50,145 40,150 30,145" fill="#818cf8">
+                      <animateTransform attributeName="transform" type="rotate" values="0 40 135;5 40 135;0 40 135" dur="3s" repeatCount="indefinite"/>
+                    </polygon>
+                    <text x="25" y="150" font-size="10" fill="#4338ca" font-weight="600">Polímeros</text>
+                    <text x="25" y="165" font-size="8" fill="#312e81">Especiais</text>
+                    
+                    <!-- Pesquisa animada -->
+                    <rect x="110" y="110" width="70" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="2s"/>
+                    </rect>
+                    <circle cx="145" cy="130" r="8" fill="#fbbf24">
+                      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="115" y="150" font-size="10" fill="#92400e" font-weight="600">Pesquisa</text>
+                    <text x="115" y="165" font-size="8" fill="#78350f">Química Fina</text>
+                    
+                    <!-- Iluminação animada -->
+                    <rect x="200" y="110" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
+                      <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="2.5s"/>
+                    </rect>
+                    <circle cx="235" cy="125" r="6" fill="#fbbf24">
+                      <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <line x1="235" y1="119" x2="235" y2="115" stroke="#fbbf24" stroke-width="2">
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+                    </line>
+                    <text x="205" y="150" font-size="10" fill="#991b1b" font-weight="600">Iluminação</text>
+                    <text x="205" y="165" font-size="8" fill="#7f1d1d">Histórica</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="reacoes-alcinos">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Reações dos Alcinos</h4>
+                  <p><strong>Adição de hidrogênio:</strong> Alcinos podem ser parcialmente hidrogenados (catalisador Lindlar) formando alcenos cis, ou totalmente hidrogenados formando alcanos.</p>
+                  <p><strong>Adição de halogênios:</strong> Alcinos adicionam Cl<sub>2</sub> ou Br<sub>2</sub> formando dihaletos, que podem adicionar mais halogênio formando tetrahaletos.</p>
+                  <p><strong>Hidratação:</strong> Alcinos terminais formam aldeídos (regra de Markovnikov), enquanto alcinos internos formam cetonas.</p>
+                  <p><strong>Reações ácido-base:</strong> Alcinos terminais podem ser desprotonados por bases fortes (NaNH<sub>2</sub>) formando acetiluretos, que são bons nucleófilos.</p>
+                </div>
+                <div class="card">
+                  <h4>Acidez dos Alcinos Terminais</h4>
+                  <p>O hidrogênio ligado ao carbono sp de alcinos terminais é mais ácido (pKa ~25) que o de alcanos (pKa ~50) ou alcenos (pKa ~44) devido à maior estabilização do ânion formado pela hibridização sp do carbono.</p>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reações dos Alcinos">
+                    <defs>
+                      <marker id="arrowAlcinoReac" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#7ad1ff"/>
+                      </marker>
+                    </defs>
+                    <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Reações dos Alcinos</text>
+                    
+                    <!-- Hidrogenação animada -->
+                    <rect x="10" y="35" width="260" height="50" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
+                    </rect>
+                    <text x="20" y="52" font-size="11" fill="#1e40af" font-weight="600">Hidrogenação:</text>
+                    <text x="20" y="68" font-size="10" fill="#064a6b">HC≡CH + H₂</text>
+                    <text x="20" y="80" font-size="8" fill="#64748b" font-style="italic">Lindlar (parcial) ou Ni (total)</text>
+                    <path d="M 100 65 L 120 65" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcinoReac)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="130" y="68" font-size="10" fill="#064a6b">H₂C=CH₂ → CH₃CH₃</text>
+                    
+                    <!-- Hidratação animada -->
+                    <rect x="10" y="95" width="260" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="4.5s" repeatCount="indefinite" begin="0.5s"/>
+                    </rect>
+                    <text x="20" y="112" font-size="11" fill="#047857" font-weight="600">Hidratação:</text>
+                    <text x="20" y="128" font-size="10" fill="#064a6b">HC≡CH + H₂O</text>
+                    <text x="20" y="140" font-size="8" fill="#64748b" font-style="italic">Hg²⁺ (cat.)</text>
+                    <path d="M 110 125 L 130 125" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcinoReac)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                    </path>
+                    <text x="140" y="128" font-size="10" fill="#064a6b">CH₃CHO</text>
+                    <text x="220" y="128" font-size="9" fill="#64748b" font-style="italic">(aldeído)</text>
+                    
+                    <!-- Reação ácido-base animada -->
+                    <rect x="10" y="155" width="260" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5">
+                      <animate attributeName="opacity" values="0.95;1;0.95" dur="5s" repeatCount="indefinite" begin="1s"/>
+                    </rect>
+                    <text x="20" y="172" font-size="11" fill="#92400e" font-weight="600">Reação Ácido-Base:</text>
+                    <text x="20" y="188" font-size="10" fill="#064a6b">R-C≡C-H + NaNH₂</text>
+                    <path d="M 130 185 L 150 185" stroke="#7ad1ff" stroke-width="2" marker-end="url(#arrowAlcinoReac)">
+                      <animate attributeName="stroke-dasharray" values="0,20;5,15;0,20" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" begin="1s"/>
+                    </path>
+                    <text x="160" y="188" font-size="10" fill="#064a6b">R-C≡C⁻ Na⁺</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="oxigenados" class="section">
+        <div style="margin-bottom:24px">
+          <h2>Compostos oxigenados — grupos funcionais com O</h2>
+          <p class="lead">Incluem álcoois, éteres, aldeídos, cetonas, ácidos carboxílicos, ésteres — cada grupo altera fortemente propriedades e reatividade.</p>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="estrutura-oxigenados">Estrutura</button>
+            <button class="tab-btn" data-tab="nomenclatura-oxigenados">Nomenclatura</button>
+            <button class="tab-btn" data-tab="propriedades-oxigenados">Propriedades</button>
+            <button class="tab-btn" data-tab="grupos-oxigenados">Grupos Funcionais</button>
+            <button class="tab-btn" data-tab="reacoes-oxigenados">Reações</button>
+          </div>
+          <div class="tab-content active" id="estrutura-oxigenados">
+            <div class="grid">
+          <div>
+            <div class="card">
+              <h4>Estrutura: Lineares e Ramificados</h4>
+              <p><strong>Compostos oxigenados lineares:</strong> Cadeia principal sem ramificações com grupo funcional oxigenado. Ex.: Etanol (CH<sub>3</sub>CH<sub>2</sub>OH), Propanona (CH<sub>3</sub>COCH<sub>3</sub>).</p>
+              <p style="margin-top:8px"><strong>Compostos oxigenados ramificados:</strong> Cadeia com ramificações e grupo funcional. Ex.: 2-metilpropan-2-ol, 3-metilbutanona.</p>
+              <p>Cada grupo funcional (álcool, aldeído, cetona, ácido, éster, éter) confere propriedades específicas aos compostos.</p>
+                </div>
+                <div class="card">
+                  <h4>Grupos Funcionais Principais</h4>
+                  <p><strong>Álcoois:</strong> Contêm o grupo -OH (hidroxila). Exemplos: metanol, etanol, propanol.</p>
+                  <p><strong>Aldeídos:</strong> Contêm o grupo -CHO (carbonila terminal). Exemplos: metanal, etanal.</p>
+                  <p><strong>Cetonas:</strong> Contêm o grupo C=O (carbonila interna). Exemplos: propanona, butanona.</p>
+                  <p><strong>Ácidos carboxílicos:</strong> Contêm o grupo -COOH. Exemplos: ácido metanoico, ácido etanoico.</p>
+                  <p><strong>Ésteres:</strong> Derivados de ácidos e álcoois. Exemplos: etanoato de etila.</p>
+                  <p><strong>Éteres:</strong> Contêm ligação C-O-C. Exemplos: éter etílico, éter metílico.</p>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modelos didáticos de compostos oxigenados">
+                    <text x="12" y="18" font-size="14" fill="#063447" font-weight="700">Grupos com oxigênio</text>
+                    <g transform="translate(10,30)">
+                      <rect x="0" y="0" width="70" height="90" rx="10" fill="#f1fbff" stroke="#064a6b" stroke-width="0.6">
+                        <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+                      </rect>
+                      <circle cx="35" cy="40" r="14" fill="#00c1ff">
+                        <animate attributeName="r" values="14;16;14" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="10" y="82" font-size="11" fill="#064a6b">Álcool (-OH)</text>
+                    </g>
+                    <g transform="translate(90,30)">
+                      <rect x="0" y="0" width="70" height="90" rx="10" fill="#fff9f1" stroke="#643d20" stroke-width="0.6">
+                        <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+                      </rect>
+                      <rect x="22" y="34" width="26" height="12" rx="2" fill="#ffb86b">
+                        <animate attributeName="y" values="34;30;34" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+                      </rect>
+                      <text x="12" y="82" font-size="11" fill="#643d20">Carbonila (C=O)</text>
+                    </g>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="nomenclatura-oxigenados">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Nomenclatura (IUPAC)</h4>
+              <ul class="info">
+                <li><strong>Álcoois:</strong> Sufixo -ol. Ex.: Etanol, Propan-2-ol, 2-metilpropan-2-ol. Numerar a cadeia para dar menor número ao -OH.</li>
+                <li><strong>Aldeídos:</strong> Sufixo -al. Ex.: Metanal (formaldeído), Etanal (acetaldeído), Propanal. O carbonila sempre na posição 1.</li>
+                <li><strong>Cetonas:</strong> Sufixo -ona. Ex.: Propanona (acetona), Butanona, 3-metilbutan-2-ona. Numerar a cadeia para dar menor número ao carbonila.</li>
+                <li><strong>Ácidos carboxílicos:</strong> Sufixo -oico ou -ico. Ex.: Ácido etanoico (acético), Ácido propanoico, Ácido 2-metilpropanoico.</li>
+                <li><strong>Ésteres:</strong> Nome do ácido (terminação -ato) + nome do álcool (terminação -ila). Ex.: Etanoato de etila, Propanoato de metila.</li>
+                <li><strong>Éteres:</strong> Nome dos radicais + éter. Ex.: Éter etílico (dietil éter), Metil propil éter.</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nomenclatura">
+                    <text x="20" y="30" font-size="14" fill="#064a6b" font-weight="700">Sufixos IUPAC</text>
+                    <text x="20" y="60" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#10b981;#064a6b" dur="2s" repeatCount="indefinite"/>
+                      -ol (álcoois)
+                    </text>
+                    <text x="20" y="80" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#10b981;#064a6b" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      -al (aldeídos)
+                    </text>
+                    <text x="20" y="100" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#10b981;#064a6b" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      -ona (cetonas)
+                    </text>
+                    <text x="20" y="120" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#10b981;#064a6b" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                      -oico (ácidos)
+                    </text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="propriedades-oxigenados">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Propriedades Físicas</h4>
+              <ul class="info">
+                <li><strong>Álcoois:</strong> Pontos de ebulição altos (ligações de H), solúveis em água (pequenos). Solubilidade diminui com aumento da cadeia.</li>
+                <li><strong>Aldeídos e cetonas:</strong> Pontos de ebulição intermediários (dipolo permanente), solúveis em água (pequenos). Cetonas são boas solventes.</li>
+                <li><strong>Ácidos carboxílicos:</strong> Pontos de ebulição muito altos (dímeros por ligação H), solúveis em água (pequenos). Ácidos graxos são insolúveis.</li>
+                <li><strong>Ésteres:</strong> Pontos de ebulição moderados, geralmente aromáticos (frutas, flores). Alguns são líquidos voláteis.</li>
+                <li><strong>Éteres:</strong> Pontos de ebulição baixos (sem ligação H), pouco solúveis em água, excelentes solventes apolares.</li>
+              </ul>
+                </div>
+                <div class="card">
+                  <h4>Propriedades Químicas</h4>
+              <ul class="info">
+                <li><strong>Álcoois:</strong> Podem ser oxidados (primários → aldeídos → ácidos; secundários → cetonas), desidratados (→ alcenos), esterificados (→ ésteres).</li>
+                <li><strong>Aldeídos:</strong> Facilmente oxidados (→ ácidos), reduzem reagentes de Tollens e Fehling. Reagem com nucleófilos (adição nucleofílica).</li>
+                <li><strong>Cetonas:</strong> Mais estáveis que aldeídos, não oxidam facilmente. Reagem com nucleófilos, podem ser reduzidas (→ álcoois secundários).</li>
+                <li><strong>Ácidos carboxílicos:</strong> Ácidos fracos (pKa ~4-5), formam sais com bases, reagem com álcoois (esterificação), com aminas (→ amidas).</li>
+                <li><strong>Ésteres:</strong> Hidrolisam (ácido ou base), reduzem (→ álcoois), reagem com aminas (→ amidas).</li>
+                <li><strong>Éteres:</strong> Relativamente inertes, podem formar peróxidos (perigosos), clivam com HX (→ haletos + álcoois).</li>
+              </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Propriedades">
+                    <text x="20" y="20" font-size="14" fill="#064a6b" font-weight="700">Propriedades</text>
+                    <text x="20" y="50" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#3b82f6;#064a6b" dur="2.5s" repeatCount="indefinite"/>
+                      Ligações de H
+                    </text>
+                    <text x="20" y="70" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#3b82f6;#064a6b" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                      Polaridade
+                    </text>
+                    <text x="20" y="90" font-size="12" fill="#064a6b">
+                      <animate attributeName="fill" values="#064a6b;#3b82f6;#064a6b" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                      Solubilidade
+                    </text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="grupos-oxigenados">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Álcoois (R-OH)</h4>
+                  <p><strong>Estrutura:</strong> Contêm o grupo funcional hidroxila (-OH) ligado a um carbono saturado. Fórmula geral: R-OH onde R é um grupo alquila.</p>
+                  <p><strong>Classificação:</strong></p>
+                  <ul class="info">
+                    <li><strong>Primários (1°):</strong> O carbono do -OH está ligado a apenas 1 grupo alquila. Ex.: Etanol (CH<sub>3</sub>CH<sub>2</sub>OH)</li>
+                    <li><strong>Secundários (2°):</strong> O carbono do -OH está ligado a 2 grupos alquila. Ex.: Propan-2-ol (CH<sub>3</sub>CHOHCH<sub>3</sub>)</li>
+                    <li><strong>Terciários (3°):</strong> O carbono do -OH está ligado a 3 grupos alquila. Ex.: 2-metilpropan-2-ol</li>
+                  </ul>
+                  <p><strong>Propriedades:</strong> Formam ligações de hidrogênio fortes, têm pontos de ebulição altos comparados a alcanos de mesma massa. Pequenos álcoois (até 3 carbonos) são completamente solúveis em água. A solubilidade diminui com o aumento da cadeia carbônica.</p>
+                  <p><strong>Exemplos importantes:</strong> Metanol (CH<sub>3</sub>OH) - tóxico, usado como solvente; Etanol (CH<sub>3</sub>CH<sub>2</sub>OH) - bebidas alcoólicas, combustível; Glicerol - usado em cosméticos e alimentos.</p>
+                </div>
+                <div class="card">
+                  <h4>Aldeídos (R-CHO)</h4>
+                  <p><strong>Estrutura:</strong> Contêm o grupo carbonila (-CHO) na extremidade da cadeia. O carbono da carbonila está ligado a um hidrogênio e a um grupo alquila ou arila.</p>
+                  <p><strong>Características:</strong> São facilmente oxidados a ácidos carboxílicos. Reduzem reagentes de Tollens (espelho de prata) e Fehling (precipitado vermelho).</p>
+                  <p><strong>Exemplos:</strong> Metanal ou formaldeído (HCHO) - usado em desinfetantes; Etanal ou acetaldeído (CH<sub>3</sub>CHO) - intermediário na produção de ácido acético; Benzaldeído - aroma de amêndoas.</p>
+                  <p><strong>Nomenclatura:</strong> Sufixo -al. O carbonila sempre recebe o número 1 na numeração.</p>
+                </div>
+                <div class="card">
+                  <h4>Cetonas (R-CO-R')</h4>
+                  <p><strong>Estrutura:</strong> Contêm o grupo carbonila (C=O) no meio da cadeia, ligado a dois grupos alquila ou arila.</p>
+                  <p><strong>Características:</strong> Mais estáveis que aldeídos, não oxidam facilmente. Não reduzem reagentes de Tollens ou Fehling. Podem ser reduzidas a álcoois secundários.</p>
+                  <p><strong>Exemplos:</strong> Propanona ou acetona (CH<sub>3</sub>COCH<sub>3</sub>) - solvente comum, removedor de esmalte; Butanona - solvente industrial; Ciclohexanona - intermediário na produção de náilon.</p>
+                  <p><strong>Nomenclatura:</strong> Sufixo -ona. A cadeia é numerada para dar o menor número possível ao carbonila.</p>
+                </div>
+                <div class="card">
+                  <h4>Ácidos Carboxílicos (R-COOH)</h4>
+                  <p><strong>Estrutura:</strong> Contêm o grupo carboxila (-COOH) que combina carbonila e hidroxila. Fórmula geral: R-COOH.</p>
+                  <p><strong>Propriedades:</strong> Formam ligações de hidrogênio muito fortes, frequentemente formando dímeros (duas moléculas unidas por ligações H). Têm pontos de ebulição muito altos. São ácidos fracos (pKa ~4-5).</p>
+                  <p><strong>Exemplos:</strong> Ácido metanoico ou fórmico (HCOOH) - encontrado em formigas; Ácido etanoico ou acético (CH<sub>3</sub>COOH) - vinagre; Ácido butanoico - manteiga rançosa; Ácidos graxos - componentes de gorduras.</p>
+                  <p><strong>Nomenclatura:</strong> Prefixo "ácido" + nome do hidrocarboneto com sufixo -oico ou -ico. O carbonila sempre recebe o número 1.</p>
+                </div>
+                <div class="card">
+                  <h4>Ésteres (R-COO-R')</h4>
+                  <p><strong>Estrutura:</strong> Derivados de ácidos carboxílicos e álcoois. Fórmula geral: R-COO-R' onde R vem do ácido e R' vem do álcool.</p>
+                  <p><strong>Características:</strong> Não formam ligações de hidrogênio entre si, têm pontos de ebulição moderados. Muitos têm aromas agradáveis característicos de frutas e flores.</p>
+                  <p><strong>Exemplos:</strong> Etanoato de etila (CH<sub>3</sub>COOCH<sub>2</sub>CH<sub>3</sub>) - aroma de pêra; Butanoato de metila - aroma de maçã; Salicilato de metila - aroma de menta; Triglicerídeos - gorduras e óleos.</p>
+                  <p><strong>Nomenclatura:</strong> Nome do ácido (terminação -ato) + "de" + nome do radical do álcool (terminação -ila).</p>
+                </div>
+                <div class="card">
+                  <h4>Éteres (R-O-R')</h4>
+                  <p><strong>Estrutura:</strong> Contêm um átomo de oxigênio ligado a dois grupos alquila ou arila. Fórmula geral: R-O-R'.</p>
+                  <p><strong>Características:</strong> Não formam ligações de hidrogênio, têm pontos de ebulição baixos comparados a álcoois de mesma massa. São excelentes solventes apolares. Relativamente inertes quimicamente.</p>
+                  <p><strong>Exemplos:</strong> Éter etílico ou dietil éter (CH<sub>3</sub>CH<sub>2</sub>OCH<sub>2</sub>CH<sub>3</sub>) - anestésico histórico, solvente; Éter metílico - propelente; Éteres de coroa - complexam íons metálicos.</p>
+                  <p><strong>Cuidados:</strong> Podem formar peróxidos explosivos quando expostos ao ar e luz. Devem ser armazenados com cuidado.</p>
+                </div>
+                <div class="card">
+                  <h4>Comparação dos Grupos Funcionais</h4>
+                  <ul class="info">
+                    <li><strong>Ponto de ebulição:</strong> Ácidos > Álcoois > Aldeídos/Cetonas > Ésteres > Éteres</li>
+                    <li><strong>Solubilidade em água:</strong> Pequenos álcoois e ácidos são muito solúveis. Aldeídos e cetonas pequenos são solúveis. Éteres são pouco solúveis.</li>
+                    <li><strong>Reatividade:</strong> Aldeídos são mais reativos que cetonas. Ácidos são ácidos fracos. Éteres são relativamente inertes.</li>
+                    <li><strong>Ligações de hidrogênio:</strong> Ácidos, álcoois e aminas formam ligações H fortes. Ésteres, aldeídos e cetonas formam ligações H fracas. Éteres não formam.</li>
+                  </ul>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grupos Funcionais">
+                    <text x="20" y="20" font-size="12" fill="#064a6b" font-weight="700">Grupos Funcionais</text>
+                    <g transform="translate(10, 30)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#e0f2fe" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">-OH (álcool)</text>
+                    </g>
+                    <g transform="translate(110, 30)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#fef3c7" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">-CHO (aldeído)</text>
+                    </g>
+                    <g transform="translate(10, 65)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#fef3c7" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">C=O (cetona)</text>
+                    </g>
+                    <g transform="translate(110, 65)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#fee2e2" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">-COOH (ácido)</text>
+                    </g>
+                    <g transform="translate(10, 100)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#f3e8ff" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">-COO- (éster)</text>
+                    </g>
+                    <g transform="translate(110, 100)">
+                      <rect x="0" y="0" width="90" height="25" rx="4" fill="#dbeafe" stroke="#064a6b" stroke-width="0.8"/>
+                      <text x="5" y="17" font-size="10" fill="#064a6b" font-weight="600">R-O-R' (éter)</text>
+                    </g>
+                    <text x="20" y="150" font-size="11" fill="#064a6b" font-weight="600">Hierarquia de Reatividade:</text>
+                    <text x="20" y="170" font-size="10" fill="#064a6b">Aldeídos > Cetonas ></text>
+                    <text x="20" y="185" font-size="10" fill="#064a6b">Ácidos > Ésteres > Éteres</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="tab-content" id="reacoes-oxigenados">
+            <div class="grid">
+              <div>
+                <div class="card">
+                  <h4>Reações dos Álcoois</h4>
+                  <p><strong>Oxidação:</strong> Álcoois primários oxidam a aldeídos e depois a ácidos. Álcoois secundários oxidam a cetonas. Álcoois terciários não oxidam facilmente.</p>
+                  <p><strong>Desidratação:</strong> Em meio ácido, álcoois perdem água formando alcenos (eliminação) ou éteres (substituição).</p>
+                  <p><strong>Esterificação:</strong> Reagem com ácidos carboxílicos formando ésteres e água.</p>
+                </div>
+                <div class="card">
+                  <h4>Reações de Aldeídos e Cetonas</h4>
+                  <p><strong>Oxidação:</strong> Aldeídos oxidam facilmente a ácidos (reagentes de Tollens, Fehling). Cetonas não oxidam facilmente.</p>
+                  <p><strong>Redução:</strong> Ambos podem ser reduzidos a álcoois usando NaBH<sub>4</sub> ou LiAlH<sub>4</sub>.</p>
+                  <p><strong>Adição nucleofílica:</strong> Reagem com nucleófilos como cianeto, aminas, álcoois formando diversos produtos.</p>
+                </div>
+                <div class="card">
+                  <h4>Reações de Ácidos e Ésteres</h4>
+                  <p><strong>Ácidos:</strong> Formam sais com bases, reagem com álcoois (esterificação), com aminas (formam amidas).</p>
+                  <p><strong>Ésteres:</strong> Hidrolisam em meio ácido ou básico formando ácido e álcool. Podem ser reduzidos a álcoois.</p>
+                </div>
+              </div>
+              <aside>
+                <div class="illustration" aria-hidden="true">
+                  <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reações">
+                    <text x="20" y="20" font-size="12" fill="#064a6b" font-weight="700">Reações</text>
+                    <text x="20" y="50" font-size="10" fill="#064a6b">R-OH → R-CHO</text>
+                    <text x="20" y="70" font-size="9" fill="#064a6b" font-style="italic">Oxidação</text>
+                    <text x="20" y="100" font-size="10" fill="#064a6b">R-OH + R'-COOH →</text>
+                    <text x="20" y="120" font-size="10" fill="#064a6b">R'-COO-R + H₂O</text>
+                    <text x="20" y="140" font-size="9" fill="#064a6b" font-style="italic">Esterificação</text>
+                  </svg>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="quizgeral" class="section">
+        <h2>Quizzes — todos os temas</h2>
+        <p class="lead">Aqui você responde os quizzes de todos os temas em sequência. Complete um quiz para avançar para o próximo.</p>
+        <div id="quiz-geral-container" class="card" style="margin-top:12px"></div>
+      </article>
+      <article id="professor" class="section">
+        <h2>Portal do Professor</h2>
+        <p class="lead">Gerencie e adicione perguntas personalizadas aos quizzes. As perguntas adicionadas aqui aparecerão junto com as perguntas padrão.</p>
+        <div id="professor-panel">
+          <div class="card" style="margin-top:12px">
+            <h4>Selecionar Tema</h4>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+              <button class="btn ghost" onclick="selectProfessorTopic('alcanos')" id="prof-topic-alcanos">Alcanos</button>
+              <button class="btn ghost" onclick="selectProfessorTopic('alcenos')" id="prof-topic-alcenos">Alcenos</button>
+              <button class="btn ghost" onclick="selectProfessorTopic('alcinos')" id="prof-topic-alcinos">Alcinos</button>
+              <button class="btn ghost" onclick="selectProfessorTopic('oxigenados')" id="prof-topic-oxigenados">Oxigenados</button>
+            </div>
+          </div>
+          <div class="card" style="margin-top:12px">
+            <h4>Adicionar Nova Pergunta</h4>
+            <div id="professor-form-container">
+              <div style="margin-top:12px">
+                <label style="display:block; margin-bottom:6px; font-weight:600; color:#1e40af">Pergunta:</label>
+                <textarea id="prof-question-text" placeholder="Digite a pergunta aqui..." style="width:100%; min-height:80px; padding:12px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; resize:vertical"></textarea>
+              </div>
+              <div style="margin-top:16px">
+                <label style="display:block; margin-bottom:6px; font-weight:600; color:#1e40af">Opções de Resposta:</label>
+                <div style="display:flex; flex-direction:column; gap:8px">
+                  <div style="display:flex; gap:8px; align-items:center">
+                    <input type="radio" name="prof-correct-answer" value="0" id="prof-opt-0" />
+                    <input type="text" id="prof-option-0" placeholder="Opção 1" style="flex:1; padding:10px; border:2px solid rgba(37,99,235,0.2); border-radius:8px; font-size:0.95rem" />
+                  </div>
+                  <div style="display:flex; gap:8px; align-items:center">
+                    <input type="radio" name="prof-correct-answer" value="1" id="prof-opt-1" />
+                    <input type="text" id="prof-option-1" placeholder="Opção 2" style="flex:1; padding:10px; border:2px solid rgba(37,99,235,0.2); border-radius:8px; font-size:0.95rem" />
+                  </div>
+                  <div style="display:flex; gap:8px; align-items:center">
+                    <input type="radio" name="prof-correct-answer" value="2" id="prof-opt-2" />
+                    <input type="text" id="prof-option-2" placeholder="Opção 3" style="flex:1; padding:10px; border:2px solid rgba(37,99,235,0.2); border-radius:8px; font-size:0.95rem" />
+                  </div>
+                  <div style="display:flex; gap:8px; align-items:center">
+                    <input type="radio" name="prof-correct-answer" value="3" id="prof-opt-3" />
+                    <input type="text" id="prof-option-3" placeholder="Opção 4" style="flex:1; padding:10px; border:2px solid rgba(37,99,235,0.2); border-radius:8px; font-size:0.95rem" />
+                  </div>
+                </div>
+                <div class="note" style="margin-top:8px">
+                  <strong>Importante:</strong> Selecione qual opção é a resposta correta marcando o botão de rádio ao lado.
+                </div>
+              </div>
+              <div style="display:flex; gap:12px; margin-top:16px">
+                <button class="btn primary" onclick="addProfessorQuestion()">Adicionar Pergunta</button>
+                <button class="btn ghost" onclick="clearProfessorForm()">Limpar Formulário</button>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:12px">
+            <h4>Perguntas Personalizadas (<span id="prof-question-count">0</span>)</h4>
+            <div id="professor-questions-list" style="margin-top:12px">
+              <p style="color:var(--muted); text-align:center; padding:20px">Nenhuma pergunta personalizada ainda. Adicione uma acima!</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <aside class="sidebar">
+      <div class="quiz-panel" id="sidebar-quiz">
+        <h3>Quiz rápido</h3>
+        <div class="note">Escolha um tema no topo (Alcanos, Alcenos, Alcinos, Oxigenados). Cada tema tem 4 perguntas. Selecione a opção e envie — a resposta correta ficará verde e a errada em vermelho.</div>
+        <div style="margin-top:12px">
+          <strong>Progresso:</strong>
+          <div id="progress" style="height:8px;border-radius:6px;background:linear-gradient(90deg,#e9f6ff,#fff);margin-top:8px"></div>
+        </div>
+        <div id="sidebar-cta" style="margin-top:12px">
+          <button class="btn primary" id="start-quiz">Abrir quiz do tema</button>
+          <button class="btn ghost" id="reset-all" title="Reiniciar quizzes">Reiniciar quizzes</button>
+        </div>
+        <div id="sidebar-hint" class="note" style="margin-top:10px">Dica: leia os cards do conteúdo antes de responder — imagens e exemplos ajudam muito!</div>
+      </div>
+    </aside>
+  </main>
+  <footer>&copy; 2025 Blog Química Orgânica — Conteúdo didático. Feito pra estudar rápido e com qualidade.</footer>
+  <script src="script.js"></script>
+  </body>
+</html>
