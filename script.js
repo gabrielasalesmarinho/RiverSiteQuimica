@@ -30,7 +30,8 @@ const state = {
   currentQuestionIndex: 0,
   userAnswers: { alcanos: [], alcenos: [], alcinos: [], oxigenados: [] },
   completed: { alcanos: false, alcenos: false, alcinos: false, oxigenados: false },
-  activeContainer: null
+  activeContainer: null,
+  selectedQuizTopic: null
 };
 function getProfessorQuestions(topic) {
   const key = 'professor_questions_' + topic;
@@ -64,13 +65,36 @@ function mountQuizToContainer(topic, containerId){
     const summary = document.createElement('div');
     summary.className = 'note';
     const corrects = state.userAnswers[topic].filter(x => x.correct).length;
-    summary.innerHTML = `<p style="margin:6px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>`;
+    summary.innerHTML = `<p style="margin:6px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p><p style="margin:6px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>`;
     done.appendChild(summary);
+    
+    const btnContainer = document.createElement('div');
+    btnContainer.style.display = 'flex';
+    btnContainer.style.gap = '10px';
+    btnContainer.style.marginTop = '16px';
+    btnContainer.style.flexWrap = 'wrap';
+    
     const resetBtn = document.createElement('button');
-    resetBtn.className = 'btn ghost';
+    resetBtn.className = 'btn primary';
     resetBtn.textContent = 'Refazer este quiz';
-    resetBtn.onclick = () => resetQuiz(topic);
-    done.appendChild(resetBtn);
+    resetBtn.onclick = () => {
+      resetQuiz(topic);
+      if (state.selectedQuizTopic) {
+        mountGeneralQuiz(state.selectedQuizTopic);
+      }
+    };
+    btnContainer.appendChild(resetBtn);
+    
+    // Se estiver no quiz geral com tópico selecionado, mostra botão para voltar
+    if (containerId === 'quiz-geral-container' && state.selectedQuizTopic && state.selectedQuizTopic !== 'todos') {
+      const backBtn = document.createElement('button');
+      backBtn.className = 'btn ghost';
+      backBtn.textContent = 'Escolher Outro Tópico';
+      backBtn.onclick = () => backToTopicSelection();
+      btnContainer.appendChild(backBtn);
+    }
+    
+    done.appendChild(btnContainer);
     container.appendChild(done);
     updateProgress();
     return;
@@ -115,7 +139,33 @@ function mountQuizToContainer(topic, containerId){
     state.userAnswers[topic].push({ selected: null, correct: false, skipped:true });
     const isQuizComplete = state.userAnswers[topic].length >= getCombinedQuestions(topic).length;
     if (containerId === 'quiz-geral-container' && isQuizComplete) {
-      setTimeout(() => { mountGeneralQuiz() }, 2000);
+      // Se um tópico específico foi selecionado, mostra resumo
+      if (state.selectedQuizTopic && state.selectedQuizTopic !== 'todos') {
+        setTimeout(() => {
+          const container = document.getElementById(containerId);
+          if (container) {
+            const questions = getCombinedQuestions(topic);
+            const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+            const summary = document.createElement('div');
+            summary.innerHTML = `
+              <h4 style="margin:0 0 10px 0">Quiz de ${capitalize(topic)} Concluído!</h4>
+              <div class="note">
+                <p style="margin:6px 0"><strong>Resultado:</strong></p>
+                <p style="margin:4px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>
+                <p style="margin:4px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>
+              </div>
+              <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+                <button class="btn primary" onclick="resetQuiz('${topic}'); mountGeneralQuiz('${topic}')">Refazer Quiz</button>
+                <button class="btn ghost" onclick="backToTopicSelection()">Escolher Outro Tópico</button>
+              </div>
+            `;
+            container.innerHTML = '';
+            container.appendChild(summary);
+          }
+        }, 500);
+      } else {
+        setTimeout(() => { mountGeneralQuiz('todos') }, 2000);
+      }
     } else if (containerId === 'quiz-geral-container') {
       mountQuizToContainer(topic, containerId);
     } else {
@@ -135,27 +185,47 @@ function mountQuizToContainer(topic, containerId){
   container.appendChild(qBlock);
   updateProgress();
 }
-function mountGeneralQuiz(){
+function mountGeneralQuiz(topic = null){
   const container = document.getElementById('quiz-geral-container');
   if (!container) return;
-  const currentTopic = getCurrentQuizForGeneral();
-  if (!currentTopic){
-    container.innerHTML = `
-      <h4 style="margin:0 0 10px 0">Parabéns! Você completou todos os quizzes!</h4>
-      <div class="note">
-        <p style="margin:6px 0"><strong>Resumo:</strong></p>
-        ${quizOrder.map(topic => {
-          const questions = getCombinedQuestions(topic);
-          const corrects = state.userAnswers[topic].filter(x => x.correct).length;
-          return `<p style="margin:4px 0">${capitalize(topic)}: <strong>${corrects}</strong> de ${questions.length}</p>`;
-        }).join('')}
-      </div>
-      <button class="btn ghost" onclick="resetAllQuizzes()" style="margin-top:12px">Reiniciar todos os quizzes</button>
-    `;
-    updateProgress();
+  
+  // Se um tópico específico foi selecionado, usa ele
+  if (topic && topic !== 'todos') {
+    mountQuizToContainer(topic, 'quiz-geral-container');
     return;
   }
-  mountQuizToContainer(currentTopic, 'quiz-geral-container');
+  
+  // Se for "todos", usa o modo sequencial original
+  if (topic === 'todos') {
+    const currentTopic = getCurrentQuizForGeneral();
+    if (!currentTopic){
+      container.innerHTML = `
+        <h4 style="margin:0 0 10px 0">Parabéns! Você completou todos os quizzes!</h4>
+        <div class="note">
+          <p style="margin:6px 0"><strong>Resumo:</strong></p>
+          ${quizOrder.map(topic => {
+            const questions = getCombinedQuestions(topic);
+            const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+            return `<p style="margin:4px 0">${capitalize(topic)}: <strong>${corrects}</strong> de ${questions.length}</p>`;
+          }).join('')}
+        </div>
+        <button class="btn ghost" onclick="resetAllQuizzes()" style="margin-top:12px">Reiniciar todos os quizzes</button>
+      `;
+      updateProgress();
+      return;
+    }
+    mountQuizToContainer(currentTopic, 'quiz-geral-container');
+    return;
+  }
+  
+  // Modo padrão: mostra seleção de tópico
+  const selectionDiv = document.getElementById('quiz-topic-selection');
+  const containerDiv = document.getElementById('quiz-geral-container');
+  const backBtn = document.getElementById('quiz-back-btn');
+  
+  if (selectionDiv) selectionDiv.style.display = 'block';
+  if (containerDiv) containerDiv.style.display = 'none';
+  if (backBtn) backBtn.style.display = 'none';
 }
 function submitAnswer(topic, qIndex, containerId){
   const container = document.getElementById(containerId);
@@ -188,7 +258,32 @@ function submitAnswer(topic, qIndex, containerId){
   const isQuizComplete = state.userAnswers[topic].length >= getCombinedQuestions(topic).length;
   setTimeout(()=> {
     if (containerId === 'quiz-geral-container' && isQuizComplete) {
-      setTimeout(() => { mountGeneralQuiz() }, 2000);
+      // Se um tópico específico foi selecionado, mostra resumo e opção de voltar
+      if (state.selectedQuizTopic && state.selectedQuizTopic !== 'todos') {
+        const container = document.getElementById(containerId);
+        if (container) {
+          const questions = getCombinedQuestions(topic);
+          const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+          const summary = document.createElement('div');
+          summary.innerHTML = `
+            <h4 style="margin:0 0 10px 0">Quiz de ${capitalize(topic)} Concluído!</h4>
+            <div class="note">
+              <p style="margin:6px 0"><strong>Resultado:</strong></p>
+              <p style="margin:4px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>
+              <p style="margin:4px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+              <button class="btn primary" onclick="resetQuiz('${topic}'); mountGeneralQuiz('${topic}')">Refazer Quiz</button>
+              <button class="btn ghost" onclick="backToTopicSelection()">Escolher Outro Tópico</button>
+            </div>
+          `;
+          container.innerHTML = '';
+          container.appendChild(summary);
+        }
+      } else {
+        // Modo sequencial (todos os temas)
+        setTimeout(() => { mountGeneralQuiz('todos') }, 2000);
+      }
     } else if (containerId === 'quiz-geral-container') {
       mountQuizToContainer(topic, containerId);
     } else {
@@ -215,9 +310,16 @@ function showSection(id){
   if (id === 'quizgeral') {
     if (sidebar) sidebar.classList.add('show');
     if (mainContainer) mainContainer.classList.remove('no-sidebar');
+    // Mostra a seleção de tópicos ao entrar na seção de quiz
     mountGeneralQuiz();
+    // Atualiza as estatísticas de progresso
+    setTimeout(() => updateQuizTopicStats(), 100);
     const startBtn = document.getElementById('start-quiz');
     if (startBtn) startBtn.textContent = 'Abrir quiz do tema';
+  } else if (id === 'professor') {
+    // Redireciona para a página do professor
+    window.location.href = 'professor.html';
+    return;
   } else {
     if (sidebar) sidebar.classList.remove('show');
     if (mainContainer) mainContainer.classList.add('no-sidebar');
@@ -247,17 +349,138 @@ function resetAllQuizzes(){
 }
 window.resetAllQuizzes = resetAllQuizzes;
 document.getElementById('reset-all').addEventListener('click', resetAllQuizzes);
+
+// Função para selecionar um tópico de quiz
+function selectQuizTopic(topic) {
+  state.selectedQuizTopic = topic;
+  const selectionDiv = document.getElementById('quiz-topic-selection');
+  const containerDiv = document.getElementById('quiz-geral-container');
+  const backBtn = document.getElementById('quiz-back-btn');
+  
+  if (selectionDiv) selectionDiv.style.display = 'none';
+  if (containerDiv) {
+    containerDiv.style.display = 'block';
+    containerDiv.innerHTML = ''; // Limpa o container
+  }
+  if (backBtn) backBtn.style.display = 'block';
+  
+  // Scroll para o quiz
+  if (containerDiv) {
+    setTimeout(() => {
+      containerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  
+  // Monta o quiz do tópico selecionado
+  mountGeneralQuiz(topic);
+  
+  // Atualiza as estatísticas após iniciar o quiz
+  setTimeout(() => updateQuizTopicStats(), 200);
+}
+
+// Função para voltar à seleção de tópicos
+function backToTopicSelection() {
+  state.selectedQuizTopic = null;
+  const selectionDiv = document.getElementById('quiz-topic-selection');
+  const containerDiv = document.getElementById('quiz-geral-container');
+  const backBtn = document.getElementById('quiz-back-btn');
+  
+  if (selectionDiv) selectionDiv.style.display = 'block';
+  if (containerDiv) {
+    containerDiv.style.display = 'none';
+    containerDiv.innerHTML = ''; // Limpa o container
+  }
+  if (backBtn) backBtn.style.display = 'none';
+  
+  // Atualiza as estatísticas ao voltar
+  setTimeout(() => updateQuizTopicStats(), 100);
+  
+  // Scroll para a seleção
+  if (selectionDiv) {
+    setTimeout(() => {
+      selectionDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
+// Função para atualizar as estatísticas de progresso na seleção de tópicos
+function updateQuizTopicStats() {
+  const topics = ['alcanos', 'alcenos', 'alcinos', 'oxigenados'];
+  
+  topics.forEach(topic => {
+    const totalEl = document.getElementById(`${topic}-total`);
+    const doneEl = document.getElementById(`${topic}-done`);
+    
+    if (totalEl && doneEl) {
+      const questions = getCombinedQuestions(topic);
+      const answered = state.userAnswers[topic].length;
+      const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+      
+      totalEl.textContent = questions.length;
+      doneEl.textContent = `${answered}/${questions.length}`;
+      
+      // Atualiza a cor do botão baseado no progresso
+      const btn = document.querySelector(`.quiz-topic-btn[data-topic="${topic}"]`);
+      if (btn) {
+        const progress = questions.length > 0 ? (answered / questions.length) * 100 : 0;
+        if (progress === 100) {
+          btn.style.borderLeftColor = '#10b981';
+          btn.style.opacity = '0.9';
+        } else if (progress > 0) {
+          btn.style.opacity = '1';
+        }
+      }
+    }
+  });
+  
+  // Atualiza o resumo geral
+  const summaryEl = document.getElementById('quiz-progress-summary');
+  if (summaryEl) {
+    let totalQuestions = 0;
+    let totalAnswered = 0;
+    let totalCorrects = 0;
+    
+    topics.forEach(topic => {
+      const questions = getCombinedQuestions(topic);
+      const answered = state.userAnswers[topic].length;
+      const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+      totalQuestions += questions.length;
+      totalAnswered += answered;
+      totalCorrects += corrects;
+    });
+    
+    if (totalQuestions > 0) {
+      const percentage = Math.round((totalAnswered / totalQuestions) * 100);
+      summaryEl.textContent = `${totalAnswered}/${totalQuestions} respondidas (${percentage}%)`;
+    } else {
+      summaryEl.textContent = 'Nenhuma pergunta disponível';
+    }
+  }
+}
+
+// Exporta as funções para uso global
+window.selectQuizTopic = selectQuizTopic;
+window.backToTopicSelection = backToTopicSelection;
+window.updateQuizTopicStats = updateQuizTopicStats;
 function resetQuiz(topic){
   state.userAnswers[topic] = [];
+  state.completed[topic] = false;
   const activeSection = document.querySelector('.section.active');
   if (activeSection && activeSection.id === 'quizgeral') {
-    mountGeneralQuiz();
+    // Se há um tópico selecionado, mantém ele; senão, volta à seleção
+    if (state.selectedQuizTopic) {
+      mountGeneralQuiz(state.selectedQuizTopic);
+    } else {
+      mountGeneralQuiz();
+    }
   } else {
     mountGeneralQuiz();
   }
   updateProgress();
 }
 function updateProgress(){
+  // Atualiza também as estatísticas dos tópicos
+  updateQuizTopicStats();
   let total = quizOrder.reduce((sum, topic) => sum + getCombinedQuestions(topic).length, 0);
   const answered = Object.keys(state.userAnswers).reduce((s, k) => s + state.userAnswers[k].length, 0);
   const pct = Math.round((answered/total) * 100);
@@ -274,115 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mainContainer) mainContainer.classList.add('no-sidebar');
   updateProgress();
 });
-let professorState = {
-  loggedIn: true,
-  currentTopic: 'alcanos'
-};
-function showProfessorPanel() {
-  document.getElementById('professor-panel').style.display = 'block';
-  selectProfessorTopic(professorState.currentTopic);
-  loadProfessorQuestions();
-}
-function selectProfessorTopic(topic) {
-  professorState.currentTopic = topic;
-  ['alcanos', 'alcenos', 'alcinos', 'oxigenados'].forEach(t => {
-    const btn = document.getElementById('prof-topic-' + t);
-    if (btn) {
-      if (t === topic) {
-        btn.classList.remove('ghost');
-        btn.classList.add('primary');
-        btn.style.background = 'linear-gradient(135deg, var(--accent1), var(--accent2))';
-        btn.style.color = 'white';
-      } else {
-        btn.classList.remove('primary');
-        btn.classList.add('ghost');
-        btn.style.background = '';
-        btn.style.color = '';
-      }
-    }
-  });
-  loadProfessorQuestions();
-}
-window.selectProfessorTopic = selectProfessorTopic;
-function saveProfessorQuestions(topic, questions) {
-  const key = 'professor_questions_' + topic;
-  localStorage.setItem(key, JSON.stringify(questions));
-}
-function addProfessorQuestion() {
-  const topic = professorState.currentTopic;
-  const questionText = document.getElementById('prof-question-text').value.trim();
-  const options = [
-    document.getElementById('prof-option-0').value.trim(),
-    document.getElementById('prof-option-1').value.trim(),
-    document.getElementById('prof-option-2').value.trim(),
-    document.getElementById('prof-option-3').value.trim()
-  ];
-  const correctAnswer = document.querySelector('input[name="prof-correct-answer"]:checked');
-  if (!questionText) { alert('Por favor, digite a pergunta!'); return; }
-  if (options.some(opt => !opt)) { alert('Por favor, preencha todas as 4 opções!'); return; }
-  if (!correctAnswer) { alert('Por favor, selecione qual é a resposta correta!'); return; }
-  const newQuestion = {
-    q: questionText,
-    options: options,
-    answer: parseInt(correctAnswer.value),
-    id: Date.now()
-  };
-  const questions = getProfessorQuestions(topic);
-  questions.push(newQuestion);
-  saveProfessorQuestions(topic, questions);
-  clearProfessorForm();
-  loadProfessorQuestions();
-  alert('Pergunta adicionada com sucesso!');
-}
-window.addProfessorQuestion = addProfessorQuestion;
-function clearProfessorForm() {
-  document.getElementById('prof-question-text').value = '';
-  document.getElementById('prof-option-0').value = '';
-  document.getElementById('prof-option-1').value = '';
-  document.getElementById('prof-option-2').value = '';
-  document.getElementById('prof-option-3').value = '';
-  document.querySelectorAll('input[name="prof-correct-answer"]').forEach(r => r.checked = false);
-}
-window.clearProfessorForm = clearProfessorForm;
-function loadProfessorQuestions() {
-  const topic = professorState.currentTopic;
-  const questions = getProfessorQuestions(topic);
-  const container = document.getElementById('professor-questions-list');
-  const countEl = document.getElementById('prof-question-count');
-  countEl.textContent = questions.length;
-  if (questions.length === 0) {
-    container.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px">Nenhuma pergunta personalizada ainda. Adicione uma acima!</p>';
-    return;
-  }
-  container.innerHTML = questions.map((q, index) => `
-    <div class="card" style="margin-top:12px; padding:16px; background:rgba(139,92,246,0.05); border-left:4px solid #8b5cf6">
-      <div style="display:flex; justify-content:space-between; align-items:start; gap:12px">
-        <div style="flex:1">
-          <p style="margin:0 0 8px 0; font-weight:600; color:#1e40af">P${index + 1}. ${q.q}</p>
-          <ul style="margin:8px 0 0 20px; color:var(--muted); font-size:0.9rem">
-            ${q.options.map((opt, i) => `
-              <li style="margin-bottom:4px; ${i === q.answer ? 'color:#10b981; font-weight:600' : ''}">
-                ${opt}
-              </li>
-            `).join('')}
-          </ul>
-        </div>
-        <button class="btn ghost" onclick="deleteProfessorQuestion(${q.id})" style="padding:6px 12px; font-size:0.85rem; color:#ef4444; border-color:#ef4444">
-          Excluir
-        </button>
-      </div>
-    </div>
-  `).join('');
-}
-function deleteProfessorQuestion(questionId) {
-  if (!confirm('Tem certeza que deseja excluir esta pergunta?')) return;
-  const topic = professorState.currentTopic;
-  const questions = getProfessorQuestions(topic);
-  const filtered = questions.filter(q => q.id !== questionId);
-  saveProfessorQuestions(topic, filtered);
-  loadProfessorQuestions();
-}
-window.deleteProfessorQuestion = deleteProfessorQuestion;
+// Funções do professor movidas para professor.js
 // Sistema de Texto para Voz (TTS) - Melhorado
 let speechSynthesis = window.speechSynthesis;
 let currentUtterance = null;
@@ -637,15 +752,19 @@ document.addEventListener('DOMContentLoaded', () => {
   showProfessorPanel();
   initTabs();
   updateProgress();
+  // Atualiza as estatísticas de progresso dos quizzes
+  setTimeout(() => {
+    if (document.getElementById('quiz-topic-selection')) {
+      updateQuizTopicStats();
+    }
+  }, 300);
 });
 
 const originalShowSection = showSection;
 showSection = function(id) {
   originalShowSection(id);
-  if (id === 'professor') {
-    showProfessorPanel();
-  }
   // Reinicializa abas quando mudar de seção
   setTimeout(() => initTabs(), 100);
 };
+
 
