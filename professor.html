@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Portal do Professor — Química Orgânica</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="top-bar"></div>
+  
+  <!-- Tela de Login -->
+  <div id="login-screen" style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; position:relative">
+    <!-- Logo e Header -->
+    <div style="text-align:center; margin-bottom:48px; width:100%; max-width:500px">
+      <div style="display:flex; justify-content:center; margin-bottom:24px">
+        <div class="logo" aria-hidden="true" style="width:120px; height:120px; border-radius:var(--radius-xl); display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(37,99,235,0.15), rgba(6,182,212,0.1)); border:2px solid rgba(37,99,235,0.2); flex-shrink:0; position:relative; overflow:hidden; transition:all 0.3s; box-shadow:0 4px 16px rgba(37,99,235,0.1)">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:70px; height:70px">
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="url(#g)"/>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#dff4ff"/><stop offset="1" stop-color="#eaf8ff"/></linearGradient>
+            </defs>
+            <g transform="translate(12,12)" stroke="#064a6b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 24c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="none"/>
+              <circle cx="8" cy="8" r="3" fill="#3a7bd5"/>
+              <circle cx="26" cy="16" r="3" fill="#00c1ff"/>
+              <circle cx="14" cy="12" r="2.2" fill="#7ad1ff"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <h1 style="font-family:'Playfair Display', serif; font-size:2.5rem; margin:0 0 12px 0; letter-spacing:-0.03em; background:linear-gradient(135deg, #1e40af 0%, #2563eb 40%, #06b6d4 70%, #0891b2 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700; line-height:1.2; background-size:200% 200%; animation:gradientShift 8s ease infinite">Portal do Professor</h1>
+      <p style="color:var(--muted); font-size:1.05rem; margin:0; line-height:1.6">Acesso restrito para professores</p>
+    </div>
+    
+    <!-- Card de Login -->
+    <div class="card" style="max-width:480px; width:100%; position:relative; overflow:hidden">
+      <!-- Decoração superior -->
+      <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, transparent, rgba(37,99,235,0.3), rgba(6,182,212,0.3), transparent)"></div>
+      
+      <div style="padding:8px 0 32px 0">
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div style="margin-bottom:24px">
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Usuário
+            </label>
+            <input type="text" id="login-username" placeholder="Digite o usuário" required autocomplete="username"
+                   style="width:100%; padding:16px 18px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; background:rgba(255,255,255,0.95); box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 4px rgba(37,99,235,0.1)'; this.style.background='#ffffff'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.95)'"/>
+          </div>
+          
+          <div style="margin-bottom:28px">
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Senha
+            </label>
+            <input type="password" id="login-password" placeholder="Digite a senha" required autocomplete="current-password"
+                   style="width:100%; padding:16px 18px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; background:rgba(255,255,255,0.95); box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 4px rgba(37,99,235,0.1)'; this.style.background='#ffffff'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.95)'"/>
+          </div>
+          
+          <div id="login-error" style="display:none; padding:14px 16px; background:linear-gradient(135deg, rgba(239,68,68,0.1), rgba(220,38,38,0.05)); border:1.5px solid rgba(239,68,68,0.3); border-radius:10px; margin-bottom:20px; color:#dc2626; font-size:0.9rem; align-items:center; gap:10px; font-weight:500">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span style="flex:1"></span>
+          </div>
+          
+          <button type="submit" class="btn primary" style="width:100%; margin-bottom:20px; padding:16px; font-size:1rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:10px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+            </svg>
+            Entrar no Portal
+          </button>
+          
+          <div style="text-align:center; padding-top:20px; border-top:1px solid rgba(226,232,240,0.8)">
+            <a href="index.html" style="color:var(--muted); text-decoration:none; font-size:0.9rem; transition:all 0.3s; display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px" 
+               onmouseover="this.style.color='#2563eb'; this.style.background='rgba(37,99,235,0.05)'" 
+               onmouseout="this.style.color='var(--muted)'; this.style.background='transparent'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              Voltar para o site
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Rodapé do Login -->
+    <div style="margin-top:40px; text-align:center; color:var(--muted); font-size:0.85rem; max-width:500px; width:100%">
+      <p style="margin:0; opacity:0.7">© 2025 Portal do Professor — Química Orgânica</p>
+    </div>
+  </div>
+  
+  <!-- Conteúdo Principal (após login) -->
+  <div id="main-content" style="display:none">
+    <header style="max-width:1400px; margin:40px auto 0; padding:0 40px">
+      <div style="display:flex; align-items:center; gap:40px; background:var(--glass); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%); border-radius:var(--radius-xl); border:1px solid var(--border); box-shadow:var(--shadow-lg); padding:48px; position:relative; overflow:hidden">
+        <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, rgba(139,92,246,0.3), rgba(99,102,241,0.3), transparent)"></div>
+        <div class="logo" aria-hidden="true" style="width:140px; height:140px; flex-shrink:0">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%">
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="url(#g)"/>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#dff4ff"/><stop offset="1" stop-color="#eaf8ff"/></linearGradient>
+            </defs>
+            <g transform="translate(12,12)" stroke="#064a6b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 24c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="none"/>
+              <circle cx="8" cy="8" r="3" fill="#3a7bd5"/>
+              <circle cx="26" cy="16" r="3" fill="#00c1ff"/>
+              <circle cx="14" cy="12" r="2.2" fill="#7ad1ff"/>
+            </g>
+          </svg>
+        </div>
+        <div class="title" style="flex:1">
+          <h1 style="font-family:'Playfair Display', serif; font-size:2.5rem; margin:0 0 12px 0; letter-spacing:-0.03em; background:linear-gradient(135deg, #6b21a8 0%, #8b5cf6 50%, #6366f1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700; line-height:1.2">Portal do Professor</h1>
+          <p style="margin:0; color:var(--muted); font-size:1.05rem; line-height:1.6">Gerencie e adicione perguntas personalizadas aos quizzes</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; flex-shrink:0">
+          <div style="display:flex; align-items:center; gap:8px; padding:10px 16px; background:rgba(139,92,246,0.1); border-radius:10px; border:1px solid rgba(139,92,246,0.2)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span style="color:#6b21a8; font-weight:600; font-size:0.9rem">Professor</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <nav style="max-width:1400px; margin:32px auto 0; padding:0 40px">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; background:var(--glass); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%); border-radius:var(--radius-xl); border:1px solid var(--border); box-shadow:var(--shadow-md); padding:16px; position:relative; overflow:hidden">
+        <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, rgba(139,92,246,0.2), rgba(99,102,241,0.2), transparent)"></div>
+        <button class="btn ghost" onclick="window.location.href='index.html'" style="display:flex; align-items:center; gap:8px; flex:1; min-width:150px; justify-content:center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Voltar ao Site
+        </button>
+        <button class="btn ghost" onclick="showChangePasswordModal()" style="display:flex; align-items:center; gap:8px; flex:1; min-width:150px; justify-content:center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Alterar Senha
+        </button>
+        <button class="btn ghost" onclick="handleLogout()" style="display:flex; align-items:center; gap:8px; color:#ef4444; border-color:rgba(239,68,68,0.3); flex:1; min-width:150px; justify-content:center" 
+                onmouseover="this.style.background='rgba(239,68,68,0.1)'; this.style.borderColor='#ef4444'" 
+                onmouseout="this.style.background=''; this.style.borderColor='rgba(239,68,68,0.3)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          Sair
+        </button>
+      </div>
+    </nav>
+    
+    <main class="container" style="max-width:1400px; margin:40px auto; padding:40px; grid-template-columns:1fr">
+      <section class="content">
+        <article class="section active">
+          <div style="margin-bottom:32px">
+            <h2 style="font-family:'Playfair Display', serif; background:linear-gradient(135deg, #6b21a8 0%, #8b5cf6 50%, #6366f1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text">Gerenciamento de Perguntas</h2>
+            <p class="lead" style="max-width:800px">Adicione perguntas personalizadas aos quizzes. As perguntas adicionadas aqui aparecerão junto com as perguntas padrão nos quizzes dos alunos.</p>
+          </div>
+          
+          <div id="professor-panel">
+            <!-- Card de Seleção de Tema -->
+            <div class="card" style="margin-top:12px; background:linear-gradient(135deg, rgba(139,92,246,0.03) 0%, rgba(99,102,241,0.02) 100%); border:2px solid rgba(139,92,246,0.15)">
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px">
+                <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #8b5cf6, #6366f1); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <line x1="9" y1="3" x2="9" y2="21"/>
+                    <line x1="15" y1="3" x2="15" y2="21"/>
+                    <line x1="3" y1="9" x2="21" y2="9"/>
+                    <line x1="3" y1="15" x2="21" y2="15"/>
+                  </svg>
+                </div>
+                <div style="flex:1">
+                  <h4 style="margin:0 0 4px 0; font-size:1.3rem; color:#6b21a8">Selecionar Tema</h4>
+                  <p style="margin:0; color:var(--muted); font-size:0.9rem">Escolha o tópico para adicionar ou gerenciar perguntas</p>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-top:20px">
+                <button class="btn ghost prof-topic-btn" onclick="selectProfessorTopic('alcanos')" id="prof-topic-alcanos" style="padding:16px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; transition:all 0.3s; text-align:center; font-weight:600">
+                  <div style="font-size:1.5rem; margin-bottom:8px">🔵</div>
+                  <div>Alcanos</div>
+                </button>
+                <button class="btn ghost prof-topic-btn" onclick="selectProfessorTopic('alcenos')" id="prof-topic-alcenos" style="padding:16px; border:2px solid rgba(6,182,212,0.2); border-radius:12px; transition:all 0.3s; text-align:center; font-weight:600">
+                  <div style="font-size:1.5rem; margin-bottom:8px">🔷</div>
+                  <div>Alcenos</div>
+                </button>
+                <button class="btn ghost prof-topic-btn" onclick="selectProfessorTopic('alcinos')" id="prof-topic-alcinos" style="padding:16px; border:2px solid rgba(122,209,255,0.2); border-radius:12px; transition:all 0.3s; text-align:center; font-weight:600">
+                  <div style="font-size:1.5rem; margin-bottom:8px">💎</div>
+                  <div>Alcinos</div>
+                </button>
+                <button class="btn ghost prof-topic-btn" onclick="selectProfessorTopic('oxigenados')" id="prof-topic-oxigenados" style="padding:16px; border:2px solid rgba(16,185,129,0.2); border-radius:12px; transition:all 0.3s; text-align:center; font-weight:600">
+                  <div style="font-size:1.5rem; margin-bottom:8px">⚗️</div>
+                  <div>Oxigenados</div>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Card de Adicionar Pergunta -->
+            <div class="card" style="margin-top:20px; border:2px solid rgba(37,99,235,0.15)">
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px">
+                <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #2563eb, #06b6d4); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </div>
+                <div style="flex:1">
+                  <h4 style="margin:0 0 4px 0; font-size:1.3rem; color:#1e40af">Adicionar Nova Pergunta</h4>
+                  <p style="margin:0; color:var(--muted); font-size:0.9rem">Preencha os campos abaixo para criar uma nova pergunta</p>
+                </div>
+              </div>
+              
+              <div id="professor-form-container">
+                <div style="margin-top:20px">
+                  <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="8" x2="12" y2="12"/>
+                      <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    Pergunta:
+                  </label>
+                  <textarea id="prof-question-text" placeholder="Digite a pergunta aqui..." 
+                            style="width:100%; min-height:100px; padding:16px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; resize:vertical; transition:all 0.3s; background:rgba(255,255,255,0.95)"
+                            onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 4px rgba(37,99,235,0.1)'; this.style.background='#ffffff'"
+                            onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.95)'"></textarea>
+                </div>
+                
+                <div style="margin-top:24px">
+                  <label style="display:flex; align-items:center; gap:8px; margin-bottom:12px; font-weight:600; color:#1e40af; font-size:0.95rem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="9 11 12 14 22 4"/>
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    Opções de Resposta:
+                  </label>
+                  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px">
+                    <div style="display:flex; gap:12px; align-items:center; padding:14px; background:rgba(37,99,235,0.03); border:2px solid rgba(37,99,235,0.15); border-radius:12px; transition:all 0.3s" 
+                         onmouseover="this.style.background='rgba(37,99,235,0.05)'; this.style.borderColor='rgba(37,99,235,0.25)'"
+                         onmouseout="this.style.background='rgba(37,99,235,0.03)'; this.style.borderColor='rgba(37,99,235,0.15)'">
+                      <input type="radio" name="prof-correct-answer" value="0" id="prof-opt-0" style="width:20px; height:20px; cursor:pointer; accent-color:#2563eb" />
+                      <input type="text" id="prof-option-0" placeholder="Opção 1" 
+                             style="flex:1; padding:12px; border:2px solid rgba(37,99,235,0.2); border-radius:10px; font-size:0.95rem; transition:all 0.3s; background:#ffffff"
+                             onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                             onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; padding:14px; background:rgba(37,99,235,0.03); border:2px solid rgba(37,99,235,0.15); border-radius:12px; transition:all 0.3s"
+                         onmouseover="this.style.background='rgba(37,99,235,0.05)'; this.style.borderColor='rgba(37,99,235,0.25)'"
+                         onmouseout="this.style.background='rgba(37,99,235,0.03)'; this.style.borderColor='rgba(37,99,235,0.15)'">
+                      <input type="radio" name="prof-correct-answer" value="1" id="prof-opt-1" style="width:20px; height:20px; cursor:pointer; accent-color:#2563eb" />
+                      <input type="text" id="prof-option-1" placeholder="Opção 2" 
+                             style="flex:1; padding:12px; border:2px solid rgba(37,99,235,0.2); border-radius:10px; font-size:0.95rem; transition:all 0.3s; background:#ffffff"
+                             onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                             onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; padding:14px; background:rgba(37,99,235,0.03); border:2px solid rgba(37,99,235,0.15); border-radius:12px; transition:all 0.3s"
+                         onmouseover="this.style.background='rgba(37,99,235,0.05)'; this.style.borderColor='rgba(37,99,235,0.25)'"
+                         onmouseout="this.style.background='rgba(37,99,235,0.03)'; this.style.borderColor='rgba(37,99,235,0.15)'">
+                      <input type="radio" name="prof-correct-answer" value="2" id="prof-opt-2" style="width:20px; height:20px; cursor:pointer; accent-color:#2563eb" />
+                      <input type="text" id="prof-option-2" placeholder="Opção 3" 
+                             style="flex:1; padding:12px; border:2px solid rgba(37,99,235,0.2); border-radius:10px; font-size:0.95rem; transition:all 0.3s; background:#ffffff"
+                             onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                             onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+                    </div>
+                    <div style="display:flex; gap:12px; align-items:center; padding:14px; background:rgba(37,99,235,0.03); border:2px solid rgba(37,99,235,0.15); border-radius:12px; transition:all 0.3s"
+                         onmouseover="this.style.background='rgba(37,99,235,0.05)'; this.style.borderColor='rgba(37,99,235,0.25)'"
+                         onmouseout="this.style.background='rgba(37,99,235,0.03)'; this.style.borderColor='rgba(37,99,235,0.15)'">
+                      <input type="radio" name="prof-correct-answer" value="3" id="prof-opt-3" style="width:20px; height:20px; cursor:pointer; accent-color:#2563eb" />
+                      <input type="text" id="prof-option-3" placeholder="Opção 4" 
+                             style="flex:1; padding:12px; border:2px solid rgba(37,99,235,0.2); border-radius:10px; font-size:0.95rem; transition:all 0.3s; background:#ffffff"
+                             onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                             onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+                    </div>
+                  </div>
+                  <div class="note" style="margin-top:16px; padding:14px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.2); border-radius:10px">
+                    <div style="display:flex; align-items:start; gap:10px">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" style="flex-shrink:0; margin-top:2px">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                      </svg>
+                      <div>
+                        <strong style="color:#1e40af; display:block; margin-bottom:4px">Importante:</strong>
+                        <span style="color:var(--muted); font-size:0.9rem">Selecione qual opção é a resposta correta marcando o botão de rádio ao lado de cada opção.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div style="display:flex; gap:12px; margin-top:28px; flex-wrap:wrap">
+                  <button class="btn primary" onclick="addProfessorQuestion()" style="flex:1; min-width:200px; padding:16px; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:10px">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Adicionar Pergunta
+                  </button>
+                  <button class="btn ghost" onclick="clearProfessorForm()" style="flex:1; min-width:200px; padding:16px; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:10px">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    Limpar Formulário
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card de Perguntas Personalizadas -->
+            <div class="card" style="margin-top:20px; border:2px solid rgba(16,185,129,0.15)">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:16px">
+                <div style="display:flex; align-items:center; gap:12px">
+                  <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #10b981, #059669); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin:0 0 4px 0; font-size:1.3rem; color:#047857">Perguntas Personalizadas</h4>
+                    <p style="margin:0; color:var(--muted); font-size:0.9rem">Total: <strong id="prof-question-count" style="color:#10b981">0</strong> perguntas adicionadas</p>
+                  </div>
+                </div>
+              </div>
+              <div id="professor-questions-list" style="margin-top:12px">
+                <div style="text-align:center; padding:60px 20px; color:var(--muted)">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 16px; opacity:0.3">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                  <p style="font-size:1rem; margin:0; font-weight:500">Nenhuma pergunta personalizada ainda</p>
+                  <p style="font-size:0.9rem; margin:8px 0 0 0; opacity:0.7">Adicione uma pergunta acima para começar!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    
+    <footer style="max-width:1200px; margin:48px auto 80px; padding:40px; text-align:center; color:var(--muted); font-size:0.95rem; background:var(--glass); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%); border-radius:var(--radius-xl); border:1px solid var(--border); box-shadow:var(--shadow-md); position:relative; overflow:hidden">
+      <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, rgba(37,99,235,0.2), rgba(6,182,212,0.2), transparent)"></div>
+      &copy; 2025 Portal do Professor — Química Orgânica
+    </footer>
+  </div>
+  
+  <!-- Modal de Alterar Senha -->
+  <div id="change-password-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); z-index:1000; align-items:center; justify-content:center; padding:20px">
+    <div class="card" style="max-width:500px; width:100%; position:relative">
+      <button onclick="closeChangePasswordModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; color:var(--muted); cursor:pointer; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:all 0.3s" 
+              onmouseover="this.style.background='rgba(0,0,0,0.05)'; this.style.color='#ef4444'" 
+              onmouseout="this.style.background='none'; this.style.color='var(--muted)'">×</button>
+      
+      <h3 style="margin:0 0 8px 0; font-size:1.5rem">Alterar Senha</h3>
+      <p style="color:var(--muted); margin-bottom:24px; font-size:0.95rem">Digite a senha atual e a nova senha</p>
+      
+      <form id="change-password-form" onsubmit="handleChangePassword(event)">
+        <div style="margin-bottom:20px">
+          <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af">Senha Atual:</label>
+          <input type="password" id="current-password" placeholder="Digite a senha atual" required
+                 style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s"
+                 onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                 onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+        </div>
+        
+        <div style="margin-bottom:20px">
+          <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af">Nova Senha:</label>
+          <input type="password" id="new-password" placeholder="Digite a nova senha" required
+                 style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s"
+                 onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                 onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+        </div>
+        
+        <div style="margin-bottom:24px">
+          <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af">Confirmar Nova Senha:</label>
+          <input type="password" id="confirm-password" placeholder="Confirme a nova senha" required
+                 style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s"
+                 onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                 onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+        </div>
+        
+        <div id="password-error" style="display:none; padding:12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; margin-bottom:16px; color:#dc2626; font-size:0.9rem"></div>
+        <div id="password-success" style="display:none; padding:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; margin-bottom:16px; color:#059669; font-size:0.9rem"></div>
+        
+        <div style="display:flex; gap:12px">
+          <button type="submit" class="btn primary" style="flex:1">Alterar Senha</button>
+          <button type="button" class="btn ghost" onclick="closeChangePasswordModal()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+  <script src="professor.js"></script>
+</body>
+</html>
+
