@@ -380,6 +380,7 @@ main.container {
   padding: 40px;
   margin-bottom: 80px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 @media (max-width: 1200px) {
@@ -387,6 +388,11 @@ main.container {
     max-width: 100%;
     padding: 32px 24px;
     gap: 28px;
+    grid-template-columns: 1fr !important;
+  }
+  
+  .sidebar {
+    display: none;
   }
 }
 
@@ -1286,11 +1292,22 @@ footer::before {
   main.container {
     padding: 24px 20px;
     gap: 24px;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  .sidebar {
+    display: none !important;
   }
   
   .content {
     padding: 32px 24px;
     border-radius: var(--radius-lg);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .section h2 {
@@ -2073,5 +2090,707 @@ footer::before {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsividade para a página do professor */
+@media (max-width: 768px) {
+  #login-screen {
+    padding: 20px !important;
+    min-height: 100vh !important;
+  }
+  
+  #login-screen h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  #login-screen .logo {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  #login-screen .logo svg {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  #main-content header {
+    padding: 24px 20px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 20px !important;
+  }
+  
+  #main-content header .logo {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  #main-content header h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  #main-content nav {
+    padding: 12px !important;
+    flex-direction: column !important;
+  }
+  
+  #main-content nav .btn {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+  
+  #main-content main.container {
+    padding: 20px 16px !important;
+    margin: 20px auto !important;
+  }
+  
+  #professor-panel .card {
+    padding: 20px !important;
+  }
+  
+  #professor-panel .card h4 {
+    font-size: 1.1rem !important;
+  }
+  
+  .prof-topic-btn {
+    min-width: calc(50% - 6px) !important;
+    padding: 14px 12px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  #professor-form-container {
+    margin-top: 16px !important;
+  }
+  
+  #professor-form-container > div {
+    margin-top: 16px !important;
+  }
+  
+  #professor-form-container textarea {
+    min-height: 80px !important;
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  #professor-form-container input[type="text"] {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  #professor-form-container > div:last-child {
+    flex-direction: column !important;
+  }
+  
+  #professor-form-container > div:last-child .btn {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+  
+  #professor-questions-list .card {
+    padding: 16px !important;
+  }
+  
+  #professor-questions-list .card > div {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  
+  #professor-questions-list .card button {
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+  
+  #change-password-modal .card {
+    max-width: 90% !important;
+    margin: 20px !important;
+    padding: 24px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #login-screen {
+    padding: 16px !important;
+  }
+  
+  #login-screen h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
+  }
+  
+  #login-screen p {
+    font-size: 0.9rem !important;
+  }
+  
+  #login-screen .card {
+    padding: 20px 16px !important;
+  }
+  
+  #login-screen input {
+    padding: 14px 12px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  #login-screen .btn {
+    padding: 14px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  #main-content header {
+    padding: 20px 16px !important;
+  }
+  
+  #main-content header .logo {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  #main-content header h1 {
+    font-size: 1.3rem !important;
+  }
+  
+  #main-content header p {
+    font-size: 0.85rem !important;
+  }
+  
+  #main-content nav {
+    padding: 8px !important;
+    gap: 8px !important;
+  }
+  
+  #main-content nav .btn {
+    padding: 12px 16px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  #main-content main.container {
+    padding: 16px 12px !important;
+  }
+  
+  #professor-panel .card {
+    padding: 16px !important;
+  }
+  
+  .prof-topic-btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    padding: 12px !important;
+  }
+  
+  #professor-form-container textarea {
+    min-height: 70px !important;
+    padding: 10px !important;
+  }
+  
+  #professor-form-container > div:nth-child(2) > div {
+    grid-template-columns: 1fr !important;
+  }
+  
+  #professor-form-container > div:nth-child(2) > div > div {
+    padding: 12px !important;
+  }
+  
+  #change-password-modal {
+    padding: 10px !important;
+  }
+  
+  #change-password-modal .card {
+    padding: 20px 16px !important;
+  }
+  
+  #change-password-modal input {
+    padding: 12px !important;
+  }
+}
+
+/* Melhorias gerais de responsividade */
+@media (max-width: 768px) {
+  main.container {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
+  }
+  
+  .sidebar {
+    display: none !important;
+  }
+  
+  .content {
+    padding: 24px 20px !important;
+    min-height: auto !important;
+  }
+  
+  .section h2 {
+    font-size: 1.8rem !important;
+    word-wrap: break-word !important;
+  }
+  
+  .tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    padding-bottom: 4px !important;
+  }
+  
+  .tab-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+  
+  .quiz-topic-btn {
+    min-width: 100% !important;
+  }
+  
+  .quiz-topic-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  .quiz-topic-content {
+    padding: 16px !important;
+  }
+  
+  .illustration {
+    min-height: 200px !important;
+    padding: 12px !important;
+  }
+  
+  .illustration svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 20px 16px !important;
+  }
+  
+  header h1 {
+    font-size: 1.4rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  header p {
+    font-size: 0.85rem !important;
+  }
+  
+  nav {
+    padding: 8px 12px !important;
+  }
+  
+  .nav-btn {
+    font-size: 0.7rem !important;
+    padding: 10px 12px !important;
+    min-width: calc(50% - 4px) !important;
+  }
+  
+  main.container {
+    padding: 16px 12px !important;
+  }
+  
+  .content {
+    padding: 20px 16px !important;
+  }
+  
+  .section h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  .lead {
+    font-size: 0.9rem !important;
+  }
+  
+  .card {
+    padding: 16px !important;
+  }
+  
+  .card h4 {
+    font-size: 1rem !important;
+  }
+  
+  .btn {
+    padding: 12px 16px !important;
+    font-size: 0.85rem !important;
+    width: 100% !important;
+  }
+  
+  .btns {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .btns .btn {
+    width: 100% !important;
+  }
+  
+  .illustration {
+    min-height: 180px !important;
+    padding: 10px !important;
+  }
+  
+  .quiz-panel {
+    padding: 16px !important;
+  }
+  
+  .question-text {
+    font-size: 1rem !important;
+  }
+  
+  .option {
+    padding: 12px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  footer {
+    padding: 20px 16px !important;
+    font-size: 0.85rem !important;
+    word-wrap: break-word !important;
+  }
+}
+
+/* Prevenir overflow horizontal */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+img, svg, video {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Melhorar scroll em mobile */
+@media (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Garantir que todos os containers não ultrapassem a largura */
+  header, nav, main.container, footer, .content, .card {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Grid responsivo */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Tabs responsivas */
+  .tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .tab-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 12px 18px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Quiz topic buttons responsivos */
+  .quiz-topic-btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Formulários responsivos */
+  input[type="text"], 
+  input[type="password"], 
+  textarea, 
+  select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Botões responsivos */
+  .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .btns {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .btns .btn {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* Responsividade específica para celulares pequenos */
+@media (max-width: 480px) {
+  /* Login screen do professor */
+  #login-screen {
+    padding: 20px 16px !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+  
+  #login-screen > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  #login-screen .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 24px 20px !important;
+    margin: 0 !important;
+  }
+  
+  #login-screen h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.3 !important;
+    word-wrap: break-word !important;
+  }
+  
+  #login-screen .logo {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  
+  #login-screen .logo svg {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  /* Main content do professor */
+  #main-content {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  #main-content header {
+    padding: 20px 16px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  #main-content header .logo {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  
+  #main-content header h1 {
+    font-size: 1.4rem !important;
+    line-height: 1.3 !important;
+    word-wrap: break-word !important;
+  }
+  
+  #main-content header p {
+    font-size: 0.85rem !important;
+  }
+  
+  #main-content nav {
+    padding: 12px 16px !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 16px auto 0 !important;
+    gap: 8px !important;
+  }
+  
+  #main-content nav .btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  #main-content main.container {
+    padding: 16px 12px !important;
+    margin: 20px auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Professor panel */
+  #professor-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #professor-panel .card {
+    padding: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 !important;
+  }
+  
+  #professor-panel .card h4 {
+    font-size: 1rem !important;
+    word-wrap: break-word !important;
+  }
+  
+  .prof-topic-btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 0 8px 0 !important;
+    padding: 14px 12px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Formulário do professor */
+  #professor-form-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #professor-form-container > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #professor-form-container textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 80px !important;
+    padding: 12px !important;
+    font-size: 0.9rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  #professor-form-container input[type="text"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    font-size: 0.85rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  #professor-form-container > div:last-child {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+  
+  #professor-form-container > div:last-child .btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Lista de perguntas */
+  #professor-questions-list {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #professor-questions-list .card {
+    padding: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12px 0 !important;
+  }
+  
+  #professor-questions-list .card > div {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  
+  #professor-questions-list .card button {
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+  
+  /* Modal de senha */
+  #change-password-modal {
+    padding: 16px !important;
+  }
+  
+  #change-password-modal .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+    margin: 0 !important;
+  }
+  
+  #change-password-modal input {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Grid de opções do formulário */
+  #professor-form-container > div:nth-child(2) > div {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #professor-form-container > div:nth-child(2) > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Grid de seleção de tema */
+  #professor-panel .card > div:last-child {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  
+  /* Grid de perguntas */
+  #professor-questions-list .card > div > div:first-child > div:last-child {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 20px 16px !important;
+    font-size: 0.8rem !important;
+    word-wrap: break-word !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 }
