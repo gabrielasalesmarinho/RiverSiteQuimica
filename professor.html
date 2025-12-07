@@ -55,7 +55,7 @@
                    onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.95)'"/>
           </div>
           
-          <div style="margin-bottom:28px">
+          <div style="margin-bottom:20px">
             <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -67,6 +67,19 @@
                    style="width:100%; padding:16px 18px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; background:rgba(255,255,255,0.95); box-sizing:border-box"
                    onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 4px rgba(37,99,235,0.1)'; this.style.background='#ffffff'"
                    onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.95)'"/>
+          </div>
+          
+          <div style="text-align:right; margin-bottom:28px">
+            <a href="#" onclick="showRecoveryEmailModal(); return false;" 
+               style="color:#2563eb; text-decoration:none; font-size:0.9rem; transition:all 0.3s; display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:8px"
+               onmouseover="this.style.background='rgba(37,99,235,0.05)'; this.style.color='#1d4ed8'"
+               onmouseout="this.style.background='transparent'; this.style.color='#2563eb'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Esqueci minha senha
+            </a>
           </div>
           
           <div id="login-error" style="display:none; padding:14px 16px; background:linear-gradient(135deg, rgba(239,68,68,0.1), rgba(220,38,38,0.05)); border:1.5px solid rgba(239,68,68,0.3); border-radius:10px; margin-bottom:20px; color:#dc2626; font-size:0.9rem; align-items:center; gap:10px; font-weight:500">
@@ -366,6 +379,87 @@
       <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, rgba(37,99,235,0.2), rgba(6,182,212,0.2), transparent)"></div>
       &copy; 2025 Portal do Professor — Química Orgânica
     </footer>
+  </div>
+  
+  <!-- Modal de Recuperação de Email -->
+  <div id="recovery-email-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); z-index:1000; align-items:center; justify-content:center; padding:20px">
+    <div class="card" style="max-width:500px; width:100%; position:relative">
+      <button onclick="closeRecoveryEmailModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; color:var(--muted); cursor:pointer; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:all 0.3s" 
+              onmouseover="this.style.background='rgba(0,0,0,0.05)'; this.style.color='#ef4444'" 
+              onmouseout="this.style.background='none'; this.style.color='var(--muted)'">×</button>
+      
+      <h3 style="margin:0 0 8px 0; font-size:1.5rem">Recuperação de Senha</h3>
+      <p style="color:var(--muted); margin-bottom:24px; font-size:0.95rem">Configure ou use seu email de recuperação para redefinir a senha</p>
+      
+      <div id="recovery-email-setup" style="display:none">
+        <form id="setup-recovery-email-form" onsubmit="handleSetupRecoveryEmail(event)">
+          <div style="margin-bottom:20px">
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email de Recuperação:
+            </label>
+            <input type="email" id="setup-recovery-email" placeholder="seu@email.com" required
+                   style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+            <p style="color:var(--muted); font-size:0.85rem; margin-top:8px; margin-bottom:0">Este email será usado para recuperar sua senha caso você a esqueça.</p>
+          </div>
+          
+          <div id="recovery-email-error" style="display:none; padding:12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; margin-bottom:16px; color:#dc2626; font-size:0.9rem"></div>
+          <div id="recovery-email-success" style="display:none; padding:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; margin-bottom:16px; color:#059669; font-size:0.9rem"></div>
+          
+          <div style="display:flex; gap:12px">
+            <button type="submit" class="btn primary" style="flex:1">Salvar Email</button>
+            <button type="button" class="btn ghost" onclick="closeRecoveryEmailModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+      
+      <div id="recovery-email-reset" style="display:none">
+        <form id="reset-password-form" onsubmit="handleResetPassword(event)">
+          <div style="margin-bottom:20px">
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:10px; font-weight:600; color:#1e40af; font-size:0.95rem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email de Recuperação:
+            </label>
+            <input type="email" id="reset-recovery-email" placeholder="Digite seu email de recuperação" required
+                   style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+          </div>
+          
+          <div style="margin-bottom:20px">
+            <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af">Nova Senha:</label>
+            <input type="password" id="reset-new-password" placeholder="Digite a nova senha" required
+                   style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+          </div>
+          
+          <div style="margin-bottom:24px">
+            <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af">Confirmar Nova Senha:</label>
+            <input type="password" id="reset-confirm-password" placeholder="Confirme a nova senha" required
+                   style="width:100%; padding:14px; border:2px solid rgba(37,99,235,0.2); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; box-sizing:border-box"
+                   onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                   onblur="this.style.borderColor='rgba(37,99,235,0.2)'; this.style.boxShadow='none'"/>
+          </div>
+          
+          <div id="reset-password-error" style="display:none; padding:12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; margin-bottom:16px; color:#dc2626; font-size:0.9rem"></div>
+          <div id="reset-password-success" style="display:none; padding:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:8px; margin-bottom:16px; color:#059669; font-size:0.9rem"></div>
+          
+          <div style="display:flex; gap:12px">
+            <button type="submit" class="btn primary" style="flex:1">Redefinir Senha</button>
+            <button type="button" class="btn ghost" onclick="closeRecoveryEmailModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   
   <!-- Modal de Alterar Senha -->

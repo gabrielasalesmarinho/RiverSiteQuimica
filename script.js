@@ -31,12 +31,24 @@ const state = {
   userAnswers: { alcanos: [], alcenos: [], alcinos: [], oxigenados: [] },
   completed: { alcanos: false, alcenos: false, alcinos: false, oxigenados: false },
   activeContainer: null,
-  selectedQuizTopic: null
+  selectedQuizTopic: null,
+  shuffledQuestions: { alcanos: null, alcenos: null, alcinos: null, oxigenados: null } // Armazena questões embaralhadas
 };
 function getProfessorQuestions(topic) {
-  const key = 'professor_questions_' + topic;
-  const saved = localStorage.getItem(key);
-  return saved ? JSON.parse(saved) : [];
+  // Fallback para ambientes sem localStorage (ex: preview do VSCode)
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      console.warn('localStorage não disponível. Usando apenas questões padrão.');
+      return [];
+    }
+    const key = 'professor_questions_' + topic;
+    const saved = localStorage.getItem(key);
+    return saved ? JSON.parse(saved) : [];
+  } catch (e) {
+    // Se localStorage não estiver disponível, retorna array vazio
+    console.warn('localStorage não disponível. Usando apenas questões padrão.');
+    return [];
+  }
 }
 function getCombinedQuestions(topic) {
   const def = quizzes[topic] || [];
@@ -53,11 +65,28 @@ function getCurrentQuizForGeneral(){
   }
   return null;
 }
+// Função para embaralhar array (Fisher-Yates shuffle)
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 function mountQuizToContainer(topic, containerId){
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = '';
-  const questions = getCombinedQuestions(topic);
+  
+  // Se não há questões embaralhadas ou o quiz foi resetado, embaralha as questões
+  if (!state.shuffledQuestions[topic] || state.userAnswers[topic].length === 0) {
+    const originalQuestions = getCombinedQuestions(topic);
+    state.shuffledQuestions[topic] = shuffleArray(originalQuestions);
+  }
+  
+  const questions = state.shuffledQuestions[topic];
   const qIndex = Math.min(state.userAnswers[topic].length, questions.length);
   if(qIndex >= questions.length){
     const done = document.createElement('div');
@@ -100,14 +129,25 @@ function mountQuizToContainer(topic, containerId){
     return;
   }
   const qObj = questions[qIndex];
+  
+  // Embaralha as alternativas e encontra a nova posição da resposta correta
+  const originalAnswerIndex = qObj.answer;
+  const shuffledOptions = shuffleArray(qObj.options);
+  const shuffledAnswerIndex = shuffledOptions.findIndex((opt, idx) => {
+    // Encontra a posição da resposta correta no array embaralhado
+    return opt === qObj.options[originalAnswerIndex];
+  });
+  
   const qBlock = document.createElement('div');
   qBlock.className = 'question-row';
   qBlock.dataset.topic = topic;
   qBlock.dataset.qIndex = qIndex;
-  qBlock.innerHTML = `<div class="question-text">Q${qIndex+1}. ${qObj.q}</div>`;
+  // Armazena o índice da resposta correta no array embaralhado
+  qBlock.dataset.shuffledAnswer = shuffledAnswerIndex;
+  qBlock.innerHTML = `<div class="question-text">${qObj.q}</div>`;
   const opts = document.createElement('div');
   opts.className = 'options';
-  qObj.options.forEach((opt, i) => {
+  shuffledOptions.forEach((opt, i) => {
     const optDiv = document.createElement('label');
     optDiv.className = 'option';
     optDiv.dataset.index = i;
@@ -235,7 +275,8 @@ function submitAnswer(topic, qIndex, containerId){
   const chosen = qBlock.querySelector('input[type=radio]:checked');
   const optionsEls = Array.from(qBlock.querySelectorAll('.option'));
   const allQuestions = getCombinedQuestions(topic);
-  const correctIndex = allQuestions[qIndex].answer;
+  // Usa o índice da resposta correta no array embaralhado
+  const correctIndex = Number(qBlock.dataset.shuffledAnswer);
   if(!chosen){
     qBlock.style.animation = 'shake 0.3s';
     setTimeout(()=>qBlock.style.animation='none',300);
@@ -339,6 +380,8 @@ function resetAllQuizzes(){
   if(!confirm('Deseja reiniciar todos os quizzes? Isso apagará seu progresso atual no quiz.')) return;
   state.userAnswers = { alcanos: [], alcenos: [], alcinos: [], oxigenados: [] };
   state.completed = { alcanos: false, alcenos: false, alcinos: false, oxigenados: false };
+  // Limpa todas as questões embaralhadas para que sejam reembaralhadas
+  state.shuffledQuestions = { alcanos: null, alcenos: null, alcinos: null, oxigenados: null };
   const activeSection = document.querySelector('.section.active');
   if (activeSection && activeSection.id === 'quizgeral') {
     mountGeneralQuiz();
@@ -465,6 +508,8 @@ window.updateQuizTopicStats = updateQuizTopicStats;
 function resetQuiz(topic){
   state.userAnswers[topic] = [];
   state.completed[topic] = false;
+  // Limpa as questões embaralhadas para que sejam reembaralhadas na próxima vez
+  state.shuffledQuestions[topic] = null;
   const activeSection = document.querySelector('.section.active');
   if (activeSection && activeSection.id === 'quizgeral') {
     // Se há um tópico selecionado, mantém ele; senão, volta à seleção
@@ -490,12 +535,215 @@ function updateProgress(){
     bar.textContent = answered + '/' + total;
   }
 }
+// Image Zoom Functionality
+let imageZoomState = {
+  scale: 1,
+  x: 0,
+  y: 0,
+  isDragging: false,
+  startX: 0,
+  startY: 0,
+  startScale: 1
+};
+
+function openImageZoom(src) {
+  const modal = document.getElementById('image-zoom-modal');
+  const img = document.getElementById('zoomed-image');
+  
+  if (!modal || !img) return;
+  
+  img.src = src;
+  imageZoomState.scale = 1;
+  imageZoomState.x = 0;
+  imageZoomState.y = 0;
+  
+  updateImageTransform();
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageZoom() {
+  const modal = document.getElementById('image-zoom-modal');
+  if (!modal) return;
+  
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+  imageZoomState.scale = 1;
+  imageZoomState.x = 0;
+  imageZoomState.y = 0;
+}
+
+function updateImageTransform() {
+  const img = document.getElementById('zoomed-image');
+  if (!img) return;
+  
+  img.style.transform = `translate(${imageZoomState.x}px, ${imageZoomState.y}px) scale(${imageZoomState.scale})`;
+}
+
+function zoomIn() {
+  imageZoomState.scale = Math.min(imageZoomState.scale * 1.2, 5);
+  updateImageTransform();
+}
+
+function zoomOut() {
+  imageZoomState.scale = Math.max(imageZoomState.scale / 1.2, 0.5);
+  updateImageTransform();
+}
+
+function resetZoom() {
+  imageZoomState.scale = 1;
+  imageZoomState.x = 0;
+  imageZoomState.y = 0;
+  updateImageTransform();
+}
+
+// Initialize image zoom on page load
+function initImageZoom() {
+  // Handle clicks on illustrations (SVG containers)
+  document.querySelectorAll('.illustration').forEach(illustration => {
+    illustration.style.cursor = 'pointer';
+    illustration.addEventListener('click', (e) => {
+      // Get the SVG element
+      const svg = illustration.querySelector('svg');
+      if (svg) {
+        // Convert SVG to data URL
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(svgBlob);
+        openImageZoom(url);
+      }
+    });
+  });
+  
+  // Handle clicks on images (excluding IFTO logo if needed, or include it)
+  document.querySelectorAll('img').forEach(img => {
+    if (img.classList.contains('ifto-logo')) {
+      // Make IFTO logo clickable too
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openImageZoom(img.src);
+      });
+    } else {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openImageZoom(img.src);
+      });
+    }
+  });
+  
+  // Close button
+  const closeBtn = document.querySelector('.image-zoom-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeImageZoom);
+  }
+  
+  // Zoom controls
+  const zoomInBtn = document.querySelector('.zoom-in');
+  const zoomOutBtn = document.querySelector('.zoom-out');
+  const zoomResetBtn = document.querySelector('.zoom-reset');
+  
+  if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+  if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+  if (zoomResetBtn) zoomResetBtn.addEventListener('click', resetZoom);
+  
+  // Close on overlay click
+  const overlay = document.querySelector('.image-zoom-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeImageZoom);
+  }
+  
+  // Mouse wheel zoom
+  const zoomContent = document.querySelector('.image-zoom-content');
+  if (zoomContent) {
+    zoomContent.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? 0.9 : 1.1;
+      imageZoomState.scale = Math.max(0.5, Math.min(imageZoomState.scale * delta, 5));
+      updateImageTransform();
+    });
+  }
+  
+  // Drag to pan
+  if (zoomContent) {
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startTranslateX = 0;
+    let startTranslateY = 0;
+    
+    zoomContent.addEventListener('mousedown', (e) => {
+      if (e.target.tagName === 'IMG') {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        startTranslateX = imageZoomState.x;
+        startTranslateY = imageZoomState.y;
+        zoomContent.style.cursor = 'grabbing';
+        e.target.classList.add('dragging');
+      }
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        imageZoomState.x = startTranslateX + (e.clientX - startX);
+        imageZoomState.y = startTranslateY + (e.clientY - startY);
+        updateImageTransform();
+      }
+    });
+    
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        zoomContent.style.cursor = 'grab';
+        const img = document.getElementById('zoomed-image');
+        if (img) img.classList.remove('dragging');
+      }
+    });
+  }
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('image-zoom-modal');
+    if (modal && modal.style.display === 'flex') {
+      if (e.key === 'Escape') {
+        closeImageZoom();
+      } else if (e.key === '+' || e.key === '=') {
+        zoomIn();
+      } else if (e.key === '-') {
+        zoomOut();
+      } else if (e.key === '0') {
+        resetZoom();
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Verifica se localStorage está disponível (não funciona no preview do VSCode)
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      console.warn('localStorage não está disponível. Algumas funcionalidades podem não funcionar.');
+      // Mostra aviso se estiver em preview mode
+      const warning = document.createElement('div');
+      warning.style.cssText = 'position:fixed;top:20px;right:20px;background:#fef2f2;border:2px solid #ef4444;border-radius:8px;padding:16px;max-width:300px;z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+      warning.innerHTML = '<strong style="color:#991b1b;">⚠️ Aviso</strong><p style="margin:8px 0 0 0;color:#64748b;font-size:0.9rem;">Para usar os quizzes, abra este arquivo em um navegador (não no preview do VSCode).</p>';
+      document.body.appendChild(warning);
+      setTimeout(() => warning.remove(), 10000);
+    }
+  } catch (e) {
+    console.warn('Erro ao verificar localStorage:', e);
+  }
+  
   const sidebar = document.querySelector('aside.sidebar');
   const mainContainer = document.querySelector('main.container');
   if (sidebar) sidebar.classList.remove('show');
   if (mainContainer) mainContainer.classList.add('no-sidebar');
   updateProgress();
+  
+  // Initialize image zoom
+  initImageZoom();
 });
 // Funções do professor movidas para professor.js
 // Sistema de Texto para Voz (TTS) - Melhorado
