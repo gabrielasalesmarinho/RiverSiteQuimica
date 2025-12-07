@@ -2759,6 +2759,57 @@
         <h2>Quizzes — Escolha o Tópico</h2>
         <p class="lead">Selecione o tópico que deseja estudar e teste seus conhecimentos com perguntas específicas sobre cada tema.</p>
         
+        <!-- Identificação do Estudante -->
+        <div class="card" style="margin-top:12px; background:linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(6,182,212,0.03) 100%); border:2px solid rgba(37,99,235,0.2)">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+            <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #2563eb, #06b6d4); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div style="flex:1">
+              <h4 style="margin:0 0 4px 0; font-size:1.2rem; color:#1e40af">Identificação do Estudante</h4>
+              <p style="margin:0; color:var(--muted); font-size:0.9rem">Digite seu nome completo para que seus resultados sejam registrados</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap">
+            <div style="flex:1; min-width:250px">
+              <label style="display:block; margin-bottom:8px; font-weight:600; color:#1e40af; font-size:0.95rem">Nome Completo:</label>
+              <input type="text" id="student-name-input" placeholder="Digite seu nome completo aqui" 
+                     style="width:100%; padding:14px 16px; border:2px solid rgba(37,99,235,0.3); border-radius:12px; font-size:1rem; font-family:inherit; transition:all 0.3s; background:#ffffff; box-sizing:border-box"
+                     onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 4px rgba(37,99,235,0.1)'"
+                     onblur="this.style.borderColor='rgba(37,99,235,0.3)'; this.style.boxShadow='none'; saveStudentName()"
+                     onkeypress="if(event.key === 'Enter') saveStudentName()">
+            </div>
+            <button class="btn primary" onclick="saveStudentName()" style="padding:14px 24px; font-size:1rem; display:flex; align-items:center; gap:8px; white-space:nowrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+              </svg>
+              Salvar Nome
+            </button>
+          </div>
+          <div id="student-name-display" style="margin-top:16px; padding:12px 16px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; display:none">
+            <div style="display:flex; align-items:center; gap:10px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div style="flex:1">
+                <strong style="color:#047857; display:block; margin-bottom:4px">Nome registrado:</strong>
+                <span id="student-name-text" style="color:#065f46; font-size:1.05rem; font-weight:600"></span>
+              </div>
+              <button class="btn ghost" onclick="editStudentName()" style="padding:8px 16px; font-size:0.9rem; color:#2563eb; border-color:rgba(37,99,235,0.3)"
+                      onmouseover="this.style.background='rgba(37,99,235,0.1)'"
+                      onmouseout="this.style.background=''">
+                Editar
+              </button>
+            </div>
+          </div>
+        </div>
+        
         <!-- Seleção de Tópico -->
         <div id="quiz-topic-selection" class="card" style="margin-top:12px">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px">
@@ -2905,6 +2956,10 @@
     <aside class="sidebar">
       <div class="quiz-panel" id="sidebar-quiz">
         <h3>Quiz rápido</h3>
+        <div id="sidebar-student-name" style="margin-bottom:12px; padding:10px 12px; background:rgba(37,99,235,0.1); border-left:3px solid #2563eb; border-radius:8px; display:none">
+          <div style="font-size:0.85rem; color:#64748b; margin-bottom:4px">Estudante:</div>
+          <div id="sidebar-student-name-text" style="font-weight:600; color:#1e40af; font-size:0.95rem"></div>
+        </div>
         <div class="note">Escolha um tema no topo (Alcanos, Alcenos, Alcinos, Oxigenados). Cada tema tem 4 perguntas. Selecione a opção e envie — a resposta correta ficará verde e a errada em vermelho.</div>
         <div style="margin-top:12px">
           <strong>Progresso:</strong>

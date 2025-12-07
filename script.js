@@ -90,7 +90,9 @@ function mountQuizToContainer(topic, containerId){
   const qIndex = Math.min(state.userAnswers[topic].length, questions.length);
   if(qIndex >= questions.length){
     const done = document.createElement('div');
-    done.innerHTML = `<p style="margin:8px 0;color:var(--muted)"><strong>Você já respondeu todas as perguntas deste tema.</strong></p>`;
+    const studentName = getStudentName();
+    const nameDisplay = studentName ? `<p style="margin:0 0 12px 0; padding:10px 14px; background:rgba(37,99,235,0.1); border-left:4px solid #2563eb; border-radius:8px; color:#1e40af; font-weight:600"><span style="opacity:0.8">Estudante:</span> ${studentName}</p>` : '';
+    done.innerHTML = `${nameDisplay}<p style="margin:8px 0;color:var(--muted)"><strong>Você já respondeu todas as perguntas deste tema.</strong></p>`;
     const summary = document.createElement('div');
     summary.className = 'note';
     const corrects = state.userAnswers[topic].filter(x => x.correct).length;
@@ -144,7 +146,17 @@ function mountQuizToContainer(topic, containerId){
   qBlock.dataset.qIndex = qIndex;
   // Armazena o índice da resposta correta no array embaralhado
   qBlock.dataset.shuffledAnswer = shuffledAnswerIndex;
-  qBlock.innerHTML = `<div class="question-text">${qObj.q}</div>`;
+  
+  // Build question HTML with optional image
+  let questionHTML = `<div class="question-text">${qObj.q}</div>`;
+  if (qObj.image) {
+    questionHTML += `<div style="margin-top:16px; margin-bottom:16px; text-align:center">
+      <img src="${qObj.image}" alt="Imagem da pergunta" 
+           style="max-width:100%; max-height:400px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); cursor:pointer; object-fit:contain"
+           onclick="openImageZoom(this.src)">
+    </div>`;
+  }
+  qBlock.innerHTML = questionHTML;
   const opts = document.createElement('div');
   opts.className = 'options';
   shuffledOptions.forEach((opt, i) => {
@@ -187,8 +199,11 @@ function mountQuizToContainer(topic, containerId){
             const questions = getCombinedQuestions(topic);
             const corrects = state.userAnswers[topic].filter(x => x.correct).length;
             const summary = document.createElement('div');
+            const studentName = getStudentName();
+            const nameDisplay = studentName ? `<p style="margin:0 0 12px 0; padding:10px 14px; background:rgba(37,99,235,0.1); border-left:4px solid #2563eb; border-radius:8px; color:#1e40af; font-weight:600"><span style="opacity:0.8">Estudante:</span> ${studentName}</p>` : '';
             summary.innerHTML = `
               <h4 style="margin:0 0 10px 0">Quiz de ${capitalize(topic)} Concluído!</h4>
+              ${nameDisplay}
               <div class="note">
                 <p style="margin:6px 0"><strong>Resultado:</strong></p>
                 <p style="margin:4px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>
@@ -239,8 +254,11 @@ function mountGeneralQuiz(topic = null){
   if (topic === 'todos') {
     const currentTopic = getCurrentQuizForGeneral();
     if (!currentTopic){
+      const studentName = getStudentName();
+      const nameDisplay = studentName ? `<p style="margin:0 0 16px 0; padding:12px 16px; background:rgba(37,99,235,0.1); border-left:4px solid #2563eb; border-radius:8px; color:#1e40af; font-weight:600; font-size:1.05rem"><span style="opacity:0.8">Estudante:</span> ${studentName}</p>` : '';
       container.innerHTML = `
         <h4 style="margin:0 0 10px 0">Parabéns! Você completou todos os quizzes!</h4>
+        ${nameDisplay}
         <div class="note">
           <p style="margin:6px 0"><strong>Resumo:</strong></p>
           ${quizOrder.map(topic => {
@@ -355,6 +373,8 @@ function showSection(id){
     mountGeneralQuiz();
     // Atualiza as estatísticas de progresso
     setTimeout(() => updateQuizTopicStats(), 100);
+    // Display student name
+    displayStudentName();
     const startBtn = document.getElementById('start-quiz');
     if (startBtn) startBtn.textContent = 'Abrir quiz do tema';
   } else if (id === 'professor') {
@@ -535,6 +555,91 @@ function updateProgress(){
     bar.textContent = answered + '/' + total;
   }
 }
+
+// Student Name Management
+function getStudentName() {
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      return null;
+    }
+    return localStorage.getItem('student_name') || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function saveStudentName() {
+  try {
+    const nameInput = document.getElementById('student-name-input');
+    if (!nameInput) return;
+    
+    const name = nameInput.value.trim();
+    if (!name) {
+      alert('Por favor, digite seu nome completo!');
+      nameInput.focus();
+      return;
+    }
+    
+    if (typeof localStorage !== 'undefined' && localStorage !== null) {
+      localStorage.setItem('student_name', name);
+      displayStudentName();
+      // Show success feedback
+      const nameInput = document.getElementById('student-name-input');
+      if (nameInput) {
+        nameInput.style.borderColor = 'rgba(16,185,129,0.5)';
+        setTimeout(() => {
+          nameInput.style.borderColor = 'rgba(37,99,235,0.3)';
+        }, 2000);
+      }
+    }
+  } catch (e) {
+    console.error('Erro ao salvar nome:', e);
+    alert('Erro ao salvar nome. Por favor, tente novamente.');
+  }
+}
+
+function displayStudentName() {
+  const name = getStudentName();
+  const nameDisplay = document.getElementById('student-name-display');
+  const nameText = document.getElementById('student-name-text');
+  const nameInput = document.getElementById('student-name-input');
+  const sidebarNameDisplay = document.getElementById('sidebar-student-name');
+  const sidebarNameText = document.getElementById('sidebar-student-name-text');
+  
+  if (name && nameDisplay && nameText) {
+    nameText.textContent = name;
+    nameDisplay.style.display = 'block';
+    if (nameInput) {
+      nameInput.value = name;
+    }
+  } else if (nameDisplay) {
+    nameDisplay.style.display = 'none';
+  }
+  
+  // Update sidebar
+  if (name && sidebarNameDisplay && sidebarNameText) {
+    sidebarNameText.textContent = name;
+    sidebarNameDisplay.style.display = 'block';
+  } else if (sidebarNameDisplay) {
+    sidebarNameDisplay.style.display = 'none';
+  }
+}
+
+function editStudentName() {
+  const nameDisplay = document.getElementById('student-name-display');
+  const nameInput = document.getElementById('student-name-input');
+  
+  if (nameDisplay) nameDisplay.style.display = 'none';
+  if (nameInput) {
+    nameInput.focus();
+    nameInput.select();
+  }
+}
+
+// Export functions
+window.saveStudentName = saveStudentName;
+window.editStudentName = editStudentName;
+window.getStudentName = getStudentName;
 // Image Zoom Functionality
 let imageZoomState = {
   scale: 1,
@@ -741,6 +846,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sidebar) sidebar.classList.remove('show');
   if (mainContainer) mainContainer.classList.add('no-sidebar');
   updateProgress();
+  
+  // Load and display student name
+  displayStudentName();
   
   // Initialize image zoom
   initImageZoom();
@@ -975,6 +1083,7 @@ function speakText(text, btn, icon, sectionId) {
 
 window.readContent = readContent;
 window.toggleTTSMenu = toggleTTSMenu;
+window.openImageZoom = openImageZoom;
 
 // Sistema de Abas
 function initTabs() {
@@ -1000,6 +1109,8 @@ document.addEventListener('DOMContentLoaded', () => {
   showProfessorPanel();
   initTabs();
   updateProgress();
+  // Load and display student name
+  displayStudentName();
   // Atualiza as estatísticas de progresso dos quizzes
   setTimeout(() => {
     if (document.getElementById('quiz-topic-selection')) {

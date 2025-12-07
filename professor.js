@@ -358,6 +358,9 @@ function addProfessorQuestion() {
     document.getElementById('prof-option-3').value.trim()
   ];
   const correctAnswer = document.querySelector('input[name="prof-correct-answer"]:checked');
+  const imageUrl = document.getElementById('prof-question-image-url').value.trim();
+  const imagePreview = document.getElementById('prof-image-preview-img');
+  const imageData = imagePreview && imagePreview.src ? imagePreview.src : (imageUrl || null);
   
   if (!questionText) { 
     alert('Por favor, digite a pergunta!'); 
@@ -379,6 +382,11 @@ function addProfessorQuestion() {
     id: Date.now()
   };
   
+  // Add image if provided
+  if (imageData) {
+    newQuestion.image = imageData;
+  }
+  
   const questions = getProfessorQuestions(topic);
   questions.push(newQuestion);
   saveProfessorQuestions(topic, questions);
@@ -393,8 +401,82 @@ function clearProfessorForm() {
   document.getElementById('prof-option-1').value = '';
   document.getElementById('prof-option-2').value = '';
   document.getElementById('prof-option-3').value = '';
+  document.getElementById('prof-question-image-url').value = '';
+  document.getElementById('prof-question-image-file').value = '';
   document.querySelectorAll('input[name="prof-correct-answer"]').forEach(r => r.checked = false);
+  clearImagePreview();
 }
+
+// Handle image file upload
+function handleImageFileUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  if (!file.type.startsWith('image/')) {
+    alert('Por favor, selecione um arquivo de imagem válido!');
+    event.target.value = '';
+    return;
+  }
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const previewDiv = document.getElementById('prof-image-preview');
+    const previewImg = document.getElementById('prof-image-preview-img');
+    if (previewDiv && previewImg) {
+      previewImg.src = e.target.result;
+      previewDiv.style.display = 'block';
+      // Also set the URL field to the data URL
+      document.getElementById('prof-question-image-url').value = e.target.result;
+    }
+  };
+  reader.onerror = function() {
+    alert('Erro ao ler o arquivo de imagem!');
+    event.target.value = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Clear image preview
+function clearImagePreview() {
+  const previewDiv = document.getElementById('prof-image-preview');
+  const previewImg = document.getElementById('prof-image-preview-img');
+  const urlInput = document.getElementById('prof-question-image-url');
+  const fileInput = document.getElementById('prof-question-image-file');
+  
+  if (previewDiv) previewDiv.style.display = 'none';
+  if (previewImg) previewImg.src = '';
+  if (urlInput) urlInput.value = '';
+  if (fileInput) fileInput.value = '';
+}
+
+// Handle URL input changes
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait for the element to exist
+  setTimeout(() => {
+    const urlInput = document.getElementById('prof-question-image-url');
+    if (urlInput) {
+      urlInput.addEventListener('input', function() {
+        const url = this.value.trim();
+        const previewDiv = document.getElementById('prof-image-preview');
+        const previewImg = document.getElementById('prof-image-preview-img');
+        
+        if (url && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:image'))) {
+          if (previewDiv && previewImg) {
+            previewImg.src = url;
+            previewImg.onload = function() {
+              previewDiv.style.display = 'block';
+            };
+            previewImg.onerror = function() {
+              previewDiv.style.display = 'none';
+            };
+          }
+        } else if (!url) {
+          if (previewDiv) previewDiv.style.display = 'none';
+        }
+      });
+    }
+  }, 500);
+});
 
 function loadProfessorQuestions() {
   const topic = professorState.currentTopic;
@@ -434,6 +516,13 @@ function loadProfessorQuestions() {
             <span style="background:linear-gradient(135deg, #8b5cf6, #6366f1); color:white; padding:6px 16px; border-radius:20px; font-size:0.9rem; font-weight:700; box-shadow:0 2px 8px rgba(139,92,246,0.3)">#${index + 1}</span>
             <strong style="color:var(--text-primary); font-size:1.05rem; line-height:1.5">${q.q}</strong>
           </div>
+          ${q.image ? `
+            <div style="margin-bottom:16px; margin-left:8px; text-align:center">
+              <img src="${q.image}" alt="Imagem da pergunta" 
+                   style="max-width:100%; max-height:300px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); cursor:pointer; object-fit:contain"
+                   onclick="if(typeof openImageZoom === 'function') openImageZoom(this.src)">
+            </div>
+          ` : ''}
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:10px; margin-left:8px">
             ${q.options.map((opt, i) => `
               <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; background:${i === q.answer ? 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(5,150,105,0.05))' : 'rgba(0,0,0,0.02)'}; border:2px solid ${i === q.answer ? 'rgba(16,185,129,0.3)' : 'rgba(0,0,0,0.05)'}; border-radius:10px; transition:all 0.3s"
@@ -484,6 +573,8 @@ window.handleLogout = handleLogout;
 window.handleChangePassword = handleChangePassword;
 window.showChangePasswordModal = showChangePasswordModal;
 window.closeChangePasswordModal = closeChangePasswordModal;
+window.handleImageFileUpload = handleImageFileUpload;
+window.clearImagePreview = clearImagePreview;
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
