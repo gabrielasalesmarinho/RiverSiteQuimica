@@ -151,53 +151,104 @@ function showRecoveryEmailModal() {
   const modal = document.getElementById('recovery-email-modal');
   const setupDiv = document.getElementById('recovery-email-setup');
   const resetDiv = document.getElementById('recovery-email-reset');
-  const storedRecoveryEmail = localStorage.getItem('professor_recovery_email');
+  
+  if (!modal) {
+    console.error('Modal de recuperação de email não encontrado');
+    return;
+  }
+  
+  let storedRecoveryEmail;
+  try {
+    storedRecoveryEmail = localStorage.getItem('professor_recovery_email');
+  } catch (e) {
+    console.error('Erro ao acessar localStorage:', e);
+    storedRecoveryEmail = null;
+  }
   
   // Limpa mensagens de erro/sucesso
-  document.getElementById('recovery-email-error').style.display = 'none';
-  document.getElementById('recovery-email-success').style.display = 'none';
-  document.getElementById('reset-password-error').style.display = 'none';
-  document.getElementById('reset-password-success').style.display = 'none';
+  const recoveryError = document.getElementById('recovery-email-error');
+  const recoverySuccess = document.getElementById('recovery-email-success');
+  const resetError = document.getElementById('reset-password-error');
+  const resetSuccess = document.getElementById('reset-password-success');
   
-  // Limpa campos
-  document.getElementById('setup-recovery-email').value = storedRecoveryEmail || '';
-  document.getElementById('reset-recovery-email').value = '';
-  document.getElementById('reset-new-password').value = '';
-  document.getElementById('reset-confirm-password').value = '';
+  if (recoveryError) recoveryError.style.display = 'none';
+  if (recoverySuccess) recoverySuccess.style.display = 'none';
+  if (resetError) resetError.style.display = 'none';
+  if (resetSuccess) resetSuccess.style.display = 'none';
+  
+  // Limpa e preenche campos
+  const setupEmailInput = document.getElementById('setup-recovery-email');
+  const resetEmailInput = document.getElementById('reset-recovery-email');
+  const newPasswordInput = document.getElementById('reset-new-password');
+  const confirmPasswordInput = document.getElementById('reset-confirm-password');
+  
+  if (setupEmailInput) setupEmailInput.value = storedRecoveryEmail || '';
+  if (resetEmailInput) resetEmailInput.value = '';
+  if (newPasswordInput) newPasswordInput.value = '';
+  if (confirmPasswordInput) confirmPasswordInput.value = '';
   
   // Mostra setup se não há email, ou reset se há email
-  if (storedRecoveryEmail) {
-    setupDiv.style.display = 'none';
-    resetDiv.style.display = 'block';
+  if (storedRecoveryEmail && storedRecoveryEmail.trim() !== '') {
+    if (setupDiv) setupDiv.style.display = 'none';
+    if (resetDiv) {
+      resetDiv.style.display = 'block';
+      // Preenche o email no campo de reset
+      if (resetEmailInput) resetEmailInput.value = storedRecoveryEmail;
+    }
   } else {
-    setupDiv.style.display = 'block';
-    resetDiv.style.display = 'none';
+    if (setupDiv) setupDiv.style.display = 'block';
+    if (resetDiv) resetDiv.style.display = 'none';
   }
   
   modal.style.display = 'flex';
 }
 
 function closeRecoveryEmailModal() {
-  document.getElementById('recovery-email-modal').style.display = 'none';
-  document.getElementById('setup-recovery-email').value = '';
-  document.getElementById('reset-recovery-email').value = '';
-  document.getElementById('reset-new-password').value = '';
-  document.getElementById('reset-confirm-password').value = '';
-  document.getElementById('recovery-email-error').style.display = 'none';
-  document.getElementById('recovery-email-success').style.display = 'none';
-  document.getElementById('reset-password-error').style.display = 'none';
-  document.getElementById('reset-password-success').style.display = 'none';
+  const modal = document.getElementById('recovery-email-modal');
+  if (modal) modal.style.display = 'none';
+  
+  const setupEmailInput = document.getElementById('setup-recovery-email');
+  const resetEmailInput = document.getElementById('reset-recovery-email');
+  const newPasswordInput = document.getElementById('reset-new-password');
+  const confirmPasswordInput = document.getElementById('reset-confirm-password');
+  const recoveryError = document.getElementById('recovery-email-error');
+  const recoverySuccess = document.getElementById('recovery-email-success');
+  const resetError = document.getElementById('reset-password-error');
+  const resetSuccess = document.getElementById('reset-password-success');
+  
+  if (setupEmailInput) setupEmailInput.value = '';
+  if (resetEmailInput) resetEmailInput.value = '';
+  if (newPasswordInput) newPasswordInput.value = '';
+  if (confirmPasswordInput) confirmPasswordInput.value = '';
+  if (recoveryError) recoveryError.style.display = 'none';
+  if (recoverySuccess) recoverySuccess.style.display = 'none';
+  if (resetError) resetError.style.display = 'none';
+  if (resetSuccess) resetSuccess.style.display = 'none';
 }
 
 // Função para configurar email de recuperação
 function handleSetupRecoveryEmail(event) {
   event.preventDefault();
-  const email = document.getElementById('setup-recovery-email').value.trim();
+  const emailInput = document.getElementById('setup-recovery-email');
   const errorDiv = document.getElementById('recovery-email-error');
   const successDiv = document.getElementById('recovery-email-success');
   
+  if (!emailInput || !errorDiv || !successDiv) {
+    console.error('Elementos do formulário de recuperação não encontrados');
+    return;
+  }
+  
+  const email = emailInput.value.trim();
+  
   // Validação básica de email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email) {
+    errorDiv.textContent = 'Por favor, insira um email!';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+    return;
+  }
+  
   if (!emailRegex.test(email)) {
     errorDiv.textContent = 'Por favor, insira um email válido!';
     errorDiv.style.display = 'block';
@@ -205,33 +256,70 @@ function handleSetupRecoveryEmail(event) {
     return;
   }
   
-  // Salva o email de recuperação
-  localStorage.setItem('professor_recovery_email', email);
-  successDiv.textContent = 'Email de recuperação salvo com sucesso!';
-  successDiv.style.display = 'block';
-  errorDiv.style.display = 'none';
-  
-  // Atualiza a interface para mostrar opção de reset
-  setTimeout(() => {
-    document.getElementById('recovery-email-setup').style.display = 'none';
-    document.getElementById('recovery-email-reset').style.display = 'block';
-    document.getElementById('reset-recovery-email').value = email;
-  }, 1500);
+  try {
+    // Salva o email de recuperação
+    localStorage.setItem('professor_recovery_email', email);
+    successDiv.textContent = 'Email de recuperação salvo com sucesso!';
+    successDiv.style.display = 'block';
+    errorDiv.style.display = 'none';
+    
+    // Atualiza a interface para mostrar opção de reset
+    setTimeout(() => {
+      const setupDiv = document.getElementById('recovery-email-setup');
+      const resetDiv = document.getElementById('recovery-email-reset');
+      const resetEmailInput = document.getElementById('reset-recovery-email');
+      
+      if (setupDiv) setupDiv.style.display = 'none';
+      if (resetDiv) resetDiv.style.display = 'block';
+      if (resetEmailInput) resetEmailInput.value = email;
+    }, 1500);
+  } catch (e) {
+    console.error('Erro ao salvar email de recuperação:', e);
+    errorDiv.textContent = 'Erro ao salvar email. Por favor, tente novamente.';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+  }
 }
 
 // Função para redefinir senha usando email de recuperação
 function handleResetPassword(event) {
   event.preventDefault();
-  const email = document.getElementById('reset-recovery-email').value.trim();
-  const newPassword = document.getElementById('reset-new-password').value;
-  const confirmPassword = document.getElementById('reset-confirm-password').value;
+  const emailInput = document.getElementById('reset-recovery-email');
+  const newPasswordInput = document.getElementById('reset-new-password');
+  const confirmPasswordInput = document.getElementById('reset-confirm-password');
   const errorDiv = document.getElementById('reset-password-error');
   const successDiv = document.getElementById('reset-password-success');
   
-  const storedRecoveryEmail = localStorage.getItem('professor_recovery_email');
+  if (!emailInput || !newPasswordInput || !confirmPasswordInput || !errorDiv || !successDiv) {
+    console.error('Elementos do formulário de reset não encontrados');
+    return;
+  }
   
-  // Verifica se o email corresponde
-  if (!storedRecoveryEmail || email !== storedRecoveryEmail) {
+  const email = emailInput.value.trim();
+  const newPassword = newPasswordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
+  
+  // Validação de email
+  if (!email) {
+    errorDiv.textContent = 'Por favor, insira o email de recuperação!';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+    return;
+  }
+  
+  // Verifica se o email corresponde ao salvo
+  let storedRecoveryEmail;
+  try {
+    storedRecoveryEmail = localStorage.getItem('professor_recovery_email');
+  } catch (e) {
+    console.error('Erro ao acessar localStorage:', e);
+    errorDiv.textContent = 'Erro ao verificar email. Por favor, tente novamente.';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+    return;
+  }
+  
+  if (!storedRecoveryEmail || email.toLowerCase() !== storedRecoveryEmail.toLowerCase()) {
     errorDiv.textContent = 'Email de recuperação não encontrado ou incorreto!';
     errorDiv.style.display = 'block';
     successDiv.style.display = 'none';
@@ -239,8 +327,22 @@ function handleResetPassword(event) {
   }
   
   // Validações de senha
+  if (!newPassword) {
+    errorDiv.textContent = 'Por favor, insira a nova senha!';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+    return;
+  }
+  
   if (newPassword.length < 3) {
     errorDiv.textContent = 'A nova senha deve ter pelo menos 3 caracteres!';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+    return;
+  }
+  
+  if (!confirmPassword) {
+    errorDiv.textContent = 'Por favor, confirme a nova senha!';
     errorDiv.style.display = 'block';
     successDiv.style.display = 'none';
     return;
@@ -253,28 +355,33 @@ function handleResetPassword(event) {
     return;
   }
   
-  // Redefine a senha
-  localStorage.setItem('professor_password', newPassword);
-  successDiv.textContent = 'Senha redefinida com sucesso! Você pode fazer login agora.';
-  successDiv.style.display = 'block';
-  errorDiv.style.display = 'none';
-  
-  // Limpa os campos
-  document.getElementById('reset-recovery-email').value = '';
-  document.getElementById('reset-new-password').value = '';
-  document.getElementById('reset-confirm-password').value = '';
-  
-  // Fecha o modal após 2 segundos e redireciona para login
-  setTimeout(() => {
-    closeRecoveryEmailModal();
-    // Opcional: limpar campos de login também
-    if (document.getElementById('login-username')) {
-      document.getElementById('login-username').value = '';
-    }
-    if (document.getElementById('login-password')) {
-      document.getElementById('login-password').value = '';
-    }
-  }, 2000);
+  try {
+    // Redefine a senha
+    localStorage.setItem('professor_password', newPassword);
+    successDiv.textContent = 'Senha redefinida com sucesso! Você pode fazer login agora.';
+    successDiv.style.display = 'block';
+    errorDiv.style.display = 'none';
+    
+    // Limpa os campos
+    emailInput.value = '';
+    newPasswordInput.value = '';
+    confirmPasswordInput.value = '';
+    
+    // Fecha o modal após 2 segundos
+    setTimeout(() => {
+      closeRecoveryEmailModal();
+      // Limpa campos de login também
+      const loginUsername = document.getElementById('login-username');
+      const loginPassword = document.getElementById('login-password');
+      if (loginUsername) loginUsername.value = '';
+      if (loginPassword) loginPassword.value = '';
+    }, 2000);
+  } catch (e) {
+    console.error('Erro ao redefinir senha:', e);
+    errorDiv.textContent = 'Erro ao redefinir senha. Por favor, tente novamente.';
+    errorDiv.style.display = 'block';
+    successDiv.style.display = 'none';
+  }
 }
 
 // Fecha modais ao clicar fora
@@ -717,6 +824,10 @@ window.clearImagePreview = clearImagePreview;
 window.loadStudentRecords = loadStudentRecords;
 window.refreshStudentRecords = refreshStudentRecords;
 window.getAllStudentRecords = getAllStudentRecords;
+window.showRecoveryEmailModal = showRecoveryEmailModal;
+window.closeRecoveryEmailModal = closeRecoveryEmailModal;
+window.handleSetupRecoveryEmail = handleSetupRecoveryEmail;
+window.handleResetPassword = handleResetPassword;
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
