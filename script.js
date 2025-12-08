@@ -96,7 +96,12 @@ function mountQuizToContainer(topic, containerId){
     const summary = document.createElement('div');
     summary.className = 'note';
     const corrects = state.userAnswers[topic].filter(x => x.correct).length;
-    summary.innerHTML = `<p style="margin:6px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p><p style="margin:6px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>`;
+    const percentage = Math.round((corrects/questions.length)*100);
+    
+    // Salva o registro do quiz completado
+    saveStudentQuizRecord(topic, questions.length, corrects, percentage);
+    
+    summary.innerHTML = `<p style="margin:6px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p><p style="margin:6px 0">Porcentagem: <strong>${percentage}%</strong></p>`;
     done.appendChild(summary);
     
     const btnContainer = document.createElement('div');
@@ -198,6 +203,11 @@ function mountQuizToContainer(topic, containerId){
           if (container) {
             const questions = getCombinedQuestions(topic);
             const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+            const percentage = Math.round((corrects/questions.length)*100);
+            
+            // Salva o registro do quiz completado
+            saveStudentQuizRecord(topic, questions.length, corrects, percentage);
+            
             const summary = document.createElement('div');
             const studentName = getStudentName();
             const nameDisplay = studentName ? `<p style="margin:0 0 12px 0; padding:10px 14px; background:rgba(37,99,235,0.1); border-left:4px solid #2563eb; border-radius:8px; color:#1e40af; font-weight:600"><span style="opacity:0.8">Estudante:</span> ${studentName}</p>` : '';
@@ -207,7 +217,7 @@ function mountQuizToContainer(topic, containerId){
               <div class="note">
                 <p style="margin:6px 0"><strong>Resultado:</strong></p>
                 <p style="margin:4px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>
-                <p style="margin:4px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>
+                <p style="margin:4px 0">Porcentagem: <strong>${percentage}%</strong></p>
               </div>
               <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
                 <button class="btn primary" onclick="resetQuiz('${topic}'); mountGeneralQuiz('${topic}')">Refazer Quiz</button>
@@ -323,13 +333,18 @@ function submitAnswer(topic, qIndex, containerId){
         if (container) {
           const questions = getCombinedQuestions(topic);
           const corrects = state.userAnswers[topic].filter(x => x.correct).length;
+          const percentage = Math.round((corrects/questions.length)*100);
+          
+          // Salva o registro do quiz completado
+          saveStudentQuizRecord(topic, questions.length, corrects, percentage);
+          
           const summary = document.createElement('div');
           summary.innerHTML = `
             <h4 style="margin:0 0 10px 0">Quiz de ${capitalize(topic)} Concluído!</h4>
             <div class="note">
               <p style="margin:6px 0"><strong>Resultado:</strong></p>
               <p style="margin:4px 0">Acertos: <strong>${corrects}</strong> de ${questions.length}</p>
-              <p style="margin:4px 0">Porcentagem: <strong>${Math.round((corrects/questions.length)*100)}%</strong></p>
+              <p style="margin:4px 0">Porcentagem: <strong>${percentage}%</strong></p>
             </div>
             <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
               <button class="btn primary" onclick="resetQuiz('${topic}'); mountGeneralQuiz('${topic}')">Refazer Quiz</button>
@@ -568,6 +583,50 @@ function getStudentName() {
   }
 }
 
+// Função para salvar registro de quiz completado
+function saveStudentQuizRecord(topic, totalQuestions, correctAnswers, percentage) {
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      return;
+    }
+    const studentName = getStudentName();
+    if (!studentName) return; // Não salva se não houver nome
+    
+    const record = {
+      studentName: studentName,
+      topic: topic,
+      totalQuestions: totalQuestions,
+      correctAnswers: correctAnswers,
+      percentage: percentage,
+      timestamp: new Date().toISOString(),
+      date: new Date().toLocaleString('pt-BR')
+    };
+    
+    // Recupera registros existentes
+    const existingRecords = JSON.parse(localStorage.getItem('student_quiz_records') || '[]');
+    
+    // Adiciona novo registro
+    existingRecords.push(record);
+    
+    // Salva de volta
+    localStorage.setItem('student_quiz_records', JSON.stringify(existingRecords));
+  } catch (e) {
+    console.error('Erro ao salvar registro do estudante:', e);
+  }
+}
+
+// Função para obter todos os registros de estudantes
+function getAllStudentRecords() {
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      return [];
+    }
+    return JSON.parse(localStorage.getItem('student_quiz_records') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
 function saveStudentName() {
   try {
     const nameInput = document.getElementById('student-name-input');
@@ -640,6 +699,8 @@ function editStudentName() {
 window.saveStudentName = saveStudentName;
 window.editStudentName = editStudentName;
 window.getStudentName = getStudentName;
+window.saveStudentQuizRecord = saveStudentQuizRecord;
+window.getAllStudentRecords = getAllStudentRecords;
 // Image Zoom Functionality
 let imageZoomState = {
   scale: 1,

@@ -416,6 +416,46 @@
                 </div>
               </div>
             </div>
+            
+            <!-- Card de Registros de Estudantes -->
+            <div class="card" style="margin-top:20px; border:2px solid rgba(37,99,235,0.15)">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:16px">
+                <div style="display:flex; align-items:center; gap:12px">
+                  <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #2563eb, #06b6d4); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 style="margin:0 0 4px 0; font-size:1.3rem; color:#1e40af">Registros de Estudantes</h4>
+                    <p style="margin:0; color:var(--muted); font-size:0.9rem">Visualize os resultados dos quizzes respondidos pelos estudantes</p>
+                  </div>
+                </div>
+                <button class="btn ghost" onclick="refreshStudentRecords()" style="display:flex; align-items:center; gap:8px; padding:12px 20px">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <polyline points="1 20 1 14 7 14"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  </svg>
+                  Atualizar
+                </button>
+              </div>
+              <div id="student-records-container" style="margin-top:12px">
+                <div style="text-align:center; padding:60px 20px; color:var(--muted)">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 16px; opacity:0.3">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                  <p style="font-size:1rem; margin:0; font-weight:500">Nenhum registro encontrado</p>
+                  <p style="font-size:0.9rem; margin:8px 0 0 0; opacity:0.7">Os registros aparecerão aqui quando os estudantes completarem os quizzes</p>
+                </div>
+              </div>
+            </div>
           </div>
         </article>
       </section>

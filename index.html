@@ -1259,11 +1259,11 @@
                       <animate attributeName="opacity" values="0.95;1;0.95" dur="5s" repeatCount="indefinite" begin="1s"/>
                     </rect>
                     <text x="20" y="122" font-size="10" fill="#92400e" font-weight="600">Hidratação:</text>
-                    <text x="20" y="138" font-size="9" fill="#064a6b">CH₂=CH₂ + H₂O</text>
+                    <text x="20" y="138" font-size="7" fill="#064a6b">CH₂=CH₂ + H₂O</text>
                     <path d="M 100 135 L 150 135" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#arrowAlcenoReac)">
                       <animate attributeName="stroke-dasharray" values="0,50;25,25;50,0" dur="2s" repeatCount="indefinite" begin="1s"/>
                     </path>
-                    <text x="160" y="138" font-size="9" fill="#064a6b">CH₃CH₂OH</text>
+                    <text x="160" y="138" font-size="7" fill="#064a6b">CH₃CH₂OH</text>
                     <text x="20" y="152" font-size="8" fill="#64748b" font-style="italic">Catalisador: H⁺</text>
                     
                     <!-- Markovnikov -->
@@ -1339,8 +1339,8 @@
                     <text x="20" y="52" font-size="11" fill="#1e40af" font-weight="600">Etino / Acetileno (C₂H₂)</text>
                     <text x="20" y="68" font-size="9" fill="#64748b">Alcino terminal</text>
                     
-                    <!-- Molécula de etino centralizada -->
-                    <g transform="translate(100, 75)">
+                    <!-- Molécula de etino centralizada (movida para baixo para não sobrepor textos) -->
+                    <g transform="translate(100, 100)">
                       <circle cx="0" cy="0" r="10" fill="#7ad1ff">
                         <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
                       </circle>
@@ -1349,14 +1349,14 @@
                         <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite" begin="0.5s"/>
                       </circle>
                       <text x="31" y="4" font-size="8" fill="white" font-weight="700">C</text>
-                      <circle cx="0" cy="-25" r="7" fill="#7ad1ff">
+                      <circle cx="0" cy="-18" r="6" fill="#7ad1ff">
                         <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
                       </circle>
-                      <text x="-3" y="-22" font-size="7" fill="white" font-weight="600">H</text>
-                      <circle cx="35" cy="-25" r="7" fill="#7ad1ff">
+                      <text x="-3" y="-15" font-size="7" fill="white" font-weight="600">H</text>
+                      <circle cx="35" cy="-18" r="6" fill="#7ad1ff">
                         <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
                       </circle>
-                      <text x="32" y="-22" font-size="7" fill="white" font-weight="600">H</text>
+                      <text x="32" y="-15" font-size="7" fill="white" font-weight="600">H</text>
                       <line x1="10" y1="0" x2="25" y2="0" stroke="#ef4444" stroke-width="3.5">
                         <animate attributeName="stroke-width" values="3.5;4;3.5" dur="1.2s" repeatCount="indefinite"/>
                         <animate attributeName="opacity" values="0.9;1;0.9" dur="1.2s" repeatCount="indefinite"/>
@@ -1369,8 +1369,8 @@
                         <animate attributeName="stroke-width" values="3.5;4;3.5" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
                         <animate attributeName="opacity" values="0.9;1;0.9" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
                       </line>
-                      <line x1="0" y1="0" x2="0" y2="-18" stroke="#94a3b8" stroke-width="1.5" opacity="0.7"/>
-                      <line x1="35" y1="0" x2="35" y2="-18" stroke="#94a3b8" stroke-width="1.5" opacity="0.7"/>
+                      <line x1="0" y1="0" x2="0" y2="-12" stroke="#94a3b8" stroke-width="1.5" opacity="0.7"/>
+                      <line x1="35" y1="0" x2="35" y2="-12" stroke="#94a3b8" stroke-width="1.5" opacity="0.7"/>
                     </g>
                     
                     <!-- Exemplo 2: 1-Butino -->
@@ -1380,8 +1380,8 @@
                     <text x="220" y="52" font-size="11" fill="#047857" font-weight="600">1-Butino (C₄H₆)</text>
                     <text x="220" y="68" font-size="9" fill="#64748b">Alcino terminal</text>
                     
-                    <!-- Molécula simplificada -->
-                    <g transform="translate(230, 75)">
+                    <!-- Molécula simplificada (movida para baixo para não sobrepor textos) -->
+                    <g transform="translate(230, 100)">
                       <circle cx="0" cy="0" r="8" fill="#7ad1ff">
                         <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite" begin="0.5s"/>
                       </circle>
@@ -1698,78 +1698,78 @@
               </div>
               <aside>
                 <div class="illustration" aria-hidden="true">
-                  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aplicações dos Alcinos">
+                  <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aplicações dos Alcinos" style="width:100%; height:auto; min-height:200px">
                     <text x="10" y="20" font-size="14" fill="#064a6b" font-weight="700">Aplicações Industriais</text>
                     
-                    <!-- Soldagem animada -->
-                    <rect x="20" y="40" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
+                    <!-- Soldagem animada - figura centralizada e cores harmoniosas -->
+                    <rect x="20" y="40" width="100" height="60" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
                     </rect>
-                    <circle cx="55" cy="60" r="10" fill="#fca5a5" opacity="0.6">
+                    <circle cx="70" cy="65" r="10" fill="#ef4444" opacity="0.7">
                       <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <line x1="45" y1="70" x2="65" y2="70" stroke="#ef4444" stroke-width="3">
+                    <line x1="60" y1="75" x2="80" y2="75" stroke="#dc2626" stroke-width="3">
                       <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
                     </line>
-                    <text x="25" y="80" font-size="10" fill="#991b1b" font-weight="600">Soldagem</text>
-                    <text x="25" y="95" font-size="8" fill="#7f1d1d">Acetileno</text>
+                    <text x="25" y="88" font-size="10" fill="#991b1b" font-weight="600">Soldagem</text>
+                    <text x="25" y="98" font-size="8" fill="#7f1d1d">Acetileno</text>
                     
-                    <!-- Química Orgânica animada -->
-                    <rect x="110" y="40" width="70" height="50" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2">
+                    <!-- Química Orgânica animada - figura centralizada e cores harmoniosas -->
+                    <rect x="140" y="40" width="100" height="60" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
                     </rect>
-                    <circle cx="145" cy="60" r="10" fill="#60a5fa" opacity="0.6">
+                    <circle cx="190" cy="65" r="10" fill="#3b82f6" opacity="0.7">
                       <animate attributeName="r" values="10;12;10" dur="2.5s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite"/>
                     </circle>
-                    <text x="115" y="80" font-size="10" fill="#1e40af" font-weight="600">Química</text>
-                    <text x="115" y="95" font-size="8" fill="#1e3a8a">Orgânica</text>
+                    <text x="145" y="88" font-size="10" fill="#1e40af" font-weight="600">Química</text>
+                    <text x="145" y="98" font-size="8" fill="#1e3a8a">Orgânica</text>
                     
-                    <!-- Síntese animada -->
-                    <rect x="200" y="40" width="70" height="50" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2">
+                    <!-- Síntese animada - figura centralizada e cores harmoniosas -->
+                    <rect x="260" y="40" width="100" height="60" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="1s"/>
                     </rect>
-                    <path d="M 210 55 L 230 55 L 220 70 Z" fill="#34d399">
-                      <animateTransform attributeName="transform" type="rotate" values="0 220 62.5;5 220 62.5;0 220 62.5" dur="3s" repeatCount="indefinite"/>
+                    <path d="M 285 55 L 305 55 L 295 70 Z" fill="#10b981" opacity="0.8">
+                      <animateTransform attributeName="transform" type="rotate" values="0 295 62.5;5 295 62.5;0 295 62.5" dur="3s" repeatCount="indefinite"/>
                     </path>
-                    <text x="205" y="80" font-size="10" fill="#047857" font-weight="600">Síntese</text>
-                    <text x="205" y="95" font-size="8" fill="#065f46">Fármacos</text>
+                    <text x="270" y="88" font-size="10" fill="#047857" font-weight="600">Síntese</text>
+                    <text x="270" y="98" font-size="8" fill="#065f46">Fármacos</text>
                     
-                    <!-- Polímeros animado -->
-                    <rect x="20" y="110" width="70" height="50" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="2">
+                    <!-- Polímeros animado - figura centralizada e cores harmoniosas -->
+                    <rect x="20" y="120" width="100" height="60" rx="6" fill="#eef2ff" stroke="#6366f1" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="1.5s"/>
                     </rect>
-                    <polygon points="30,125 40,120 50,125 50,145 40,150 30,145" fill="#818cf8">
-                      <animateTransform attributeName="transform" type="rotate" values="0 40 135;5 40 135;0 40 135" dur="3s" repeatCount="indefinite"/>
+                    <polygon points="45,135 60,130 75,135 75,155 60,160 45,155" fill="#6366f1" opacity="0.8">
+                      <animateTransform attributeName="transform" type="rotate" values="0 60 145;5 60 145;0 60 145" dur="3s" repeatCount="indefinite"/>
                     </polygon>
-                    <text x="25" y="150" font-size="10" fill="#4338ca" font-weight="600">Polímeros</text>
-                    <text x="25" y="165" font-size="8" fill="#312e81">Especiais</text>
+                    <text x="25" y="168" font-size="10" fill="#4338ca" font-weight="600">Polímeros</text>
+                    <text x="25" y="178" font-size="8" fill="#312e81">Especiais</text>
                     
-                    <!-- Pesquisa animada -->
-                    <rect x="110" y="110" width="70" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2">
+                    <!-- Pesquisa animada - figura centralizada e cores harmoniosas -->
+                    <rect x="140" y="120" width="100" height="60" rx="6" fill="#fffbeb" stroke="#f59e0b" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" begin="2s"/>
                     </rect>
-                    <circle cx="145" cy="130" r="8" fill="#fbbf24">
-                      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    <circle cx="190" cy="145" r="10" fill="#f59e0b" opacity="0.8">
+                      <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <text x="115" y="150" font-size="10" fill="#92400e" font-weight="600">Pesquisa</text>
-                    <text x="115" y="165" font-size="8" fill="#78350f">Química Fina</text>
+                    <text x="145" y="168" font-size="10" fill="#92400e" font-weight="600">Pesquisa</text>
+                    <text x="145" y="178" font-size="8" fill="#78350f">Química Fina</text>
                     
-                    <!-- Iluminação animada -->
-                    <rect x="200" y="110" width="70" height="50" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2">
+                    <!-- Iluminação animada - figura centralizada e cores harmoniosas -->
+                    <rect x="260" y="120" width="100" height="60" rx="6" fill="#f59e0b" stroke="#f59e0b" stroke-width="2">
                       <animate attributeName="opacity" values="0.9;1;0.9" dur="3.5s" repeatCount="indefinite" begin="2.5s"/>
                     </rect>
-                    <circle cx="235" cy="125" r="6" fill="#fbbf24">
-                      <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite"/>
+                    <circle cx="310" cy="140" r="8" fill="#f59e0b" opacity="0.9">
+                      <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite"/>
                       <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
                     </circle>
-                    <line x1="235" y1="119" x2="235" y2="115" stroke="#fbbf24" stroke-width="2">
+                    <line x1="310" y1="134" x2="310" y2="130" stroke="#f59e0b" stroke-width="2">
                       <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
                     </line>
-                    <text x="205" y="150" font-size="10" fill="#991b1b" font-weight="600">Iluminação</text>
-                    <text x="205" y="165" font-size="8" fill="#7f1d1d">Histórica</text>
+                    <text x="270" y="168" font-size="10" fill="#f59e0b" font-weight="600">Iluminação</text>
+                    <text x="270" y="178" font-size="8" fill="#f59e0b">Histórica</text>
                   </svg>
                 </div>
               </aside>
@@ -1847,13 +1847,14 @@
                     <text x="220" y="152" font-size="8" fill="#64748b" font-style="italic">→ R-C≡C⁻ Na⁺</text>
                     
                     <!-- Outras reações -->
-                    <rect x="10" y="175" width="380" height="110" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
+                    <rect x="10" y="175" width="380" height="120" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
                     <text x="20" y="192" font-size="11" fill="#064a6b" font-weight="600">Outras Reações:</text>
-                    <text x="20" y="210" font-size="9" fill="#064a6b">• Oxidação: Alcinos + KMnO₄ → Ácidos carboxílicos</text>
-                    <text x="20" y="225" font-size="9" fill="#064a6b">• Ozonólise: Alcinos + O₃ → Ácidos carboxílicos</text>
-                    <text x="20" y="240" font-size="9" fill="#064a6b">• Adição de HX: Segue regra de Markovnikov</text>
-                    <text x="20" y="255" font-size="9" fill="#064a6b">• Formação de sais: R-C≡C-H + base forte → R-C≡C⁻</text>
-                    <text x="20" y="270" font-size="9" fill="#064a6b">• Alquilação: R-C≡C⁻ + haleto → R-C≡C-R'</text>
+                    <text x="20" y="210" font-size="9" fill="#064a6b">• Oxidação: Alcinos + KMnO₄</text>
+                    <text x="20" y="225" font-size="9" fill="#064a6b">• Ozonólise: Alcinos + O₃</text>
+                    <text x="20" y="240" font-size="9" fill="#064a6b">• Adição de HX: Markovnikov</text>
+                    <text x="20" y="255" font-size="9" fill="#064a6b">• Formação de sais: R-C≡C-H + base</text>
+                    <text x="20" y="270" font-size="9" fill="#064a6b">• Alquilação: R-C≡C⁻ + haleto</text>
+                    <text x="20" y="285" font-size="9" fill="#064a6b">→ R-C≡C-R'</text>
                   </svg>
                 </div>
               </aside>
@@ -2432,14 +2433,15 @@
                     <text x="220" y="147" font-size="8" fill="#64748b" font-style="italic">Levedura (enzimas)</text>
                     
                     <!-- Outros métodos -->
-                    <rect x="10" y="165" width="380" height="120" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
+                    <rect x="10" y="165" width="380" height="130" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
                     <text x="20" y="182" font-size="11" fill="#064a6b" font-weight="600">Outros Métodos:</text>
-                    <text x="20" y="200" font-size="9" fill="#064a6b">• Redução: Aldeídos/Cetonas + NaBH₄ → Álcoois</text>
+                    <text x="20" y="200" font-size="9" fill="#064a6b">• Redução: Aldeídos/Cetonas + NaBH₄</text>
                     <text x="20" y="215" font-size="9" fill="#064a6b">• Ozonólise: Alcenos → Aldeídos/Cetonas</text>
-                    <text x="20" y="230" font-size="9" fill="#064a6b">• Desidratação: Álcoois + H₂SO₄ → Éteres</text>
+                    <text x="20" y="230" font-size="9" fill="#064a6b">• Desidratação: Álcoois + H₂SO₄</text>
                     <text x="20" y="245" font-size="9" fill="#064a6b">• Hidrólise: Haletos → Álcoois</text>
-                    <text x="20" y="260" font-size="9" fill="#064a6b">• Carbonilação: Grignard + CO₂ → Ácidos</text>
-                    <text x="20" y="275" font-size="9" fill="#064a6b">• Síntese de Williamson: Haleto + Alcóxido → Éter</text>
+                    <text x="20" y="260" font-size="9" fill="#064a6b">• Carbonilação: Grignard + CO₂</text>
+                    <text x="20" y="275" font-size="9" fill="#064a6b">• Síntese de Williamson</text>
+                    <text x="20" y="290" font-size="9" fill="#064a6b">Haleto + Alcóxido → Éter</text>
                   </svg>
                 </div>
               </aside>
@@ -2714,11 +2716,11 @@
                       <animate attributeName="opacity" values="0.95;1;0.95" dur="4s" repeatCount="indefinite"/>
                     </rect>
                     <text x="20" y="52" font-size="10" fill="#1e40af" font-weight="600">Oxidação:</text>
-                    <text x="20" y="68" font-size="9" fill="#064a6b">CH₃CH₂OH + [O]</text>
+                    <text x="20" y="68" font-size="8" fill="#064a6b">CH₃CH₂OH + [O]</text>
                     <path d="M 100 65 L 150 65" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#arrowReacaoOx)">
                       <animate attributeName="stroke-dasharray" values="0,50;25,25;50,0" dur="2s" repeatCount="indefinite"/>
                     </path>
-                    <text x="160" y="68" font-size="9" fill="#064a6b">CH₃CHO</text>
+                    <text x="160" y="68" font-size="8" fill="#064a6b">CH₃CHO</text>
                     <text x="20" y="82" font-size="8" fill="#64748b" font-style="italic">KMnO₄ ou K₂Cr₂O₇</text>
                     
                     <!-- Esterificação -->
@@ -2737,12 +2739,12 @@
                       <animate attributeName="opacity" values="0.95;1;0.95" dur="5s" repeatCount="indefinite" begin="1s"/>
                     </rect>
                     <text x="20" y="122" font-size="10" fill="#92400e" font-weight="600">Redução:</text>
-                    <text x="20" y="138" font-size="9" fill="#064a6b">R-CHO + [H]</text>
+                    <text x="20" y="138" font-size="7" fill="#064a6b">R-CHO + [H]</text>
                     <path d="M 100 135 L 150 135" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#arrowReacaoOx)">
                       <animate attributeName="stroke-dasharray" values="0,50;25,25;50,0" dur="2s" repeatCount="indefinite" begin="1s"/>
                     </path>
-                    <text x="160" y="138" font-size="9" fill="#064a6b">R-CH₂OH</text>
-                    <text x="20" y="152" font-size="8" fill="#64748b" font-style="italic">NaBH₄ ou LiAlH₄</text>
+                    <text x="160" y="138" font-size="7" fill="#064a6b">R-CH₂OH</text>
+                    <text x="20" y="152" font-size="7" fill="#64748b" font-style="italic">NaBH₄ ou LiAlH₄</text>
                     
                     <!-- Desidratação -->
                     <rect x="210" y="105" width="180" height="60" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5">
@@ -2756,13 +2758,14 @@
                     <text x="220" y="152" font-size="8" fill="#64748b" font-style="italic">→ Alcenos ou Éteres</text>
                     
                     <!-- Outras reações -->
-                    <rect x="10" y="175" width="380" height="110" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
+                    <rect x="10" y="175" width="380" height="120" rx="6" fill="#f9fafb" stroke="#64748b" stroke-width="1.5" opacity="0.9"/>
                     <text x="20" y="192" font-size="11" fill="#064a6b" font-weight="600">Outras Reações Importantes:</text>
-                    <text x="20" y="210" font-size="9" fill="#064a6b">• Hidrólise de Ésteres: R-COO-R' + H₂O → R-COOH + R'-OH</text>
-                    <text x="20" y="225" font-size="9" fill="#064a6b">• Formação de Sais: R-COOH + Base → R-COO⁻ + H₂O</text>
-                    <text x="20" y="240" font-size="9" fill="#064a6b">• Adição Nucleofílica: Aldeídos/Cetonas + Nucleófilo</text>
-                    <text x="20" y="255" font-size="9" fill="#064a6b">• Halogenação: Álcoois + HX → Haletos + H₂O</text>
-                    <text x="20" y="270" font-size="9" fill="#064a6b">• Oxidação de Cetonas: Não ocorre facilmente (diferença de aldeídos)</text>
+                    <text x="20" y="210" font-size="9" fill="#064a6b">• Hidrólise de Ésteres: R-COO-R' + H₂O</text>
+                    <text x="20" y="225" font-size="9" fill="#064a6b">• Formação de Sais: R-COOH + Base</text>
+                    <text x="20" y="240" font-size="9" fill="#064a6b">• Adição Nucleofílica: Aldeídos/Cetonas</text>
+                    <text x="20" y="255" font-size="9" fill="#064a6b">• Halogenação: Álcoois + HX</text>
+                    <text x="20" y="270" font-size="9" fill="#064a6b">• Oxidação de Cetonas: Não ocorre</text>
+                    <text x="20" y="285" font-size="9" fill="#064a6b">facilmente (diferença de aldeídos)</text>
                   </svg>
                 </div>
               </aside>
@@ -2965,6 +2968,13 @@
           <p>
             Sintam-se convidados(as) a explorar, conhecer e acompanhar essa etapa tão importante da minha jornada.
           </p>
+          
+          <!-- Foto da autora -->
+          <div style="margin-top:40px; text-align:center; padding-top:32px; border-top:2px solid rgba(37,99,235,0.1)">
+            <img src="img\WhatsApp Image 2025-12-07 at 14.31.11.jpeg" alt="Gabriela Sales Marinho" 
+                 style="max-width:100%; max-height:400px; width:auto; height:auto; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.15); object-fit:contain; display:block; margin:0 auto; cursor:pointer"
+                 onclick="openImageZoom(this.src)">
+          </div>
         </div>
       </article>
     </section>

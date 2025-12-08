@@ -303,6 +303,10 @@ function showProfessorPanel() {
     document.getElementById('professor-panel').style.display = 'block';
     selectProfessorTopic(professorState.currentTopic);
     loadProfessorQuestions();
+    // Carrega registros de estudantes
+    setTimeout(() => {
+      loadStudentRecords();
+    }, 300);
   }
 }
 
@@ -563,6 +567,141 @@ function deleteProfessorQuestion(id) {
   loadProfessorQuestions();
 }
 
+// Função para obter registros de estudantes (compatível com script.js)
+function getAllStudentRecords() {
+  try {
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      return [];
+    }
+    return JSON.parse(localStorage.getItem('student_quiz_records') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+// Função para carregar e exibir registros de estudantes
+function loadStudentRecords() {
+  const container = document.getElementById('student-records-container');
+  if (!container) return;
+  
+  const records = getAllStudentRecords();
+  
+  if (records.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:60px 20px; color:var(--muted)">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 16px; opacity:0.3">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <p style="font-size:1rem; margin:0; font-weight:500">Nenhum registro encontrado</p>
+        <p style="font-size:0.9rem; margin:8px 0 0 0; opacity:0.7">Os registros aparecerão aqui quando os estudantes completarem os quizzes</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Agrupa registros por estudante
+  const studentsMap = {};
+  records.forEach(record => {
+    if (!studentsMap[record.studentName]) {
+      studentsMap[record.studentName] = {
+        name: record.studentName,
+        records: [],
+        totalQuizzes: 0,
+        totalQuestions: 0,
+        totalCorrect: 0
+      };
+    }
+    studentsMap[record.studentName].records.push(record);
+    studentsMap[record.studentName].totalQuizzes++;
+    studentsMap[record.studentName].totalQuestions += record.totalQuestions;
+    studentsMap[record.studentName].totalCorrect += record.correctAnswers;
+  });
+  
+  // Converte para array e ordena por nome
+  const students = Object.values(studentsMap).sort((a, b) => a.name.localeCompare(b.name));
+  
+  // Calcula média geral de cada estudante
+  students.forEach(student => {
+    student.averagePercentage = student.totalQuestions > 0 
+      ? Math.round((student.totalCorrect / student.totalQuestions) * 100) 
+      : 0;
+  });
+  
+  // Renderiza os registros
+  container.innerHTML = students.map((student, idx) => {
+    const topicNames = {
+      'alcanos': 'Alcanos',
+      'alcenos': 'Alcenos',
+      'alcinos': 'Alcinos',
+      'oxigenados': 'Oxigenados'
+    };
+    
+    // Ordena registros por data (mais recente primeiro)
+    const sortedRecords = student.records.sort((a, b) => 
+      new Date(b.timestamp) - new Date(a.timestamp)
+    );
+    
+    return `
+      <div class="card" style="margin-bottom:16px; border:2px solid rgba(37,99,235,0.15); background:${idx % 2 === 0 ? '#ffffff' : 'rgba(37,99,235,0.02)'}">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:12px">
+          <div style="display:flex; align-items:center; gap:12px; flex:1">
+            <div style="width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, #2563eb, #06b6d4); display:flex; align-items:center; justify-content:center; flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div style="flex:1">
+              <h4 style="margin:0 0 4px 0; font-size:1.2rem; color:#1e40af; font-weight:600">${student.name}</h4>
+              <p style="margin:0; color:var(--muted); font-size:0.9rem">
+                ${student.totalQuizzes} quiz${student.totalQuizzes !== 1 ? 'zes' : ''} completado${student.totalQuizzes !== 1 ? 's' : ''} • 
+                Média geral: <strong style="color:#2563eb">${student.averagePercentage}%</strong>
+              </p>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:1.5rem; font-weight:700; color:#2563eb; line-height:1">${student.averagePercentage}%</div>
+            <div style="font-size:0.85rem; color:var(--muted); margin-top:4px">Média</div>
+          </div>
+        </div>
+        
+        <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(37,99,235,0.1)">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px">
+            ${sortedRecords.map(record => `
+              <div style="padding:12px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.15); border-radius:8px">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px">
+                  <span style="font-weight:600; color:#1e40af; font-size:0.95rem">${topicNames[record.topic] || record.topic}</span>
+                  <span style="font-size:0.85rem; color:var(--muted)">${record.date}</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px">
+                  <span style="font-size:0.9rem; color:#064a6b">Acertos:</span>
+                  <strong style="color:${record.percentage >= 70 ? '#10b981' : record.percentage >= 50 ? '#f59e0b' : '#ef4444'}; font-size:1rem">
+                    ${record.correctAnswers}/${record.totalQuestions}
+                  </strong>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px">
+                  <span style="font-size:0.9rem; color:#064a6b">Porcentagem:</span>
+                  <strong style="color:${record.percentage >= 70 ? '#10b981' : record.percentage >= 50 ? '#f59e0b' : '#ef4444'}; font-size:1rem">
+                    ${record.percentage}%
+                  </strong>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Função para atualizar os registros
+function refreshStudentRecords() {
+  loadStudentRecords();
+}
+
 // Exporta funções para uso global
 window.selectProfessorTopic = selectProfessorTopic;
 window.addProfessorQuestion = addProfessorQuestion;
@@ -575,10 +714,17 @@ window.showChangePasswordModal = showChangePasswordModal;
 window.closeChangePasswordModal = closeChangePasswordModal;
 window.handleImageFileUpload = handleImageFileUpload;
 window.clearImagePreview = clearImagePreview;
+window.loadStudentRecords = loadStudentRecords;
+window.refreshStudentRecords = refreshStudentRecords;
+window.getAllStudentRecords = getAllStudentRecords;
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
   initCredentials();
   checkLogin();
+  // Carrega registros de estudantes quando o painel é mostrado
+  setTimeout(() => {
+    loadStudentRecords();
+  }, 500);
 });
 
